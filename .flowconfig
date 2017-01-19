@@ -14,15 +14,32 @@
 .*/Libraries/react-native/React.js
 .*/Libraries/react-native/ReactNative.js
 
+; Ignore to remove error in type checking React Native
+.*/node_modules/react-native/Libraries/CustomComponents/Navigator/Navigation/NavigationRouteStack.js
+.*/node_modules/react-native/local-cli/server/middleware/heapCapture/src/index.js
+
 [include]
 
 [libs]
 node_modules/react-native/Libraries/react-native/react-native-interface.js
 node_modules/react-native/flow
-flow/
+flow-typed/npm
+src/types
 
 [options]
 module.system=haste
+
+module.system.node.resolve_dirname=src
+module.system.node.resolve_dirname=tests
+
+module.file_ext=.js
+module.file_ext=.ios.js
+module.file_ext=.android.js
+module.file_ext=.json
+
+esproposal.class_static_fields=enable
+esproposal.class_instance_fields=enable
+esproposal.decorators=ignore
 
 experimental.strict_type_args=true
 
