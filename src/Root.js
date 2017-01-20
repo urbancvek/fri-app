@@ -1,7 +1,7 @@
 // @flow
 import { autobind } from 'core-decorators';
 import React, { Component } from 'react';
-import { NativeModules, NativeEventEmitter, View } from 'react-native';
+import { NativeModules, NativeEventEmitter, Platform, View } from 'react-native';
 import Mapbox from 'react-native-mapbox-gl';
 
 import { MAPBOX_TOKEN } from 'config/api';
@@ -26,7 +26,7 @@ class Root extends Component {
 
   componentDidMount() {
     EventEmitter.addListener('onLocationChange', this.onLocationChange);
-    IndoorLocation.startLocating();
+    if (Platform.OS === 'ios') IndoorLocation.startLocating();
   }
 
   onLocationChange(location: UserLocationType) {
