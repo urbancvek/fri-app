@@ -22,6 +22,18 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		E20AE5591E32463900855EE4 /* IndoorAtlas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E20AE5581E32463900855EE4 /* IndoorAtlas.framework */; };
+		E20AE55B1E32468700855EE4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E20AE55A1E32468700855EE4 /* UIKit.framework */; };
+		E20AE55D1E32469200855EE4 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E20AE55C1E32469200855EE4 /* CoreMotion.framework */; };
+		E20AE55F1E32469700855EE4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E20AE55E1E32469700855EE4 /* CoreLocation.framework */; };
+		E20AE5611E3246A100855EE4 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E20AE5601E3246A100855EE4 /* Accelerate.framework */; };
+		E20AE5631E3246AA00855EE4 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E20AE5621E3246AA00855EE4 /* CFNetwork.framework */; };
+		E20AE5651E3246BC00855EE4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E20AE5641E3246BC00855EE4 /* Security.framework */; };
+		E20AE5671E3246C200855EE4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E20AE5661E3246C200855EE4 /* SystemConfiguration.framework */; };
+		E20AE5691E3246D300855EE4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E20AE5681E3246D300855EE4 /* Foundation.framework */; };
+		E20AE5771E32470B00855EE4 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E20AE5761E32470B00855EE4 /* CoreBluetooth.framework */; };
+		E20AE57B1E3247F300855EE4 /* IndoorLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20AE57A1E3247F300855EE4 /* IndoorLocation.swift */; };
+		E20AE5891E32489600855EE4 /* IndoorLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = E20AE5881E32489600855EE4 /* IndoorLocation.m */; };
 		E263843A1E31816900DDAAC2 /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E26384391E31816900DDAAC2 /* Mapbox.framework */; };
 		E263843B1E31816900DDAAC2 /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E26384391E31816900DDAAC2 /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E263843D1E31817200DDAAC2 /* libRCTMapboxGL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E26384251E31814800DDAAC2 /* libRCTMapboxGL.a */; };
@@ -253,6 +265,19 @@
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		E20AE5581E32463900855EE4 /* IndoorAtlas.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IndoorAtlas.framework; path = FRI/Frameworks/IndoorAtlas.framework; sourceTree = "<group>"; };
+		E20AE55A1E32468700855EE4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E20AE55C1E32469200855EE4 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		E20AE55E1E32469700855EE4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		E20AE5601E3246A100855EE4 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		E20AE5621E3246AA00855EE4 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		E20AE5641E3246BC00855EE4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		E20AE5661E3246C200855EE4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		E20AE5681E3246D300855EE4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E20AE5761E32470B00855EE4 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		E20AE5791E3247F200855EE4 /* FRI-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FRI-Bridging-Header.h"; sourceTree = "<group>"; };
+		E20AE57A1E3247F300855EE4 /* IndoorLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IndoorLocation.swift; path = FRI/IndoorLocation.swift; sourceTree = "<group>"; };
+		E20AE5881E32489600855EE4 /* IndoorLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IndoorLocation.m; path = FRI/IndoorLocation.m; sourceTree = "<group>"; };
 		E26384171E31814800DDAAC2 /* RCTMapboxGL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTMapboxGL.xcodeproj; path = "../node_modules/react-native-mapbox-gl/ios/RCTMapboxGL.xcodeproj"; sourceTree = "<group>"; };
 		E26384391E31816900DDAAC2 /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapbox.framework; path = "../node_modules/react-native-mapbox-gl/ios/Mapbox.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -262,7 +287,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E20AE5771E32470B00855EE4 /* CoreBluetooth.framework in Frameworks */,
+				E20AE5691E3246D300855EE4 /* Foundation.framework in Frameworks */,
+				E20AE5671E3246C200855EE4 /* SystemConfiguration.framework in Frameworks */,
+				E20AE5651E3246BC00855EE4 /* Security.framework in Frameworks */,
+				E20AE5631E3246AA00855EE4 /* CFNetwork.framework in Frameworks */,
+				E20AE5611E3246A100855EE4 /* Accelerate.framework in Frameworks */,
+				E20AE55F1E32469700855EE4 /* CoreLocation.framework in Frameworks */,
+				E20AE55D1E32469200855EE4 /* CoreMotion.framework in Frameworks */,
+				E20AE55B1E32468700855EE4 /* UIKit.framework in Frameworks */,
 				E263843D1E31817200DDAAC2 /* libRCTMapboxGL.a in Frameworks */,
+				E20AE5591E32463900855EE4 /* IndoorAtlas.framework in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
@@ -344,6 +379,7 @@
 		13B07FAE1A68108700A75B9A /* FRI */ = {
 			isa = PBXGroup;
 			children = (
+				E20AE5781E3247C500855EE4 /* IndoorLocation */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -351,6 +387,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				E20AE5791E3247F200855EE4 /* FRI-Bridging-Header.h */,
 			);
 			name = FRI;
 			sourceTree = "<group>";
@@ -419,9 +456,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				E26384391E31816900DDAAC2 /* Mapbox.framework */,
 				13B07FAE1A68108700A75B9A /* FRI */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
+				E20AE53A1E323CED00855EE4 /* Frameworks */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 			);
 			indentWidth = 2;
@@ -434,6 +471,33 @@
 				13B07F961A680F5B00A75B9A /* FRI.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		E20AE53A1E323CED00855EE4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E20AE5761E32470B00855EE4 /* CoreBluetooth.framework */,
+				E20AE5681E3246D300855EE4 /* Foundation.framework */,
+				E20AE5661E3246C200855EE4 /* SystemConfiguration.framework */,
+				E20AE5641E3246BC00855EE4 /* Security.framework */,
+				E20AE5621E3246AA00855EE4 /* CFNetwork.framework */,
+				E20AE5601E3246A100855EE4 /* Accelerate.framework */,
+				E20AE55E1E32469700855EE4 /* CoreLocation.framework */,
+				E20AE55C1E32469200855EE4 /* CoreMotion.framework */,
+				E20AE55A1E32468700855EE4 /* UIKit.framework */,
+				E20AE5581E32463900855EE4 /* IndoorAtlas.framework */,
+				E26384391E31816900DDAAC2 /* Mapbox.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E20AE5781E3247C500855EE4 /* IndoorLocation */ = {
+			isa = PBXGroup;
+			children = (
+				E20AE57A1E3247F300855EE4 /* IndoorLocation.swift */,
+				E20AE5881E32489600855EE4 /* IndoorLocation.m */,
+			);
+			name = IndoorLocation;
 			sourceTree = "<group>";
 		};
 		E26384181E31814800DDAAC2 /* Products */ = {
@@ -457,7 +521,7 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				E263843C1E31816900DDAAC2 /* Embed Frameworks */,
-				E263843E1E31817A00DDAAC2 /* ShellScript */,
+				E263843E1E31817A00DDAAC2 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -476,6 +540,12 @@
 			attributes = {
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = Facebook;
+				TargetAttributes = {
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = K8R7Z72LW2;
+						LastSwiftMigration = 0820;
+					};
+				};
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "FRI" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -764,13 +834,14 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/packager/react-native-xcode.sh";
 		};
-		E263843E1E31817A00DDAAC2 /* ShellScript */ = {
+		E263843E1E31817A00DDAAC2 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -784,8 +855,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E20AE57B1E3247F300855EE4 /* IndoorLocation.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				E20AE5891E32489600855EE4 /* IndoorLocation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -808,17 +881,28 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				FRAMEWORK_SEARCH_PATHS = "../node_modules/react-native-mapbox-gl/**";
+				DEVELOPMENT_TEAM = K8R7Z72LW2;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"../node_modules/react-native-mapbox-gl/**",
+					"$(PROJECT_DIR)/FRI/Frameworks",
+				);
 				INFOPLIST_FILE = FRI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
+					"-lstdc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.shopster.FRI;
 				PRODUCT_NAME = FRI;
+				SWIFT_OBJC_BRIDGING_HEADER = "FRI-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -827,16 +911,26 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				FRAMEWORK_SEARCH_PATHS = "../node_modules/react-native-mapbox-gl/**";
+				DEVELOPMENT_TEAM = K8R7Z72LW2;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"../node_modules/react-native-mapbox-gl/**",
+					"$(PROJECT_DIR)/FRI/Frameworks",
+				);
 				INFOPLIST_FILE = FRI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
+					"-lstdc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.shopster.FRI;
 				PRODUCT_NAME = FRI;
+				SWIFT_OBJC_BRIDGING_HEADER = "FRI-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
