@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { View, Text, ScrollView, Dimensions } from 'react-native';
 
 import { StyleSheet } from 'standard';
+import EventList from 'components/EventList';
 
 const { width } = Dimensions.get('window');
 
@@ -55,8 +56,12 @@ class HomeTabScene extends Component {
             onScroll={this.onScroll}
             scrollEventThrottle={16}
           >
-            <View style={[styles.page, { backgroundColor: 'red' }]} />
-            <View style={[styles.page, { backgroundColor: 'blue' }]} />
+            <View style={styles.page}>
+              <EventList />
+            </View>
+            <View style={styles.page}>
+              <EventList />
+            </View>
           </ScrollView>
         </View>
       </View>

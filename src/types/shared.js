@@ -27,3 +27,9 @@ declare type AnnotationType = {
     width: number,
   },
 };
+
+declare type EventType = {
+  title: string,
+  room: string,
+  duration: string,
+};
