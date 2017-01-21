@@ -19,7 +19,7 @@ class Root extends Component {
 
   state: State = {
     userLocation: {
-      coordinates: [0, 0],
+      coordinates: [46.050, 14.469],
       course: 0,
     },
   };
