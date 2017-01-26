@@ -1,9 +1,10 @@
 // @flow
 import { autobind } from 'core-decorators';
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Dimensions } from 'react-native';
+import { View, ScrollView, Dimensions } from 'react-native';
 
 import { StyleSheet } from 'standard';
+import SlidingChooser from 'components/SlidingChooser';
 import EventList from 'components/EventList';
 
 const { width } = Dimensions.get('window');
@@ -11,35 +12,33 @@ const { width } = Dimensions.get('window');
 @autobind
 class HomeTabScene extends Component {
   state: State;
+  scrollView: ScrollViewType;
 
   state: State = {
     selectedPage: 0,
   };
 
-  onScroll(event) {
+  onScroll(event: ScrollEventType) {
+    const { selectedPage } = this.state;
     const offsetX = event.nativeEvent.contentOffset.x;
 
-    if (this.state.selectedPage === 0 && offsetX > (width / 2)) {
-      this.setState({ selectedPage: 1 });
-    } else if (this.state.selectedPage === 1 && offsetX < (width / 2)) {
-      this.setState({ selectedPage: 0 });
-    }
+    const pageToSelect = Math.round(offsetX / 375);
+    if (pageToSelect !== selectedPage) this.setState({ selectedPage: pageToSelect });
+  }
+
+  scrollToPage(index: number) {
+    this.scrollView.scrollTo({ x: width * index });
   }
 
   render() {
-    const { selectedPage } = this.state;
-
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <View style={styles.chooser}>
-            <Text style={selectedPage === 0 && { backgroundColor: 'green' }}>
-              PETEK, 10. 2.
-            </Text>
-            <Text style={selectedPage === 1 && { backgroundColor: 'green' }}>
-              SOBOTA, 11. 2.
-            </Text>
-          </View>
+          <SlidingChooser
+            tabs={['Petek, 10.2.', 'Sobota, 11.2.', 'Nedelja, 12.2']}
+            selectedPage={this.state.selectedPage}
+            scrollToPage={this.scrollToPage}
+          />
         </View>
         <View style={styles.container}>
           <ScrollView
@@ -56,6 +55,9 @@ class HomeTabScene extends Component {
             onScroll={this.onScroll}
             scrollEventThrottle={16}
           >
+            <View style={styles.page}>
+              <EventList />
+            </View>
             <View style={styles.page}>
               <EventList />
             </View>
@@ -81,10 +83,6 @@ const styles = StyleSheet.create({
     height: 200,
     backgroundColor: 'pink',
     justifyContent: 'flex-end',
-  },
-  chooser: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
   },
   page: {
     flex: 1,
