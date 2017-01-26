@@ -14,7 +14,7 @@ type State = {
 const initialState: State = {
   tabs: {
     currentTab: 0,
-    availableTabs: ['HOME_TAB', 'MAP_TAB'],
+    availableTabs: ['HOME_TAB', 'MAP_TAB', 'INFO_TAB', 'SHOPSTER_TAB'],
   },
   routes: {
     index: 0,

@@ -6,8 +6,10 @@ import { connect } from 'react-redux';
 import TabBar from 'react-native-tab-navigator';
 
 import { StyleSheet } from 'standard';
-import HomeTab from 'scenes/HomeTabScene';
-import MapTab from 'scenes/MapTabScene';
+import HomeTabScene from 'scenes/HomeTabScene';
+import MapTabScene from 'scenes/MapTabScene';
+import InfoTabScene from 'scenes/InfoTabScene';
+import ShopsterTabScene from 'scenes/ShopsterTabScene';
 import { changeTabAction } from 'actions/navigationActions';
 
 const TabItem = TabBar.Item;
@@ -21,6 +23,14 @@ const icons = {
     empty: require('assets/tab_icons/map_tab.png'),
     filled: require('assets/tab_icons/map_tab_filled.png'),
   },
+  INFO_TAB: {
+    empty: require('assets/tab_icons/map_tab.png'),
+    filled: require('assets/tab_icons/map_tab_filled.png'),
+  },
+  SHOPSTER_TAB: {
+    empty: require('assets/tab_icons/map_tab.png'),
+    filled: require('assets/tab_icons/map_tab_filled.png'),
+  },
 };
 
 @autobind
@@ -29,8 +39,10 @@ class Tabs extends Component {
 
   renderTabContent(key: string) {
     switch (key) {
-      case 'HOME_TAB': return <HomeTab />;
-      case 'MAP_TAB': return <MapTab />;
+      case 'HOME_TAB': return <HomeTabScene />;
+      case 'MAP_TAB': return <MapTabScene />;
+      case 'INFO_TAB': return <InfoTabScene />;
+      case 'SHOPSTER_TAB': return <ShopsterTabScene />;
       default: return <View />;
     }
   }
