@@ -1,19 +1,16 @@
 // @flow
 import { autobind } from 'core-decorators';
 import React, { Component } from 'react';
-import { Platform, NavigationExperimental, View } from 'react-native';
+import { NavigationExperimental, View } from 'react-native';
 import { connect } from 'react-redux';
 
+import Tabs from 'tabs';
+import EventScene from 'scenes/EventScene';
 import { pushRouteAction, popRouteAction } from 'actions/navigationActions';
 
 import type { NavigationState, NavigationRoute, NavigationSceneRendererProps } from 'NavigationTypeDefinition';
 
 const { CardStack } = NavigationExperimental;
-
-const Tabs = Platform.select({
-  ios: () => require('tabs/ios').default,
-  android: () => require('tabs/android').default,
-})();
 
 @autobind
 class App extends Component {
@@ -22,6 +19,7 @@ class App extends Component {
   renderScene(sceneProps: NavigationSceneRendererProps) {
     switch (sceneProps.scene.route.key) {
       case 'TABS': return <Tabs />;
+      case 'EVENT': return <EventScene />;
 
       default: return <View />;
     }
