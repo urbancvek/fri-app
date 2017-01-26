@@ -1,34 +1,23 @@
 // @flow
 import { autobind } from 'core-decorators';
 import React, { Component } from 'react';
-import { ListView, Text, Animated } from 'react-native';
+import { ListView, Text, Animated, View, Dimensions } from 'react-native';
 
+import { StyleSheet } from 'standard';
 import EventRow from 'components/EventRow';
+
+const { width } = Dimensions.get('window');
 
 const urnik = {
   '10:00': [
-    { title: 'Mata', room: 'P1', duration: '1 ura 30 min' },
-    { title: 'Slova', room: 'P20', duration: '2 uri' },
+    { title: 'Sprejem dijakov', room: 'PA', color: '#eb5858' },
   ],
   '12:00': [
-    { title: 'Zgodla', room: 'P12', duration: '1 ura' },
-    { title: 'Športna', room: 'P01', duration: '2 uri 30 min' },
-  ],
-  '14:00': [
-    { title: 'Mata', room: 'P1', duration: '1 ura 30 min' },
-    { title: 'Slova', room: 'P20', duration: '2 uri' },
-  ],
-  '16:00': [
-    { title: 'Zgodla', room: 'P12', duration: '1 ura' },
-    { title: 'Športna', room: 'P01', duration: '2 uri 30 min' },
-  ],
-  '18:00': [
-    { title: 'Mata', room: 'P1', duration: '1 ura 30 min' },
-    { title: 'Slova', room: 'P20', duration: '2 uri' },
-  ],
-  '20:00': [
-    { title: 'Zgodla', room: 'P12', duration: '1 ura' },
-    { title: 'Športna', room: 'P01', duration: '2 uri 30 min' },
+    { title: 'Robotika', room: 'P12', color: '#eb8b58' },
+    { title: 'Predstavitev dronov', room: 'P22', color: '#ebd158' },
+    { title: 'Uporaba računalništva', room: 'P22', color: '#abeb58' },
+    { title: 'Karierni kotiček', room: 'Glavni prostor', color: '#4ed758' },
+    { title: 'Predstavitev Garaže', room: 'Garaža', color: '#4A84A3' },
   ],
 };
 
@@ -49,11 +38,21 @@ class EventList extends Component {
   };
 
   renderSectionHeader(_: any, sectionId: string) {
-    return <Text>{sectionId}</Text>;
+    return (
+      <View style={styles.sectionView}>
+        <Text style={styles.sectionText}>
+          {sectionId}
+        </Text>
+      </View>
+    );
   }
 
   renderRow(event: EventType) {
     return <EventRow event={event} />;
+  }
+
+  renderSeparator() {
+    return <View style={styles.separator} />;
   }
 
   scrollTo(options: { x?: number, y?: number, animated?: boolean }) {
@@ -68,6 +67,7 @@ class EventList extends Component {
           dataSource={this.state.dataSource}
           renderSectionHeader={this.renderSectionHeader}
           renderRow={this.renderRow}
+          renderSeparator={this.renderSeparator}
           onScroll={this.props.handleScroll}
           scrollEventThrottle={16}
           showsVerticalScrollIndicator={false}
@@ -85,5 +85,24 @@ type Props = {
   handleScroll: Function,
   headerHeight: Animated.Value,
 };
+
+const styles = StyleSheet.create({
+  sectionView: {
+    height: 31,
+    backgroundColor: '#f0f1f3',
+    justifyContent: 'center',
+    paddingLeft: 15,
+  },
+  sectionText: {
+    color: '#9a9a9a',
+    fontSize: 13,
+  },
+  separator: {
+    height: 0.5,
+    alignSelf: 'center',
+    width: width - 46,
+    backgroundColor: '#e8e8e8',
+  },
+});
 
 export default EventList;
