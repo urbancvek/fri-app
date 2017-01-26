@@ -9,7 +9,7 @@ function create<T: Object>(styles: T): { [key: $Keys<T>]: number } {
 
     const customStyles: { [key: $Keys<T>]: string | number } = {};
 
-    if (fontWeight) customStyles.fontFamily = `BrandonText-${fontWeight}`;
+    if (fontWeight) customStyles.fontFamily = `Montserrat-${fontWeight}`;
 
     newStyles[key] = {
       ...rest,

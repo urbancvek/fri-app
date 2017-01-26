@@ -37,6 +37,9 @@
 		E263843A1E31816900DDAAC2 /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E26384391E31816900DDAAC2 /* Mapbox.framework */; };
 		E263843B1E31816900DDAAC2 /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E26384391E31816900DDAAC2 /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E263843D1E31817200DDAAC2 /* libRCTMapboxGL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E26384251E31814800DDAAC2 /* libRCTMapboxGL.a */; };
+		E2A3165D1E3AAFAE005EE87E /* Montserrat-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = E2A3165A1E3AAFAE005EE87E /* Montserrat-Light.otf */; };
+		E2A3165E1E3AAFAE005EE87E /* Montserrat-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = E2A3165B1E3AAFAE005EE87E /* Montserrat-Regular.otf */; };
+		E2A316611E3AB02A005EE87E /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E2A316601E3AB029005EE87E /* Montserrat-Bold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -280,6 +283,9 @@
 		E20AE5881E32489600855EE4 /* IndoorLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IndoorLocation.m; path = FRI/IndoorLocation.m; sourceTree = "<group>"; };
 		E26384171E31814800DDAAC2 /* RCTMapboxGL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTMapboxGL.xcodeproj; path = "../node_modules/react-native-mapbox-gl/ios/RCTMapboxGL.xcodeproj"; sourceTree = "<group>"; };
 		E26384391E31816900DDAAC2 /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapbox.framework; path = "../node_modules/react-native-mapbox-gl/ios/Mapbox.framework"; sourceTree = "<group>"; };
+		E2A3165A1E3AAFAE005EE87E /* Montserrat-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Light.otf"; path = "FRI/Fonts/Montserrat-Light.otf"; sourceTree = "<group>"; };
+		E2A3165B1E3AAFAE005EE87E /* Montserrat-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Regular.otf"; path = "FRI/Fonts/Montserrat-Regular.otf"; sourceTree = "<group>"; };
+		E2A316601E3AB029005EE87E /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Bold.otf"; path = "FRI/Fonts/Montserrat-Bold.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -379,6 +385,7 @@
 		13B07FAE1A68108700A75B9A /* FRI */ = {
 			isa = PBXGroup;
 			children = (
+				E2A3163E1E3AAF9B005EE87E /* Fonts */,
 				E20AE5781E3247C500855EE4 /* IndoorLocation */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -507,6 +514,16 @@
 				E26384271E31814800DDAAC2 /* RCTMapboxGLTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		E2A3163E1E3AAF9B005EE87E /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				E2A316601E3AB029005EE87E /* Montserrat-Bold.otf */,
+				E2A3165A1E3AAFAE005EE87E /* Montserrat-Light.otf */,
+				E2A3165B1E3AAFAE005EE87E /* Montserrat-Regular.otf */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -812,8 +829,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2A316611E3AB02A005EE87E /* Montserrat-Bold.otf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				E2A3165D1E3AAFAE005EE87E /* Montserrat-Light.otf in Resources */,
+				E2A3165E1E3AAFAE005EE87E /* Montserrat-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
