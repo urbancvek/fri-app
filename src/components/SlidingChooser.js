@@ -5,8 +5,8 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { StyleSheet } from 'standard';
 
 const Tab = ({ title, onPress, selected }: TabProps) => (
-  <TouchableOpacity onPress={onPress}>
-    <Text style={selected && { backgroundColor: 'green' }}>
+  <TouchableOpacity onPress={onPress} style={[tabStyles.container, selected && { borderColor: 'white' }]}>
+    <Text style={tabStyles.text}>
       {title}
     </Text>
   </TouchableOpacity>
@@ -17,6 +17,23 @@ type TabProps = {
   selected: boolean,
   onPress: () => void,
 };
+
+const tabStyles = StyleSheet.create({
+  container: {
+    borderWidth: 1,
+    borderColor: 'transparent',
+    borderRadius: 30,
+    paddingVertical: 7,
+    paddingHorizontal: 16,
+    marginBottom: 10,
+  },
+  text: {
+    fontSize: 12,
+    fontWeight: 'Light',
+    color: 'white',
+    backgroundColor: 'transparent',
+  },
+});
 
 const SlidingChooser = ({ selectedPage, tabs, scrollToPage }: Props) => (
   <View style={styles.chooser}>
@@ -40,7 +57,7 @@ type Props = {
 const styles = StyleSheet.create({
   chooser: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
   },
 });
 

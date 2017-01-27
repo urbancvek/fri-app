@@ -4,13 +4,13 @@ import React, { Component } from 'react';
 import { View, ScrollView, Dimensions, Animated } from 'react-native';
 
 import { StyleSheet } from 'standard';
+import AnimatedHeader from 'components/AnimatedHeader';
 import SlidingChooser from 'components/SlidingChooser';
 import EventList from 'components/EventList';
 
 const { width } = Dimensions.get('window');
-
 const HEADER_MAX_HEIGHT = 200;
-const HEADER_MIN_HEIGHT = 60;
+const HEADER_MIN_HEIGHT = 97;
 
 @autobind
 class HomeTabScene extends Component {
@@ -63,13 +63,16 @@ class HomeTabScene extends Component {
 
     return (
       <View style={styles.container}>
-        <Animated.View style={[styles.header, { height: headerHeight }]}>
+        <AnimatedHeader
+          headerHeight={headerHeight}
+          selectedPage={this.state.selectedPage}
+        >
           <SlidingChooser
-            tabs={['Petek, 10.2.', 'Sobota, 11.2.', 'Nedelja, 12.2']}
+            tabs={['10.2. DOP', '10.2. POP', '11.2. DOP']}
             selectedPage={this.state.selectedPage}
             scrollToPage={this.scrollToPage}
           />
-        </Animated.View>
+        </AnimatedHeader>
         <View style={styles.container}>
           <ScrollView
             ref={(scrollView: ScrollViewType) => this.scrollView = scrollView}
@@ -123,13 +126,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-  },
-  header: {
-    position: 'absolute',
-    width,
-    zIndex: 1,
-    backgroundColor: 'pink',
-    justifyContent: 'flex-end',
   },
   page: {
     flex: 1,

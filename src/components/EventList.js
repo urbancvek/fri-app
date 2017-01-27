@@ -19,6 +19,16 @@ const urnik = {
     { title: 'Karierni kotiček', room: 'Glavni prostor', color: '#4ed758' },
     { title: 'Predstavitev Garaže', room: 'Garaža', color: '#4A84A3' },
   ],
+  '14:00': [
+    { title: 'Sprejem dijakov', room: 'PA', color: '#eb5858' },
+  ],
+  '16:00': [
+    { title: 'Robotika', room: 'P12', color: '#eb8b58' },
+    { title: 'Predstavitev dronov', room: 'P22', color: '#ebd158' },
+    { title: 'Uporaba računalništva', room: 'P22', color: '#abeb58' },
+    { title: 'Karierni kotiček', room: 'Glavni prostor', color: '#4ed758' },
+    { title: 'Predstavitev Garaže', room: 'Garaža', color: '#4A84A3' },
+  ],
 };
 
 const dataSource = new ListView.DataSource({
@@ -51,8 +61,8 @@ class EventList extends Component {
     return <EventRow event={event} />;
   }
 
-  renderSeparator() {
-    return <View style={styles.separator} />;
+  renderSeparator(sectionId: string, rowId: string) {
+    return <View key={sectionId + rowId} style={styles.separator} />;
   }
 
   scrollTo(options: { x?: number, y?: number, animated?: boolean }) {
