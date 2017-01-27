@@ -16,10 +16,16 @@ const { CardStack } = NavigationExperimental;
 class App extends Component {
   props: Props;
 
+  getChildContext() {
+    return {
+      navigation: this.props.navigation,
+    };
+  }
+
   renderScene(sceneProps: NavigationSceneRendererProps) {
     switch (sceneProps.scene.route.key) {
       case 'TABS': return <Tabs />;
-      case 'EVENT': return <EventScene />;
+      case 'EVENT': return <EventScene event={sceneProps.scene.route.event} />;
 
       default: return <View />;
     }
@@ -29,6 +35,7 @@ class App extends Component {
     return (
       <CardStack
         direction="vertical"
+        cardStyle={{ backgroundColor: 'transparent', opacity: 1 }}
         navigationState={this.props.navigationState}
         renderScene={this.renderScene}
         enableGestures={false}
@@ -36,6 +43,10 @@ class App extends Component {
     );
   }
 }
+
+App.childContextTypes = {
+  navigation: React.PropTypes.object,
+};
 
 type Props = {
   navigationState: NavigationState,

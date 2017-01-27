@@ -53,8 +53,16 @@ class EventList extends Component {
   }
 
   renderRow(rowData: EventType | { type: 'SECTION', title: string }) {
-    if (rowData.type === 'SECTION') return this.renderSectionHeader(null, rowData.title);
-    return <EventRow event={rowData} />;
+    if (rowData.type === 'SECTION') {
+      return this.renderSectionHeader(null, rowData.title);
+    } else {
+      return (
+        <EventRow
+          event={rowData}
+          onPress={() => this.context.navigation.pushRoute({ key: 'EVENT', event: rowData })}
+        />
+      );
+    }
   }
 
   renderSeparator(sectionId: string, rowId: string) {
@@ -88,6 +96,10 @@ class EventList extends Component {
     );
   }
 }
+
+EventList.contextTypes = {
+  navigation: React.PropTypes.object,
+};
 
 type State = {
   dataSource: Object,

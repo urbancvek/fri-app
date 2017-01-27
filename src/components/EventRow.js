@@ -1,25 +1,28 @@
 // @flow
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 
 import { StyleSheet } from 'standard';
 
-const EventRow = ({ event }: Props) => (
-  <View style={styles.container}>
-    <View style={[styles.color, { backgroundColor: event.color }]} />
-    <View style={styles.info}>
-      <Text style={styles.title}>
-        {event.title.toUpperCase()}
-      </Text>
-      <Text style={[styles.room, { color: event.color }]}>
-        {event.room.toUpperCase()}
-      </Text>
+const EventRow = ({ event, onPress }: Props) => (
+  <TouchableOpacity onPress={onPress}>
+    <View style={styles.container}>
+      <View style={[styles.color, { backgroundColor: event.color }]} />
+      <View style={styles.info}>
+        <Text style={styles.title}>
+          {event.title.toUpperCase()}
+        </Text>
+        <Text style={[styles.room, { color: event.color }]}>
+          {event.room.toUpperCase()}
+        </Text>
+      </View>
     </View>
-  </View>
+  </TouchableOpacity>
 );
 
 type Props = {
   event: EventType,
+  onPress: Function,
 };
 
 const styles = StyleSheet.create({
