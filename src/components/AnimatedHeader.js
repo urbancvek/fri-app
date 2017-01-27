@@ -3,8 +3,11 @@ import React, { Component } from 'react';
 import { Animated, Dimensions } from 'react-native';
 
 import { StyleSheet } from 'standard';
+import SlidingChooser from 'components/SlidingChooser';
 
 const { width } = Dimensions.get('window');
+const HEADER_MAX_HEIGHT = 200;
+const HEADER_MIN_HEIGHT = 97;
 
 class AnimatedHeader extends Component {
   props: Props;
@@ -16,8 +19,11 @@ class AnimatedHeader extends Component {
 
   componentWillReceiveProps(newProps: Props) {
     if (this.props.selectedPage !== newProps.selectedPage) {
+      const { imageWidth, tabs } = newProps;
+
+      const amountToScroll = (imageWidth - width) / (tabs.length - 1);
       const config = {
-        toValue: newProps.selectedPage * -30,
+        toValue: newProps.selectedPage * -amountToScroll,
         duration: 300,
       };
 
@@ -26,20 +32,20 @@ class AnimatedHeader extends Component {
   }
 
   render() {
-    const { headerHeight, children } = this.props;
+    const { headerHeight } = this.props;
 
     const backgroundOffsetY = headerHeight.interpolate({
-      inputRange: [97, 200],
+      inputRange: [HEADER_MIN_HEIGHT, HEADER_MAX_HEIGHT],
       outputRange: [-80, 0],
     });
 
     const fontSize = headerHeight.interpolate({
-      inputRange: [97, 200],
+      inputRange: [HEADER_MIN_HEIGHT, HEADER_MAX_HEIGHT],
       outputRange: [20, 34],
     });
 
     const titleOffsetY = headerHeight.interpolate({
-      inputRange: [97, 200],
+      inputRange: [HEADER_MIN_HEIGHT, HEADER_MAX_HEIGHT],
       outputRange: [-10, -40],
     });
 
@@ -55,18 +61,26 @@ class AnimatedHeader extends Component {
           source={require('assets/header_images/fri_background.png')}
         />
         <Animated.Text style={[styles.title, { fontSize, transform: [{ translateY: titleOffsetY }] }]}>
-          Urnik
+          {this.props.title}
         </Animated.Text>
-        {children}
+        <SlidingChooser
+          tabs={this.props.tabs}
+          selectedPage={this.props.selectedPage}
+          scrollToPage={this.props.scrollToPage}
+        />
       </Animated.View>
     );
   }
 }
 
 type Props = {
+  tabs: Array<string>,
+  title: string,
   headerHeight: Animated.Value,
+  imageWidth: number,
   children?: any,
   selectedPage: number,
+  scrollToPage: Function,
 };
 
 type State = {

@@ -94,7 +94,7 @@ type State = {
 };
 
 type Props = {
-  handleScroll: Function,
+  handleScroll?: Function,
 };
 
 const styles = StyleSheet.create({
