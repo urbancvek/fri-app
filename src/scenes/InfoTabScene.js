@@ -1,13 +1,20 @@
 // @flow
-import React from 'react';
-import { View, Text } from 'react-native';
+import { autobind } from 'core-decorators';
+import React, { Component } from 'react';
 
-const InfoTabScene = () => (
-  <View>
-    <Text>
-      Info Tab
-    </Text>
-  </View>
-);
+import ParallaxScrollView from 'components/ParallaxScrollView';
+
+@autobind
+class InfoTabScene extends Component {
+  render() {
+    return (
+      <ParallaxScrollView
+        title="Info"
+        tabs={['PODJETJA', 'O FRI', 'LABORATORIJI']}
+      >
+      </ParallaxScrollView>
+    );
+  }
+}
 
 export default InfoTabScene;
