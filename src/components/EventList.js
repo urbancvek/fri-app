@@ -58,6 +58,14 @@ class EventList extends Component {
   }
 
   renderSeparator(sectionId: string, rowId: string) {
+    const index = Number(rowId);
+
+    if (
+      urnik[index].type === 'SECTION' ||
+      !urnik[index + 1] ||
+      urnik[index + 1].type === 'SECTION'
+    ) return null;
+
     return <View key={sectionId + rowId} style={styles.separator} />;
   }
 
