@@ -1,39 +1,34 @@
 // @flow
 import { autobind } from 'core-decorators';
 import React, { Component } from 'react';
-import { ListView, Text, Animated, View, Dimensions } from 'react-native';
+import { ListView, Text, View, Dimensions } from 'react-native';
 
 import { StyleSheet } from 'standard';
 import EventRow from 'components/EventRow';
 
 const { width } = Dimensions.get('window');
 
-const urnik = {
-  '10:00': [
-    { title: 'Sprejem dijakov', room: 'PA', color: '#eb5858' },
-  ],
-  '12:00': [
-    { title: 'Robotika', room: 'P12', color: '#eb8b58' },
-    { title: 'Predstavitev dronov', room: 'P22', color: '#ebd158' },
-    { title: 'Uporaba računalništva', room: 'P22', color: '#abeb58' },
-    { title: 'Karierni kotiček', room: 'Glavni prostor', color: '#4ed758' },
-    { title: 'Predstavitev Garaže', room: 'Garaža', color: '#4A84A3' },
-  ],
-  '14:00': [
-    { title: 'Sprejem dijakov', room: 'PA', color: '#eb5858' },
-  ],
-  '16:00': [
-    { title: 'Robotika', room: 'P12', color: '#eb8b58' },
-    { title: 'Predstavitev dronov', room: 'P22', color: '#ebd158' },
-    { title: 'Uporaba računalništva', room: 'P22', color: '#abeb58' },
-    { title: 'Karierni kotiček', room: 'Glavni prostor', color: '#4ed758' },
-    { title: 'Predstavitev Garaže', room: 'Garaža', color: '#4A84A3' },
-  ],
-};
+const urnik = [
+  { type: 'SECTION', title: '10:00' },
+  { type: 'EVENT', title: 'Sprejem dijakov', room: 'PA', color: '#eb5858' },
+  { type: 'SECTION', title: '12:00' },
+  { type: 'EVENT', title: 'Robotika', room: 'P12', color: '#eb8b58' },
+  { type: 'EVENT', title: 'Predstavitev dronov', room: 'P22', color: '#ebd158' },
+  { type: 'EVENT', title: 'Uporaba računalništva', room: 'P22', color: '#abeb58' },
+  { type: 'EVENT', title: 'Karierni kotiček', room: 'Glavni prostor', color: '#4ed758' },
+  { type: 'EVENT', title: 'Predstavitev Garaže', room: 'Garaža', color: '#4A84A3' },
+  { type: 'SECTION', title: '14:00' },
+  { type: 'EVENT', title: 'Sprejem dijakov', room: 'PA', color: '#eb5858' },
+  { type: 'SECTION', title: '16:00' },
+  { type: 'EVENT', title: 'Robotika', room: 'P12', color: '#eb8b58' },
+  { type: 'EVENT', title: 'Predstavitev dronov', room: 'P22', color: '#ebd158' },
+  { type: 'EVENT', title: 'Uporaba računalništva', room: 'P22', color: '#abeb58' },
+  { type: 'EVENT', title: 'Karierni kotiček', room: 'Glavni prostor', color: '#4ed758' },
+  { type: 'EVENT', title: 'Predstavitev Garaže', room: 'Garaža', color: '#4A84A3' },
+];
 
 const dataSource = new ListView.DataSource({
   rowHasChanged: (a, b) => a !== b,
-  sectionHeaderHasChanged: (a, b) => a !== b,
 });
 
 @autobind
@@ -44,7 +39,7 @@ class EventList extends Component {
   scrollView: ScrollViewType;
 
   state: State = {
-    dataSource: dataSource.cloneWithRowsAndSections(urnik),
+    dataSource: dataSource.cloneWithRows(urnik),
   };
 
   renderSectionHeader(_: any, sectionId: string) {
@@ -57,8 +52,9 @@ class EventList extends Component {
     );
   }
 
-  renderRow(event: EventType) {
-    return <EventRow event={event} />;
+  renderRow(rowData: EventType | { type: 'SECTION', title: string }) {
+    if (rowData.type === 'SECTION') return this.renderSectionHeader(null, rowData.title);
+    return <EventRow event={rowData} />;
   }
 
   renderSeparator(sectionId: string, rowId: string) {
@@ -71,18 +67,16 @@ class EventList extends Component {
 
   render() {
     return (
-      <Animated.View style={{ marginTop: this.props.headerHeight }}>
-        <ListView
-          ref={(scrollView: ScrollViewType) => this.scrollView = scrollView}
-          dataSource={this.state.dataSource}
-          renderSectionHeader={this.renderSectionHeader}
-          renderRow={this.renderRow}
-          renderSeparator={this.renderSeparator}
-          onScroll={this.props.handleScroll}
-          scrollEventThrottle={16}
-          showsVerticalScrollIndicator={false}
-        />
-      </Animated.View>
+      <ListView
+        ref={(scrollView: ScrollViewType) => this.scrollView = scrollView}
+        contentContainerStyle={{ marginTop: 200 }}
+        dataSource={this.state.dataSource}
+        renderRow={this.renderRow}
+        renderSeparator={this.renderSeparator}
+        onScroll={this.props.handleScroll}
+        scrollEventThrottle={16}
+        showsVerticalScrollIndicator={false}
+      />
     );
   }
 }
@@ -93,7 +87,6 @@ type State = {
 
 type Props = {
   handleScroll: Function,
-  headerHeight: Animated.Value,
 };
 
 const styles = StyleSheet.create({

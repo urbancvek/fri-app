@@ -29,6 +29,7 @@ declare type AnnotationType = {
 };
 
 declare type EventType = {
+  type: 'EVENT',
   title: string,
   room: string,
   color: string,

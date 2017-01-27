@@ -24,7 +24,9 @@ const tabStyles = StyleSheet.create({
     borderColor: 'transparent',
     borderRadius: 30,
     paddingVertical: 7,
-    paddingHorizontal: 16,
+    // Differrent paddings to account for font looks on the right
+    paddingLeft: 16,
+    paddingRight: 13,
     marginBottom: 10,
   },
   text: {

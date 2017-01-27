@@ -19,7 +19,6 @@ class HomeTabScene extends Component {
 
   state: State = {
     selectedPage: 0,
-    controlingOffset: true,
     offsetY: new Animated.Value(0),
   };
 
@@ -31,10 +30,7 @@ class HomeTabScene extends Component {
 
     const pageToSelect = Math.round(offsetX / width);
     if (pageToSelect !== selectedPage) {
-      this.setState({ selectedPage: pageToSelect, controlingOffset: false });
-      this.scrollViews.forEach(scrollView =>
-        scrollView.scrollTo({ y: 0, animated: false })
-      );
+      this.setState({ selectedPage: pageToSelect });
     }
   }
 
@@ -42,15 +38,18 @@ class HomeTabScene extends Component {
     this.scrollView.scrollTo({ x: width * index });
   }
 
-  handleListScroll(event: ScrollEventType) {
+  handleListScroll(index: number, event: ScrollEventType) {
+    if (index !== this.state.selectedPage) return;
     const offsetY = event.nativeEvent.contentOffset.y;
 
-    if (offsetY >= this.state.offsetY._value && !this.state.controlingOffset) {
-      this.setState({ controlingOffset: true });
-    }
+    if (offsetY < (HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT)) {
+      this.scrollViews.forEach((scrollView, idx) => {
+        if (idx !== this.state.selectedPage) {
+          scrollView.scrollTo({ y: offsetY, animated: false });
+        }
+      });
 
-    if (this.state.controlingOffset) {
-      this.state.offsetY.setValue(Math.min(offsetY, 140));
+      this.state.offsetY.setValue(Math.min(offsetY, (HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT)));
     }
   }
 
@@ -91,22 +90,19 @@ class HomeTabScene extends Component {
             <View style={styles.page}>
               <EventList
                 ref={(scrollView: ScrollViewType) => this.scrollViews[0] = scrollView}
-                handleScroll={this.handleListScroll}
-                headerHeight={headerHeight}
+                handleScroll={event => this.handleListScroll(0, event)}
               />
             </View>
             <View style={styles.page}>
               <EventList
                 ref={(scrollView: ScrollViewType) => this.scrollViews[1] = scrollView}
-                handleScroll={this.handleListScroll}
-                headerHeight={headerHeight}
+                handleScroll={event => this.handleListScroll(1, event)}
               />
             </View>
             <View style={styles.page}>
               <EventList
                 ref={(scrollView: ScrollViewType) => this.scrollViews[2] = scrollView}
-                handleScroll={this.handleListScroll}
-                headerHeight={headerHeight}
+                handleScroll={event => this.handleListScroll(2, event)}
               />
             </View>
           </ScrollView>
@@ -118,7 +114,6 @@ class HomeTabScene extends Component {
 
 type State = {
   selectedPage: number,
-  controlingOffset: boolean,
   offsetY: Animated.Value,
 };
 
