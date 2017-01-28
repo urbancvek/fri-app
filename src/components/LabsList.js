@@ -5,15 +5,13 @@ import { ListView } from 'react-native';
 
 import { StyleSheet } from 'standard';
 import ListSeparator from 'components/ListSeparator';
-import CompanyRow from 'components/CompanyRow';
+import LabRow from 'components/LabRow';
 
-const companies: Array<CompanyType> = [
-  { type: 'COMPANY', title: 'Shopster', color: '#DA2025', imageUrl: '' },
-  { type: 'COMPANY', title: 'Outfit 7', color: '#58ebbd', imageUrl: '' },
-  { type: 'COMPANY', title: 'Celtra', color: '#58e2eb', imageUrl: '' },
-  { type: 'COMPANY', title: 'Nil', color: '#55b4ed', imageUrl: '' },
-  { type: 'COMPANY', title: 'Microsoft', color: '#5880eb', imageUrl: '' },
-
+const labs: Array<LabType> = [
+  { type: 'LAB', title: 'LABORATORIJ ZA UMETNO INTELIGENCO' },
+  { type: 'LAB', title: 'LABORATORIJ ZA UMETNE VIZUALNE SPOZNAVNE SISTEME' },
+  { type: 'LAB', title: 'LABORATORIJ ZA ADAPTIVNE SISTEME IN PARALELNO PROCESIRANJE' },
+  { type: 'LAB', title: 'LABORATORIJ ZA PODATKOVNE TEHNOLOGIJE' },
 ];
 
 const dataSource = new ListView.DataSource({
@@ -21,18 +19,19 @@ const dataSource = new ListView.DataSource({
 });
 
 @autobind
-class CompaniesList extends Component {
+class LabsList extends Component {
   props: Props;
   state: State;
+  context: Context;
 
   scrollView: ScrollViewType;
 
   state: State = {
-    dataSource: dataSource.cloneWithRows(companies),
-  }
+    dataSource: dataSource.cloneWithRows(labs),
+  };
 
-  renderRow(rowData: CompanyType) {
-    return <CompanyRow company={rowData} />;
+  renderRow(rowData: LabType) {
+    return <LabRow lab={rowData} />;
   }
 
   renderSeparator(sectionId: string, rowId: string) {
@@ -53,13 +52,13 @@ class CompaniesList extends Component {
         renderSeparator={this.renderSeparator}
         onScroll={this.props.handleScroll}
         scrollEventThrottle={16}
-        showsVerticalScrollIndicator={false}
+        showsVerticalScrollIndicator
       />
     );
   }
 }
 
-CompaniesList.contextTypes = {
+LabsList.contextTypes = {
   navigation: PropTypes.object,
 };
 
@@ -71,10 +70,16 @@ type Props = {
   handleScroll?: Function,
 };
 
+type Context = {
+  navigation: {
+    pushRoute: (route) => void,
+  },
+};
+
 const styles = StyleSheet.create({
   container: {
     marginTop: 200,
   },
 });
 
-export default CompaniesList;
+export default LabsList;

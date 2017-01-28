@@ -35,6 +35,7 @@ const dataSource = new ListView.DataSource({
 class EventList extends Component {
   props: Props;
   state: State;
+  context: Context;
 
   scrollView: ScrollViewType;
 
@@ -101,6 +102,12 @@ type State = {
 
 type Props = {
   handleScroll?: Function,
+};
+
+type Context = {
+  navigation: {
+    pushRoute: (route) => void,
+  },
 };
 
 const styles = StyleSheet.create({

@@ -40,3 +40,8 @@ declare type CompanyType = {
   title: string,
   imageUrl: string,
 };
+
+declare type LabType = {
+  type: 'LAB',
+  title: string,
+};
