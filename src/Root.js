@@ -1,7 +1,7 @@
 // @flow
 import { autobind } from 'core-decorators';
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
 
 import App from 'App';
@@ -23,7 +23,15 @@ class Root extends Component {
 
     return (
       <Provider store={store}>
-        <App />
+        <View style={{ flex: 1 }}>
+          <StatusBar
+            animated
+            barStyle="light-content"
+            backgroundColor="transparent"
+            translucent
+          />
+          <App />
+        </View>
       </Provider>
     );
   }
