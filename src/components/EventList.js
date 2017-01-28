@@ -11,7 +11,7 @@ import ListSeparator from 'components/ListSeparator';
 const urnik: Array<EventType | { type: 'SECTION', title: string }> = [
   { type: 'SECTION', title: '10:00' },
   { type: 'EVENT', title: 'Sprejem dijakov', room: 'PA', color: '#eb5858' },
-  { type: 'SECTION', title: '12:00' },
+  { type: 'SECTION', title: '12:00', description: 'voden ogled po skupinah' },
   { type: 'EVENT', title: 'Robotika', room: 'P12', color: '#eb8b58' },
   { type: 'EVENT', title: 'Predstavitev dronov', room: 'P22', color: '#ebd158' },
   { type: 'EVENT', title: 'Uporaba računalništva', room: 'P22', color: '#abeb58' },
@@ -46,7 +46,9 @@ class EventList extends Component {
   renderRow(rowData: EventType | { type: 'SECTION', title: string }) {
     switch (rowData.type) {
       case 'SECTION': return (
-        <SectionRow title={rowData.title} />
+        <SectionRow
+          section={rowData}
+        />
       );
 
       case 'EVENT': return (
