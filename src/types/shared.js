@@ -37,9 +37,14 @@ declare type EventType = {
 };
 
 declare type CompanyType = {
-  type: 'COMPANY',
   title: string,
-  imageUrl: string,
+  accentColor: string,
+  location: string,
+  image: {
+    url: string,
+    width: number,
+    height: number,
+  },
 };
 
 declare type LabType = {

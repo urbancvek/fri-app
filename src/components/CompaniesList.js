@@ -8,12 +8,56 @@ import ListSeparator from 'components/ListSeparator';
 import CompanyRow from 'components/CompanyRow';
 
 const companies: Array<CompanyType> = [
-  { type: 'COMPANY', title: 'Shopster', color: '#DA2025', imageUrl: '' },
-  { type: 'COMPANY', title: 'Outfit 7', color: '#58ebbd', imageUrl: '' },
-  { type: 'COMPANY', title: 'Celtra', color: '#58e2eb', imageUrl: '' },
-  { type: 'COMPANY', title: 'Nil', color: '#55b4ed', imageUrl: '' },
-  { type: 'COMPANY', title: 'Microsoft', color: '#5880eb', imageUrl: '' },
-
+  {
+    title: 'Shopster',
+    accentColor: '#dc1c1b',
+    location: 'Garaža',
+    image: {
+      url: 'https://raw.githubusercontent.com/garazaFRI/friappdata/master/company_images/shopster@3x.png',
+      width: 348,
+      height: 81,
+    },
+  },
+  {
+    title: 'Outfit 7',
+    accentColor: '#4feb36',
+    location: 'ST1',
+    image: {
+      url: 'https://raw.githubusercontent.com/garazaFRI/friappdata/master/company_images/outfit_7@3x.png',
+      width: 333,
+      height: 108,
+    },
+  },
+  {
+    title: 'Celtra',
+    accentColor: '#ff3366',
+    location: 'ST2',
+    image: {
+      url: 'https://raw.githubusercontent.com/garazaFRI/friappdata/master/company_images/celtra@3x.png',
+      width: 273,
+      height: 120,
+    },
+  },
+  {
+    title: 'Nil',
+    accentColor: '#55b4ed',
+    location: 'ST3',
+    image: {
+      url: 'https://raw.githubusercontent.com/garazaFRI/friappdata/master/company_images/nil@3x.png',
+      width: 264,
+      height: 81,
+    },
+  },
+  {
+    title: 'Microsoft',
+    accentColor: '#ffb900',
+    location: 'ST4',
+    image: {
+      url: 'https://raw.githubusercontent.com/garazaFRI/friappdata/master/company_images/microsoft@3x.png',
+      width: 330,
+      height: 72,
+    },
+  },
 ];
 
 const dataSource = new ListView.DataSource({
@@ -24,6 +68,7 @@ const dataSource = new ListView.DataSource({
 class CompaniesList extends Component {
   props: Props;
   state: State;
+  context: Context;
 
   scrollView: ScrollViewType;
 
@@ -32,7 +77,12 @@ class CompaniesList extends Component {
   }
 
   renderRow(rowData: CompanyType) {
-    return <CompanyRow company={rowData} />;
+    return (
+      <CompanyRow
+        company={rowData}
+        onPress={() => this.context.navigation.pushRoute({ key: 'COMPANY', company: rowData })}
+      />
+    );
   }
 
   renderSeparator(sectionId: string, rowId: string) {
@@ -69,6 +119,12 @@ type State = {
 
 type Props = {
   handleScroll?: Function,
+};
+
+type Context = {
+  navigation: {
+    pushRoute: (route) => void,
+  },
 };
 
 const styles = StyleSheet.create({

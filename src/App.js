@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 
 import Tabs from 'tabs';
 import EventScene from 'scenes/EventScene';
+import CompanyScene from 'scenes/CompanyScene';
 import { pushRouteAction, popRouteAction } from 'actions/navigationActions';
 
 import type { NavigationState, NavigationRoute, NavigationSceneRendererProps } from 'NavigationTypeDefinition';
@@ -26,6 +27,7 @@ class App extends Component {
     switch (sceneProps.scene.route.key) {
       case 'TABS': return <Tabs />;
       case 'EVENT': return <EventScene event={sceneProps.scene.route.event} />;
+      case 'COMPANY': return <CompanyScene company={sceneProps.scene.route.company} />;
 
       default: return <View />;
     }
