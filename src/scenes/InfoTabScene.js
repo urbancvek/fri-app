@@ -3,6 +3,7 @@ import { autobind } from 'core-decorators';
 import React, { Component } from 'react';
 
 import ParallaxScrollView from 'components/ParallaxScrollView';
+import CompaniesList from 'components/CompaniesList';
 
 @autobind
 class InfoTabScene extends Component {
@@ -12,6 +13,7 @@ class InfoTabScene extends Component {
         title="Info"
         tabs={['PODJETJA', 'O FRI', 'LABORATORIJI']}
       >
+        <CompaniesList />
       </ParallaxScrollView>
     );
   }

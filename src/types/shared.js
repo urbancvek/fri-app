@@ -34,3 +34,9 @@ declare type EventType = {
   room: string,
   color: string,
 };
+
+declare type CompanyType = {
+  type: 'COMPANY',
+  title: string,
+  imageUrl: string,
+};
