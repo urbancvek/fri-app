@@ -7,13 +7,13 @@ import { StyleSheet } from 'standard';
 const EventRow = ({ event, onPress }: Props) => (
   <TouchableOpacity onPress={onPress}>
     <View style={styles.container}>
-      <View style={[styles.color, { backgroundColor: event.color }]} />
+      <View style={[styles.color, { backgroundColor: event.accentColor }]} />
       <View style={styles.info}>
         <Text style={styles.title}>
           {event.title.toUpperCase()}
         </Text>
-        <Text style={[styles.room, { color: event.color }]}>
-          {event.room.toUpperCase()}
+        <Text style={[styles.location, { color: event.accentColor }]}>
+          {event.location.toUpperCase()}
         </Text>
         {event.description && event.description.map((text, index) => (
           <Text style={styles.description} key={index}>
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'Light',
   },
-  room: {
+  location: {
     fontSize: 12,
     fontWeight: 'Regular',
   },

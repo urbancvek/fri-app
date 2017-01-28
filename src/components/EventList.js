@@ -10,21 +10,21 @@ import ListSeparator from 'components/ListSeparator';
 
 const urnik: Array<EventType | { type: 'SECTION', title: string }> = [
   { type: 'SECTION', title: '10:00' },
-  { type: 'EVENT', title: 'Sprejem dijakov', room: 'PA', color: '#eb5858', description: ['nagovor ravnatelja', 'predstavitev študijskih programov'] },
+  { type: 'EVENT', title: 'Sprejem dijakov', location: 'PA', accentColor: '#eb5858', description: ['nagovor ravnatelja', 'predstavitev študijskih programov'] },
   { type: 'SECTION', title: '12:00', description: 'voden ogled po skupinah' },
-  { type: 'EVENT', title: 'Robotika', room: 'P12', color: '#eb8b58' },
-  { type: 'EVENT', title: 'Predstavitev dronov', room: 'P22', color: '#ebd158' },
-  { type: 'EVENT', title: 'Uporaba računalništva', room: 'P22', color: '#abeb58' },
-  { type: 'EVENT', title: 'Karierni kotiček', room: 'Glavni prostor', color: '#4ed758' },
-  { type: 'EVENT', title: 'Predstavitev Garaže', room: 'Garaža', color: '#4A84A3' },
+  { type: 'EVENT', title: 'Robotika', location: 'P12', accentColor: '#eb8b58' },
+  { type: 'EVENT', title: 'Predstavitev dronov', location: 'P22', accentColor: '#ebd158' },
+  { type: 'EVENT', title: 'Uporaba računalništva', location: 'P22', accentColor: '#abeb58' },
+  { type: 'EVENT', title: 'Karierni kotiček', location: 'Glavni prostor', accentColor: '#4ed758' },
+  { type: 'EVENT', title: 'Predstavitev Garaže', location: 'Garaža', accentColor: '#4A84A3' },
   { type: 'SECTION', title: '14:00' },
-  { type: 'EVENT', title: 'Sprejem dijakov', room: 'PA', color: '#eb5858' },
+  { type: 'EVENT', title: 'Sprejem dijakov', location: 'PA', accentColor: '#eb5858' },
   { type: 'SECTION', title: '16:00' },
-  { type: 'EVENT', title: 'Robotika', room: 'P12', color: '#eb8b58' },
-  { type: 'EVENT', title: 'Predstavitev dronov', room: 'P22', color: '#ebd158' },
-  { type: 'EVENT', title: 'Uporaba računalništva', room: 'P22', color: '#abeb58' },
-  { type: 'EVENT', title: 'Karierni kotiček', room: 'Glavni prostor', color: '#4ed758' },
-  { type: 'EVENT', title: 'Predstavitev Garaže', room: 'Garaža', color: '#4A84A3' },
+  { type: 'EVENT', title: 'Robotika', location: 'P12', accentColor: '#eb8b58' },
+  { type: 'EVENT', title: 'Predstavitev dronov', location: 'P22', accentColor: '#ebd158' },
+  { type: 'EVENT', title: 'Uporaba računalništva', location: 'P22', accentColor: '#abeb58' },
+  { type: 'EVENT', title: 'Karierni kotiček', location: 'Glavni prostor', accentColor: '#4ed758' },
+  { type: 'EVENT', title: 'Predstavitev Garaže', location: 'Garaža', accentColor: '#4A84A3' },
 ];
 
 const dataSource = new ListView.DataSource({
