@@ -5,7 +5,7 @@
   "scripts": {
     "start": "react-native start",
     "xcode": "open ./ios/FRI.xcodeproj",
-    "ios": "react-native run-ios --simulator 'iPhone 6s' --scheme 'FRI'",
+    "ios": "react-native run-ios --simulator 'iPhone 6s' --scheme 'Development'",
     "android": "react-native run-android",
     "flow": "flow check . --show-all-errors ",
     "lint": "eslint ."
