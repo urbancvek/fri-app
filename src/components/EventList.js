@@ -1,14 +1,14 @@
 // @flow
 import { autobind } from 'core-decorators';
-import React, { Component } from 'react';
-import { ListView, Text, View, Dimensions } from 'react-native';
+import React, { Component, PropTypes } from 'react';
+import { ListView } from 'react-native';
 
 import { StyleSheet } from 'standard';
 import EventRow from 'components/EventRow';
+import SectionRow from 'components/SectionRow';
+import ListSeparator from 'components/ListSeparator';
 
-const { width } = Dimensions.get('window');
-
-const urnik = [
+const urnik: Array<EventType | { type: 'SECTION', title: string }> = [
   { type: 'SECTION', title: '10:00' },
   { type: 'EVENT', title: 'Sprejem dijakov', room: 'PA', color: '#eb5858' },
   { type: 'SECTION', title: '12:00' },
@@ -42,26 +42,20 @@ class EventList extends Component {
     dataSource: dataSource.cloneWithRows(urnik),
   };
 
-  renderSectionHeader(_: any, sectionId: string) {
-    return (
-      <View style={styles.sectionView}>
-        <Text style={styles.sectionText}>
-          {sectionId}
-        </Text>
-      </View>
-    );
-  }
-
   renderRow(rowData: EventType | { type: 'SECTION', title: string }) {
-    if (rowData.type === 'SECTION') {
-      return this.renderSectionHeader(null, rowData.title);
-    } else {
-      return (
+    switch (rowData.type) {
+      case 'SECTION': return (
+        <SectionRow title={rowData.title} />
+      );
+
+      case 'EVENT': return (
         <EventRow
           event={rowData}
           onPress={() => this.context.navigation.pushRoute({ key: 'EVENT', event: rowData })}
         />
       );
+
+      default: return null;
     }
   }
 
@@ -74,7 +68,7 @@ class EventList extends Component {
       urnik[index + 1].type === 'SECTION'
     ) return null;
 
-    return <View key={sectionId + rowId} style={styles.separator} />;
+    return <ListSeparator key={sectionId + rowId} />;
   }
 
   scrollTo(options: { x?: number, y?: number, animated?: boolean }) {
@@ -85,7 +79,7 @@ class EventList extends Component {
     return (
       <ListView
         ref={(scrollView: ScrollViewType) => this.scrollView = scrollView}
-        contentContainerStyle={{ marginTop: 200 }}
+        contentContainerStyle={styles.container}
         dataSource={this.state.dataSource}
         renderRow={this.renderRow}
         renderSeparator={this.renderSeparator}
@@ -98,7 +92,7 @@ class EventList extends Component {
 }
 
 EventList.contextTypes = {
-  navigation: React.PropTypes.object,
+  navigation: PropTypes.object,
 };
 
 type State = {
@@ -110,21 +104,8 @@ type Props = {
 };
 
 const styles = StyleSheet.create({
-  sectionView: {
-    height: 31,
-    backgroundColor: '#f0f1f3',
-    justifyContent: 'center',
-    paddingLeft: 15,
-  },
-  sectionText: {
-    color: '#9a9a9a',
-    fontSize: 13,
-  },
-  separator: {
-    height: 0.5,
-    alignSelf: 'center',
-    width: width - 46,
-    backgroundColor: '#e8e8e8',
+  container: {
+    marginTop: 200,
   },
 });
 
