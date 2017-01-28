@@ -33,6 +33,7 @@ declare type EventType = {
   title: string,
   room: string,
   color: string,
+  description?: Array<string>,
 };
 
 declare type CompanyType = {

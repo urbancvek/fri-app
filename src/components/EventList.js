@@ -10,7 +10,7 @@ import ListSeparator from 'components/ListSeparator';
 
 const urnik: Array<EventType | { type: 'SECTION', title: string }> = [
   { type: 'SECTION', title: '10:00' },
-  { type: 'EVENT', title: 'Sprejem dijakov', room: 'PA', color: '#eb5858' },
+  { type: 'EVENT', title: 'Sprejem dijakov', room: 'PA', color: '#eb5858', description: ['nagovor ravnatelja', 'predstavitev študijskih programov'] },
   { type: 'SECTION', title: '12:00', description: 'voden ogled po skupinah' },
   { type: 'EVENT', title: 'Robotika', room: 'P12', color: '#eb8b58' },
   { type: 'EVENT', title: 'Predstavitev dronov', room: 'P22', color: '#ebd158' },

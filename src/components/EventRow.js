@@ -15,6 +15,11 @@ const EventRow = ({ event, onPress }: Props) => (
         <Text style={[styles.room, { color: event.color }]}>
           {event.room.toUpperCase()}
         </Text>
+        {event.description && event.description.map((text, index) => (
+          <Text style={styles.description} key={index}>
+            - {text}
+          </Text>
+        ))}
       </View>
     </View>
   </TouchableOpacity>
@@ -27,18 +32,20 @@ type Props = {
 
 const styles = StyleSheet.create({
   container: {
-    height: 59,
     backgroundColor: 'white',
     flexDirection: 'row',
     alignItems: 'center',
+    overflow: 'hidden',
   },
   color: {
-    // 1px more than height to account for the space made by separator
-    height: 60,
+    position: 'absolute',
+    // height is some arbitrary high number so that row height is never higher
+    height: 150,
     width: 5,
   },
   info: {
     marginLeft: 27,
+    marginVertical: 15,
   },
   title: {
     fontSize: 15,
@@ -47,6 +54,11 @@ const styles = StyleSheet.create({
   room: {
     fontSize: 12,
     fontWeight: 'Regular',
+  },
+  description: {
+    color: '#bdc0c9',
+    fontWeight: 'Light',
+    fontSize: 13,
   },
 });
 
