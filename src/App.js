@@ -1,7 +1,7 @@
 // @flow
 import { autobind } from 'core-decorators';
 import React, { Component } from 'react';
-import { NavigationExperimental, View } from 'react-native';
+import { NavigationExperimental, View, BackAndroid } from 'react-native';
 import { connect } from 'react-redux';
 
 import Tabs from 'tabs';
@@ -21,6 +21,15 @@ class App extends Component {
     return {
       navigation: this.props.navigation,
     };
+  }
+
+  componentDidMount() {
+    BackAndroid.addEventListener('hardwareBackPress', () => {
+      // If false is returned the app will exit
+      if (this.props.navigationState.index === 0) return false;
+
+      return this.props.navigation.popRoute();
+    });
   }
 
   renderScene(sceneProps: NavigationSceneRendererProps) {
