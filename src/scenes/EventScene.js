@@ -1,6 +1,6 @@
 // @flow
-import React from 'react';
-import { View, Text, Image, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
+import React, { Component } from 'react';
+import { View, Text, Image, ScrollView, TouchableOpacity, Dimensions, Animated } from 'react-native';
 import HTML from 'react-native-fence-html';
 
 import { StyleSheet } from 'standard';
@@ -79,63 +79,89 @@ const renderers = {
   },
 };
 
-const EventScene = ({ event }: Props, { navigation }: Context) => (
-  <View style={styles.container}>
-    <View style={styles.header}>
-      <View>
-        <View style={styles.additionalInfo}>
-          <Text style={[styles.room, { color: event.color }]}>
-            {event.room}
-          </Text>
-          <Text style={styles.time}>
-            9:00 - 10:00
-          </Text>
-        </View>
-        <Text style={styles.title}>
-          {event.title.toUpperCase()}
-        </Text>
-      </View>
-      <TouchableOpacity
-        onPress={() => navigation.popRoute()}
-        style={styles.closeButtonContainer}
-      >
-        <Image
-          source={require('assets/utils/close_button.png')}
-          style={styles.closeButton}
-        />
-      </TouchableOpacity>
-    </View>
+class EventScene extends Component {
+  props: Props;
+  state: State;
+  context: Context;
 
-    <ScrollView
-      showsVerticalScrollIndicator={false}
-    >
-      <Text style={styles.heading1}>
-        PREDSTAVNIKI
-      </Text>
-      <ScrollView
-        contentContainerStyle={styles.personnel}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-      >
-        <Person person={{ firstName: 'Luka', lastName: 'Čehovin Zajc', imageUrl: 'http://www-ti.fri.uni-lj.si/sites/default/files/rok_%C4%8Ce%C5%A1novar.png' }} />
-        <Person person={{ firstName: 'Branko', lastName: 'Šter', imageUrl: 'http://www-ti.fri.uni-lj.si/sites/default/files/branko_%C5%A0ter_2.png' }} />
-        <Person person={{ firstName: 'Patricio', lastName: 'Bulić', imageUrl: 'http://www-ti.fri.uni-lj.si/sites/default/files/patricio_buli%C4%87.png' }} />
-        <Person person={{ firstName: 'Branko', lastName: 'Šter', imageUrl: 'http://www-ti.fri.uni-lj.si/sites/default/files/branko_%C5%A0ter_2.png' }} />
-        <Person person={{ firstName: 'Patricio', lastName: 'Bulić', imageUrl: 'http://www-ti.fri.uni-lj.si/sites/default/files/patricio_buli%C4%87.png' }} />
-      </ScrollView>
-      <Text style={styles.heading1}>
-        PREDSTAVITEV
-      </Text>
-      <View style={styles.content}>
-        <HTML
-          html={html}
-          htmlStyles={htmlStyles}
-          renderers={renderers}
-        />
-      </View>
-    </ScrollView>
-  </View>
-);
+  state: State = {
+    animatedIntro: new Animated.Value(0),
+  };
+
+  componentDidMount() {
+    Animated.timing(this.state.animatedIntro, { toValue: 1, duration: 500 }).start();
+  }
+
+  render() {
+    const { event } = this.props;
+    const { navigation } = this.context;
+
+    const backgroundColor = this.state.animatedIntro.interpolate({
+      inputRange: [0, 1],
+      outputRange: ['rgba(56, 74, 84, 0)', 'rgba(56, 74, 84, 0.9)'],
+    });
+
+    return (
+      <Animated.View style={[styles.background, { backgroundColor }]}>
+        <View style={styles.container}>
+          <View style={styles.header}>
+            <View>
+              <View style={styles.additionalInfo}>
+                <Text style={[styles.room, { color: event.color }]}>
+                  {event.room}
+                </Text>
+                <Text style={styles.time}>
+                  9:00 - 10:00
+                </Text>
+              </View>
+              <Text style={styles.title}>
+                {event.title.toUpperCase()}
+              </Text>
+            </View>
+            <TouchableOpacity
+              onPress={() => navigation.popRoute()}
+              style={styles.closeButtonContainer}
+            >
+              <Image
+                source={require('assets/utils/close_button.png')}
+                style={styles.closeButton}
+              />
+            </TouchableOpacity>
+          </View>
+
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+          >
+            <Text style={styles.heading1}>
+              PREDSTAVNIKI
+            </Text>
+            <ScrollView
+              contentContainerStyle={styles.personnel}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+            >
+              <Person person={{ firstName: 'Luka', lastName: 'Čehovin Zajc', imageUrl: 'http://www-ti.fri.uni-lj.si/sites/default/files/rok_%C4%8Ce%C5%A1novar.png' }} />
+              <Person person={{ firstName: 'Branko', lastName: 'Šter', imageUrl: 'http://www-ti.fri.uni-lj.si/sites/default/files/branko_%C5%A0ter_2.png' }} />
+              <Person person={{ firstName: 'Patricio', lastName: 'Bulić', imageUrl: 'http://www-ti.fri.uni-lj.si/sites/default/files/patricio_buli%C4%87.png' }} />
+              <Person person={{ firstName: 'Branko', lastName: 'Šter', imageUrl: 'http://www-ti.fri.uni-lj.si/sites/default/files/branko_%C5%A0ter_2.png' }} />
+              <Person person={{ firstName: 'Patricio', lastName: 'Bulić', imageUrl: 'http://www-ti.fri.uni-lj.si/sites/default/files/patricio_buli%C4%87.png' }} />
+            </ScrollView>
+            <Text style={styles.heading1}>
+              PREDSTAVITEV
+            </Text>
+            <View style={styles.content}>
+              <HTML
+                html={html}
+                htmlStyles={htmlStyles}
+                renderers={renderers}
+              />
+            </View>
+          </ScrollView>
+        </View>
+      </Animated.View>
+    );
+  }
+}
 
 EventScene.contextTypes = {
   navigation: React.PropTypes.object,
@@ -143,6 +169,10 @@ EventScene.contextTypes = {
 
 type Props = {
   event: EventType,
+};
+
+type State = {
+  animatedIntro: Animated.Value,
 };
 
 type Context = {
@@ -168,6 +198,9 @@ const htmlStyles = {
 };
 
 const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+  },
   container: {
     marginTop: 45,
     marginHorizontal: 14,
