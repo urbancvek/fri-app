@@ -28,11 +28,21 @@ declare type AnnotationType = {
   },
 };
 
+declare type PersonType = {
+  firstName: string,
+  lastName: string,
+  image: {
+    url: string,
+  },
+};
+
 declare type EventType = {
   title: string,
   location: string,
   accentColor: string,
   description?: Array<string>,
+  personnel?: Array<PersonType>,
+  content?: string,
 };
 
 declare type CompanyType = {

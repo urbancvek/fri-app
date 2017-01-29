@@ -9,81 +9,6 @@ import SectionRow from 'components/SectionRow';
 import ListSeparator from 'components/ListSeparator';
 import { convertToFlatArray } from 'helpers/dataMassager';
 
-const urnik: { [key: string]: Array<EventType> } = {
-  '10:00': [
-    {
-      title: 'Sprejem dijakov',
-      location: 'PA',
-      accentColor: '#eb5858',
-      description: [
-        'nagovor ravnatelja',
-        'predstavitev študijskih programov',
-      ],
-    },
-  ],
-  '12:00': [
-    {
-      title: 'Robotika',
-      location: 'P12',
-      accentColor: '#eb8b58',
-    },
-    {
-      title: 'Predstavitev dronov',
-      location: 'P22',
-      accentColor: '#ebd158',
-    },
-    {
-      title: 'Uporaba računalništva',
-      location: 'P22',
-      accentColor: '#abeb58',
-    },
-    {
-      title: 'Karierni kotiček',
-      location: 'Glavni prostor',
-      accentColor: '#4ed758',
-    },
-    {
-      title: 'Predstavitev Garaže',
-      location: 'Garaža',
-      accentColor: '#4A84A3',
-    },
-  ],
-  '14:00': [
-    {
-      title: 'Sprejem dijakov',
-      location: 'PA',
-      accentColor: '#eb5858',
-    },
-  ],
-  '16:00': [
-    {
-      title: 'Robotika',
-      location: 'P12',
-      accentColor: '#eb8b58',
-    },
-    {
-      title: 'Predstavitev dronov',
-      location: 'P22',
-      accentColor: '#ebd158',
-    },
-    {
-      title: 'Uporaba računalništva',
-      location: 'P22',
-      accentColor: '#abeb58',
-    },
-    {
-      title: 'Karierni kotiček',
-      location: 'Glavni prostor',
-      accentColor: '#4ed758',
-    },
-    {
-      title: 'Predstavitev Garaže',
-      location: 'Garaža',
-      accentColor: '#4A84A3',
-    },
-  ],
-};
-
 const dataSource = new ListView.DataSource({
   rowHasChanged: (a, b) => a !== b,
 });
@@ -97,7 +22,7 @@ class EventList extends Component {
   scrollView: ScrollViewType;
 
   state: State = {
-    dataSource: dataSource.cloneWithRows(convertToFlatArray(urnik)),
+    dataSource: dataSource.cloneWithRows(convertToFlatArray(this.props.events)),
   };
 
   renderRow(rowData: EventType) {
@@ -153,6 +78,7 @@ type State = {
 };
 
 type Props = {
+  events: { [key: string]: Array<EventType> },
   handleScroll?: Function,
 };
 

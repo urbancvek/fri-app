@@ -4,6 +4,9 @@ import React, { Component } from 'react';
 
 import ParallaxScrollView from 'components/ParallaxScrollView';
 import EventList from 'components/EventList';
+import events from 'data/events.json';
+
+const days = Object.keys(events);
 
 @autobind
 class HomeTabScene extends Component {
@@ -11,11 +14,14 @@ class HomeTabScene extends Component {
     return (
       <ParallaxScrollView
         title="Urnik"
-        tabs={['10.2. DOP', '10.2. POP', '11.2. DOP']}
+        tabs={days}
       >
-        <EventList />
-        <EventList />
-        <EventList />
+        {days.map((dayId, index) => (
+          <EventList
+            key={dayId}
+            events={events[days[index]]}
+          />
+        ))}
       </ParallaxScrollView>
     );
   }

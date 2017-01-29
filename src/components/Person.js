@@ -8,7 +8,7 @@ const Person = ({ person }: PersonProps) => (
   <View style={personStyles.container}>
     <View style={personStyles.imageWrapper}>
       <Image
-        source={{ uri: person.imageUrl }}
+        source={{ uri: person.image.url }}
         style={personStyles.image}
       />
     </View>
@@ -22,11 +22,7 @@ const Person = ({ person }: PersonProps) => (
 );
 
 type PersonProps = {
-  person: {
-    firstName: string,
-    lastName: string,
-    imageUrl: string,
-  },
+  person: PersonType,
 };
 
 const personStyles = StyleSheet.create({
