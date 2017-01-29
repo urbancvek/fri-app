@@ -29,7 +29,6 @@ declare type AnnotationType = {
 };
 
 declare type EventType = {
-  type: 'EVENT',
   title: string,
   location: string,
   accentColor: string,

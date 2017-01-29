@@ -4,22 +4,16 @@ import { View, Text } from 'react-native';
 
 import { StyleSheet } from 'standard';
 
-const SectionRow = ({ section }: Props) => (
+const SectionRow = ({ title }: Props) => (
   <View style={styles.container}>
     <Text style={styles.text}>
-      {section.title}
-    </Text>
-    <Text style={styles.text}>
-      {section.description}
+      {title}
     </Text>
   </View>
 );
 
 type Props = {
-  section: {
-    title: string,
-    description?: string,
-  },
+  title: string,
 };
 
 const styles = StyleSheet.create({

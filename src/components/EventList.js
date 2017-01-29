@@ -7,25 +7,82 @@ import { StyleSheet } from 'standard';
 import EventRow from 'components/EventRow';
 import SectionRow from 'components/SectionRow';
 import ListSeparator from 'components/ListSeparator';
+import { convertToFlatArray } from 'helpers/dataMassager';
 
-const urnik: Array<EventType | { type: 'SECTION', title: string }> = [
-  { type: 'SECTION', title: '10:00' },
-  { type: 'EVENT', title: 'Sprejem dijakov', location: 'PA', accentColor: '#eb5858', description: ['nagovor ravnatelja', 'predstavitev študijskih programov'] },
-  { type: 'SECTION', title: '12:00', description: 'voden ogled po skupinah' },
-  { type: 'EVENT', title: 'Robotika', location: 'P12', accentColor: '#eb8b58' },
-  { type: 'EVENT', title: 'Predstavitev dronov', location: 'P22', accentColor: '#ebd158' },
-  { type: 'EVENT', title: 'Uporaba računalništva', location: 'P22', accentColor: '#abeb58' },
-  { type: 'EVENT', title: 'Karierni kotiček', location: 'Glavni prostor', accentColor: '#4ed758' },
-  { type: 'EVENT', title: 'Predstavitev Garaže', location: 'Garaža', accentColor: '#4A84A3' },
-  { type: 'SECTION', title: '14:00' },
-  { type: 'EVENT', title: 'Sprejem dijakov', location: 'PA', accentColor: '#eb5858' },
-  { type: 'SECTION', title: '16:00' },
-  { type: 'EVENT', title: 'Robotika', location: 'P12', accentColor: '#eb8b58' },
-  { type: 'EVENT', title: 'Predstavitev dronov', location: 'P22', accentColor: '#ebd158' },
-  { type: 'EVENT', title: 'Uporaba računalništva', location: 'P22', accentColor: '#abeb58' },
-  { type: 'EVENT', title: 'Karierni kotiček', location: 'Glavni prostor', accentColor: '#4ed758' },
-  { type: 'EVENT', title: 'Predstavitev Garaže', location: 'Garaža', accentColor: '#4A84A3' },
-];
+const urnik: { [key: string]: Array<EventType> } = {
+  '10:00': [
+    {
+      title: 'Sprejem dijakov',
+      location: 'PA',
+      accentColor: '#eb5858',
+      description: [
+        'nagovor ravnatelja',
+        'predstavitev študijskih programov',
+      ],
+    },
+  ],
+  '12:00': [
+    {
+      title: 'Robotika',
+      location: 'P12',
+      accentColor: '#eb8b58',
+    },
+    {
+      title: 'Predstavitev dronov',
+      location: 'P22',
+      accentColor: '#ebd158',
+    },
+    {
+      title: 'Uporaba računalništva',
+      location: 'P22',
+      accentColor: '#abeb58',
+    },
+    {
+      title: 'Karierni kotiček',
+      location: 'Glavni prostor',
+      accentColor: '#4ed758',
+    },
+    {
+      title: 'Predstavitev Garaže',
+      location: 'Garaža',
+      accentColor: '#4A84A3',
+    },
+  ],
+  '14:00': [
+    {
+      title: 'Sprejem dijakov',
+      location: 'PA',
+      accentColor: '#eb5858',
+    },
+  ],
+  '16:00': [
+    {
+      title: 'Robotika',
+      location: 'P12',
+      accentColor: '#eb8b58',
+    },
+    {
+      title: 'Predstavitev dronov',
+      location: 'P22',
+      accentColor: '#ebd158',
+    },
+    {
+      title: 'Uporaba računalništva',
+      location: 'P22',
+      accentColor: '#abeb58',
+    },
+    {
+      title: 'Karierni kotiček',
+      location: 'Glavni prostor',
+      accentColor: '#4ed758',
+    },
+    {
+      title: 'Predstavitev Garaže',
+      location: 'Garaža',
+      accentColor: '#4A84A3',
+    },
+  ],
+};
 
 const dataSource = new ListView.DataSource({
   rowHasChanged: (a, b) => a !== b,
@@ -40,35 +97,28 @@ class EventList extends Component {
   scrollView: ScrollViewType;
 
   state: State = {
-    dataSource: dataSource.cloneWithRows(urnik),
+    dataSource: dataSource.cloneWithRows(convertToFlatArray(urnik)),
   };
 
-  renderRow(rowData: EventType | { type: 'SECTION', title: string }) {
-    switch (rowData.type) {
-      case 'SECTION': return (
-        <SectionRow
-          section={rowData}
-        />
-      );
+  renderRow(rowData: EventType) {
+    if (rowData.section) return <SectionRow title={rowData.title} />;
 
-      case 'EVENT': return (
-        <EventRow
-          event={rowData}
-          onPress={() => this.context.navigation.pushRoute({ key: 'EVENT', event: rowData })}
-        />
-      );
-
-      default: return null;
-    }
+    return (
+      <EventRow
+        event={rowData}
+        onPress={() => this.context.navigation.pushRoute({ key: 'EVENT', event: rowData })}
+      />
+    );
   }
 
   renderSeparator(sectionId: string, rowId: string) {
     const index = Number(rowId);
+    const data = this.state.dataSource._dataBlob.s1;
 
     if (
-      urnik[index].type === 'SECTION' ||
-      !urnik[index + 1] ||
-      urnik[index + 1].type === 'SECTION'
+      data[index].section ||
+      !data[index + 1] ||
+      data[index + 1].section
     ) return null;
 
     return <ListSeparator key={sectionId + rowId} />;
