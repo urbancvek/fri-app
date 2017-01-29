@@ -59,7 +59,7 @@ type HeaderProps = {
   event: EventType,
 };
 
-class EventScene extends Component {
+class EventCardScene extends Component {
   props: Props;
 
   render() {
@@ -117,4 +117,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EventScene;
+export default EventCardScene;
