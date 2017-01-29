@@ -14,36 +14,44 @@ const programs: { [key: string]: Array<ProgramType> } = {
     {
       title: 'Računalništvo in Informatika',
       subtitle: 'Univerzitetni program',
+      gradTitle: 'diplomirani inženir računalništva in informatike (UN)',
     },
     {
       title: 'Računalništvo in Informatika',
       subtitle: 'Visokošolški program',
+      gradTitle: 'diplomirani inženir računalništva in informatike (UN)',
     },
     {
       title: 'Računalništvo in Informatika',
       subtitle: 'Univerzitetni program',
+      gradTitle: 'diplomirani inženir računalništva in informatike (UN)',
     },
     {
       title: 'Računalništvo in Informatika',
       subtitle: 'Univerzitetni program',
+      gradTitle: 'diplomirani inženir računalništva in informatike (UN)',
     },
   ],
   'Magistrski študij': [
     {
       title: 'Računalništvo in Informatika',
       subtitle: 'Univerzitetni program',
+      gradTitle: 'diplomirani inženir računalništva in informatike (UN)',
     },
     {
       title: 'Računalništvo in Informatika',
       subtitle: 'Visokošolški program',
+      gradTitle: 'diplomirani inženir računalništva in informatike (UN)',
     },
     {
       title: 'Računalništvo in Informatika',
       subtitle: 'Univerzitetni program',
+      gradTitle: 'diplomirani inženir računalništva in informatike (UN)',
     },
     {
       title: 'Računalništvo in Informatika',
       subtitle: 'Univerzitetni program',
+      gradTitle: 'diplomirani inženir računalništva in informatike (UN)',
     },
   ],
 };

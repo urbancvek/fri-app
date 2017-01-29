@@ -41,8 +41,8 @@ class App extends Component {
       case 'TABS': return <Tabs />;
       case 'EVENT': return <EventCardScene event={route.event} />;
       case 'COMPANY': return <CompanyCardScene company={route.company} />;
-      case 'LAB': return <LabCardScene company={route.lab} />;
-      case 'PROGRAM': return <ProgramCardScene company={route.program} />;
+      case 'LAB': return <LabCardScene lab={route.lab} />;
+      case 'PROGRAM': return <ProgramCardScene program={route.program} />;
 
       default: return <View />;
     }
