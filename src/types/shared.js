@@ -64,6 +64,8 @@ declare type LabType = {
   image: {
     url: string,
   },
+  personnel?: Array<PersonType>,
+  content?: string,
 };
 
 declare type StudyProgramType = {

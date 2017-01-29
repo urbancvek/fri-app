@@ -7,37 +7,6 @@ import { StyleSheet } from 'standard';
 import ListSeparator from 'components/ListSeparator';
 import LabRow from 'components/LabRow';
 
-const labs: Array<LabType> = [
-  {
-    title: 'UMETNO INTELIGENCO',
-    location: 'R1.23',
-    image: {
-      url: 'http://www-ti.fri.uni-lj.si/sites/default/files/Lab%20za%20adaptivne%20sisteme%20in%20parelelno%20procesiranje_p2.jpg',
-    },
-  },
-  {
-    title: 'UMETNE VIZUALNE SPOZNAVNE SISTEME',
-    location: 'R1.23',
-    image: {
-      url: 'http://www-ti.fri.uni-lj.si/sites/default/files/Lab%20za%20algoritme%20in%20podatkovne%20strukture.jpg',
-    },
-  },
-  {
-    title: 'ADAPTIVNE SISTEME IN PARALELNO PROCESIRANJE',
-    location: 'R1.23',
-    image: {
-      url: 'http://www-ti.fri.uni-lj.si/sites/default/files/Laboratorij%20za%20bioinformatiko.jpg',
-    },
-  },
-  {
-    title: 'PODATKOVNE TEHNOLOGIJE',
-    location: 'R1.23',
-    image: {
-      url: 'http://www-ti.fri.uni-lj.si/sites/default/files/Lab%20za%20e-medije.jpg',
-    },
-  },
-];
-
 const dataSource = new ListView.DataSource({
   rowHasChanged: (a, b) => a !== b,
 });
@@ -51,7 +20,7 @@ class LabsList extends Component {
   scrollView: ScrollViewType;
 
   state: State = {
-    dataSource: dataSource.cloneWithRows(labs),
+    dataSource: dataSource.cloneWithRows(this.props.labs),
   };
 
   renderRow(rowData: LabType) {
@@ -96,6 +65,7 @@ type State = {
 };
 
 type Props = {
+  labs: Array<LabType>,
   handleScroll?: Function,
 };
 

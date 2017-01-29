@@ -7,6 +7,7 @@ import ParallaxScrollView from 'components/ParallaxScrollView';
 import CompaniesList from 'components/CompaniesList';
 import LabsList from 'components/LabsList';
 import companies from 'data/companies.json';
+import labs from 'data/labs.json';
 
 @autobind
 class InfoTabScene extends Component {
@@ -18,7 +19,7 @@ class InfoTabScene extends Component {
       >
         <CompaniesList companies={companies} />
         <ScrollView />
-        <LabsList />
+        <LabsList labs={labs} />
       </ParallaxScrollView>
     );
   }
