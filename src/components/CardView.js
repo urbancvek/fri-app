@@ -93,6 +93,9 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
   },
   closeButtonContainer: {
+    position: 'absolute',
+    right: 0,
+    top: 0,
     height: 35,
     width: 35,
     alignItems: 'flex-end',
