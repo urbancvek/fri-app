@@ -58,7 +58,7 @@ class LabsList extends Component {
     return (
       <LabRow
         lab={rowData}
-        onPress={() => this.context.navigation.pushRoute({ key: 'LAB', event: rowData })}
+        onPress={() => this.context.navigation.pushRoute({ key: 'LAB', lab: rowData })}
       />
     );
   }
