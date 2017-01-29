@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text, ScrollView } from 'react-native';
 
 import { StyleSheet } from 'standard';
@@ -44,12 +44,10 @@ const personnel = [
 
 const Header = ({ event }: HeaderProps) => (
   <View>
-    <View style={styles.additionalInfo}>
-      <Text style={[styles.room, { color: event.accentColor }]}>
-        {event.location}
-      </Text>
-    </View>
-    <Text style={styles.title}>
+    <Text style={[headerStyles.room, { color: event.accentColor }]}>
+      {event.location}
+    </Text>
+    <Text style={headerStyles.title}>
       {event.title.toUpperCase()}
     </Text>
   </View>
@@ -59,52 +57,42 @@ type HeaderProps = {
   event: EventType,
 };
 
-class EventCardScene extends Component {
-  props: Props;
-
-  render() {
-    const { event } = this.props;
-
-    return (
-      <CardView header={<Header event={event} />}>
-        <Text style={styles.heading1}>
-          PREDSTAVNIKI
-        </Text>
-        <ScrollView
-          contentContainerStyle={styles.personnel}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-        >
-          {personnel.map((person, index) => <Person key={index} person={person} />)}
-        </ScrollView>
-        <Text style={styles.heading1}>
-          PREDSTAVITEV
-        </Text>
-        <HTMLContentView content={html} />
-      </CardView>
-    );
-  }
-}
-
-type Props = {
-  event: EventType,
-};
-
-const styles = StyleSheet.create({
-  additionalInfo: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
+const headerStyles = StyleSheet.create({
   room: {
     fontWeight: 'Bold',
     fontSize: 18,
-    marginRight: 10,
   },
   title: {
     fontWeight: 'Bold',
     fontSize: 22,
     color: '#444444',
   },
+});
+
+const EventCardScene = ({ event }: Props) => (
+  <CardView header={<Header event={event} />}>
+    <Text style={styles.heading1}>
+      PREDSTAVNIKI
+    </Text>
+    <ScrollView
+      contentContainerStyle={styles.personnel}
+      horizontal
+      showsHorizontalScrollIndicator={false}
+    >
+      {personnel.map((person, index) => <Person key={index} person={person} />)}
+    </ScrollView>
+    <Text style={styles.heading1}>
+      PREDSTAVITEV
+    </Text>
+    <HTMLContentView content={html} />
+  </CardView>
+);
+
+type Props = {
+  event: EventType,
+};
+
+const styles = StyleSheet.create({
   heading1: {
     fontWeight: 'Bold',
     fontSize: 15,
