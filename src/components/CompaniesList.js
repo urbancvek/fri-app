@@ -3,9 +3,9 @@ import { autobind } from 'core-decorators';
 import React, { Component, PropTypes } from 'react';
 import { ListView } from 'react-native';
 
-import { StyleSheet } from 'standard';
 import ListSeparator from 'components/ListSeparator';
 import CompanyRow from 'components/CompanyRow';
+import Spacer from 'components/Spacer';
 
 const dataSource = new ListView.DataSource({
   rowHasChanged: (a, b) => a !== b,
@@ -44,13 +44,13 @@ class CompaniesList extends Component {
     return (
       <ListView
         ref={(scrollView: ScrollViewType) => this.scrollView = scrollView}
-        contentContainerStyle={styles.container}
         dataSource={this.state.dataSource}
         renderRow={this.renderRow}
         renderSeparator={this.renderSeparator}
         onScroll={this.props.handleScroll}
         scrollEventThrottle={16}
         showsVerticalScrollIndicator={false}
+        renderHeader={() => <Spacer />}
       />
     );
   }
@@ -74,11 +74,5 @@ type Context = {
     pushRoute: (route) => void,
   },
 };
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 200,
-  },
-});
 
 export default CompaniesList;
