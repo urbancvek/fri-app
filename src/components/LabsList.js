@@ -8,10 +8,34 @@ import ListSeparator from 'components/ListSeparator';
 import LabRow from 'components/LabRow';
 
 const labs: Array<LabType> = [
-  { type: 'LAB', title: 'LABORATORIJ ZA UMETNO INTELIGENCO' },
-  { type: 'LAB', title: 'LABORATORIJ ZA UMETNE VIZUALNE SPOZNAVNE SISTEME' },
-  { type: 'LAB', title: 'LABORATORIJ ZA ADAPTIVNE SISTEME IN PARALELNO PROCESIRANJE' },
-  { type: 'LAB', title: 'LABORATORIJ ZA PODATKOVNE TEHNOLOGIJE' },
+  {
+    title: 'UMETNO INTELIGENCO',
+    location: 'R1.23',
+    image: {
+      url: 'http://www-ti.fri.uni-lj.si/sites/default/files/Lab%20za%20adaptivne%20sisteme%20in%20parelelno%20procesiranje_p2.jpg',
+    },
+  },
+  {
+    title: 'UMETNE VIZUALNE SPOZNAVNE SISTEME',
+    location: 'R1.23',
+    image: {
+      url: 'http://www-ti.fri.uni-lj.si/sites/default/files/Lab%20za%20algoritme%20in%20podatkovne%20strukture.jpg',
+    },
+  },
+  {
+    title: 'ADAPTIVNE SISTEME IN PARALELNO PROCESIRANJE',
+    location: 'R1.23',
+    image: {
+      url: 'http://www-ti.fri.uni-lj.si/sites/default/files/Laboratorij%20za%20bioinformatiko.jpg',
+    },
+  },
+  {
+    title: 'PODATKOVNE TEHNOLOGIJE',
+    location: 'R1.23',
+    image: {
+      url: 'http://www-ti.fri.uni-lj.si/sites/default/files/Lab%20za%20e-medije.jpg',
+    },
+  },
 ];
 
 const dataSource = new ListView.DataSource({
@@ -31,7 +55,12 @@ class LabsList extends Component {
   };
 
   renderRow(rowData: LabType) {
-    return <LabRow lab={rowData} />;
+    return (
+      <LabRow
+        lab={rowData}
+        onPress={() => this.context.navigation.pushRoute({ key: 'LAB', event: rowData })}
+      />
+    );
   }
 
   renderSeparator(sectionId: string, rowId: string) {

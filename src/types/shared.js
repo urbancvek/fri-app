@@ -48,6 +48,9 @@ declare type CompanyType = {
 };
 
 declare type LabType = {
-  type: 'LAB',
   title: string,
+  location: string,
+  image: {
+    url: string,
+  },
 };
