@@ -4,7 +4,8 @@ import React, { Component } from 'react';
 import { ScrollView } from 'react-native';
 
 import ParallaxScrollView from 'components/ParallaxScrollView';
-import ProgramsList from 'components/ProgramsList';
+import StudyProgramsList from 'components/StudyProgramsList';
+import studyPrograms from 'data/studyPrograms.json';
 
 @autobind
 class StudyTabScene extends Component {
@@ -14,7 +15,7 @@ class StudyTabScene extends Component {
         title="Študij"
         tabs={['PROGRAMI', 'VPIS']}
       >
-        <ProgramsList />
+        <StudyProgramsList studyPrograms={studyPrograms} />
         <ScrollView />
       </ParallaxScrollView>
     );

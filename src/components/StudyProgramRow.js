@@ -4,15 +4,15 @@ import { View, Text, TouchableOpacity } from 'react-native';
 
 import { StyleSheet } from 'standard';
 
-const ProgramRow = ({ program, onPress }: Props) => (
+const StudyProgramRow = ({ studyProgram, onPress }: Props) => (
   <TouchableOpacity onPress={onPress}>
     <View style={styles.container}>
       <View style={styles.info}>
         <Text style={styles.title}>
-          {program.title.toUpperCase()}
+          {studyProgram.title.toUpperCase()}
         </Text>
         <Text style={styles.subtitle}>
-          {program.subtitle.toUpperCase()}
+          {studyProgram.subtitle.toUpperCase()}
         </Text>
       </View>
     </View>
@@ -20,7 +20,7 @@ const ProgramRow = ({ program, onPress }: Props) => (
 );
 
 type Props = {
-  program: ProgramType,
+  studyProgram: StudyProgramType,
   onPress: Function,
 };
 
@@ -47,4 +47,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProgramRow;
+export default StudyProgramRow;

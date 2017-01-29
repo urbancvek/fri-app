@@ -64,8 +64,9 @@ declare type LabType = {
   },
 };
 
-declare type ProgramType = {
+declare type StudyProgramType = {
   title: string,
   subtitle: string,
   gradTitle: string,
+  content?: string,
 };

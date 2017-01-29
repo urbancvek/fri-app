@@ -6,23 +6,19 @@ import { StyleSheet } from 'standard';
 import CardView from 'components/CardView';
 import HTMLContentView from 'components/HTMLContentView';
 
-const html = `
-<p>Študij računalništva in informatike na Fakulteti za računalništvo in informatiko Univerze v Ljubljani je študij z najdaljšo tradicijo na tem področju v Sloveniji. Študentom ponuja temeljna in praktična znanja, ki so potrebna za delo v stroki, v skladu z najsodobnejšimi merili in standardi, ki za tovrstno izobraževanje veljajo v svetu. Zaradi izbirnosti v programu naši diplomanti niso strogo usmerjeni le v stroko, temveč so široko razgledani in visoko usposobljeni strokovnjaki.</p>
-`;
-
-const Header = ({ program }: HeaderProps) => (
+const Header = ({ studyProgram }: HeaderProps) => (
   <View>
     <Text style={headerStyles.title}>
-      {program.title.toUpperCase()}
+      {studyProgram.title.toUpperCase()}
     </Text>
     <Text style={headerStyles.subtitle}>
-      {program.subtitle.toUpperCase()}
+      {studyProgram.subtitle.toUpperCase()}
     </Text>
   </View>
 );
 
 type HeaderProps = {
-  program: ProgramType,
+  studyProgram: StudyProgramType,
 };
 
 const headerStyles = StyleSheet.create({
@@ -38,23 +34,23 @@ const headerStyles = StyleSheet.create({
   },
 });
 
-const ProgramCardScene = ({ program }: Props) => (
-  <CardView header={<Header program={program} />}>
+const StudyProgramCardScene = ({ studyProgram }: Props) => (
+  <CardView header={<Header studyProgram={studyProgram} />}>
     <Text style={styles.heading1}>
       NAZIV
     </Text>
     <Text style={styles.paragraph}>
-      {program.gradTitle}
+      {studyProgram.gradTitle}
     </Text>
     <Text style={styles.heading1}>
       PREDSTAVITEV
     </Text>
-    <HTMLContentView content={html} />
+    {studyProgram.content && <HTMLContentView content={studyProgram.content} />}
   </CardView>
 );
 
 type Props = {
-  program: ProgramType,
+  studyProgram: StudyProgramType,
 };
 
 const styles = StyleSheet.create({
@@ -73,4 +69,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProgramCardScene;
+export default StudyProgramCardScene;
