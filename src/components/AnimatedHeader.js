@@ -32,7 +32,7 @@ class AnimatedHeader extends Component {
   }
 
   render() {
-    const { headerHeight } = this.props;
+    const { headerHeight, backgroundImage } = this.props;
 
     const backgroundOffsetY = headerHeight.interpolate({
       inputRange: [HEADER_MIN_HEIGHT, HEADER_MAX_HEIGHT],
@@ -58,7 +58,7 @@ class AnimatedHeader extends Component {
       <Animated.View style={[styles.container, { height: headerHeight }]}>
         <Animated.Image
           style={[styles.backgroundImage, { transform: backgroundTransforms }]}
-          source={require('assets/header_images/fri_background.png')}
+          source={backgroundImage}
         />
         <Animated.Text style={[styles.title, { fontSize, transform: [{ translateY: titleOffsetY }] }]}>
           {this.props.title}
@@ -81,6 +81,7 @@ type Props = {
   children?: any,
   selectedPage: number,
   scrollToPage: Function,
+  backgroundImage: any,
 };
 
 type State = {

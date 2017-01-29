@@ -14,6 +14,7 @@ class StudyTabScene extends Component {
       <ParallaxScrollView
         title="Študij"
         tabs={['PROGRAMI', 'VPIS']}
+        backgroundImage={require('assets/header_images/fri_background.png')}
       >
         <StudyProgramsList studyPrograms={studyPrograms} />
         <ScrollView />

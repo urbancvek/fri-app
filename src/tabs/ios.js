@@ -46,7 +46,7 @@ class Tabs extends Component {
   renderTabContent(key: string) {
     switch (key) {
       case 'HOME_TAB': return <HomeTabScene />;
-      case 'STUDY_TAB': return <StudyTabScene />
+      case 'STUDY_TAB': return <StudyTabScene />;
       case 'MAP_TAB': return <MapTabScene />;
       case 'INFO_TAB': return <InfoTabScene />;
       case 'SHOPSTER_TAB': return <ShopsterTabScene />;
@@ -54,19 +54,19 @@ class Tabs extends Component {
     }
   }
 
-  renderTabItem(tab: string, index: number) {
+  renderTabItem(tab: { key: string, title: string }, index: number) {
     return (
       <TabItem
         style={styles.container}
-        key={tab}
-        title={tab}
+        key={tab.key}
+        title={tab.title}
         onPress={() => this.props.changeTab(index)}
         selected={this.props.currentTab === index}
-        icon={icons[tab].empty}
-        selectedIcon={icons[tab].filled}
+        icon={icons[tab.key].empty}
+        selectedIcon={icons[tab.key].filled}
       >
         <View style={{ height: height - 49 }}>
-          {this.renderTabContent(tab)}
+          {this.renderTabContent(tab.key)}
         </View>
       </TabItem>
     );
@@ -89,7 +89,7 @@ class Tabs extends Component {
 
 type Props = {
   currentTab: number,
-  tabs: Array<string>,
+  tabs: Array<{key: string, title: string }>,
   changeTab: (index: number) => void,
 };
 

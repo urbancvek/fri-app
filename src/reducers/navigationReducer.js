@@ -3,7 +3,7 @@ import type { NavigationState } from 'NavigationTypeDefinition';
 
 type TabsState = {
   currentTab: number,
-  availableTabs: Array<string>,
+  availableTabs: Array<{ key: string, title: string }>,
 };
 
 type State = {
@@ -14,7 +14,13 @@ type State = {
 const initialState: State = {
   tabs: {
     currentTab: 0,
-    availableTabs: ['HOME_TAB', 'STUDY_TAB', 'MAP_TAB', 'INFO_TAB', 'SHOPSTER_TAB'],
+    availableTabs: [
+      { key: 'HOME_TAB', title: 'Urnik' },
+      { key: 'STUDY_TAB', title: 'Študij' },
+      { key: 'MAP_TAB', title: 'Načrt' },
+      { key: 'INFO_TAB', title: 'Info' },
+      { key: 'SHOPSTER_TAB', title: 'Shopster' },
+    ],
   },
   routes: {
     index: 0,

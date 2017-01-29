@@ -53,11 +53,11 @@ class Tabs extends Component {
     }
   }
 
-  renderTabItem(tab: string, index: number) {
+  renderTabItem(tab: { key: string, title: string }, index: number) {
     return (
       <TabItem
-        key={tab}
-        title={tab}
+        key={tab.key}
+        title={tab.title}
         onPress={() => this.props.changeTab(index)}
         selected={this.props.currentTab === index}
         titleStyle={styles.title}
@@ -66,7 +66,7 @@ class Tabs extends Component {
           <Image
             resizeMode="contain"
             style={styles.icon}
-            source={icons[tab].empty}
+            source={icons[tab.key].empty}
             tintColor="black"
           />
         )}
@@ -74,12 +74,12 @@ class Tabs extends Component {
           <Image
             resizeMode="contain"
             style={styles.icon}
-            source={icons[tab].filled}
+            source={icons[tab.key].filled}
             tintColor="black"
           />
         )}
       >
-        {this.renderTabContent(tab)}
+        {this.renderTabContent(tab.key)}
       </TabItem>
     );
   }
@@ -100,7 +100,7 @@ class Tabs extends Component {
 
 type Props = {
   currentTab: number,
-  tabs: Array<string>,
+  tabs: Array<{ key: string, title: string }>,
   changeTab: (index: number) => void,
 };
 

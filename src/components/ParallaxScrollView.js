@@ -49,9 +49,9 @@ class ParallaxScrollView extends Component {
       this.scrollViews.forEach((scrollView, idx) =>
         idx !== selectedPage && scrollView.scrollTo({ y: offsetY, animated: false })
       );
-
-      this.state.offsetY.setValue(Math.min(offsetY, HEADER_DIFFERENCE));
     }
+
+    this.state.offsetY.setValue(Math.min(offsetY, HEADER_DIFFERENCE));
   }
 
   render() {
@@ -70,6 +70,7 @@ class ParallaxScrollView extends Component {
           imageWidth={450}
           selectedPage={this.state.selectedPage}
           scrollToPage={this.scrollToPage}
+          backgroundImage={this.props.backgroundImage}
         />
         <View style={styles.container}>
           <ScrollView
@@ -107,6 +108,7 @@ type Props = {
   children?: any,
   tabs: Array<string>,
   title: string,
+  backgroundImage: any,
 };
 
 type State = {
