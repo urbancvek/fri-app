@@ -7,6 +7,7 @@ import TabBar from 'react-native-tab-navigator';
 
 import { StyleSheet } from 'standard';
 import HomeTabScene from 'scenes/HomeTabScene';
+import StudyTabScene from 'scenes/StudyTabScene';
 import MapTabScene from 'scenes/MapTabScene';
 import InfoTabScene from 'scenes/InfoTabScene';
 import ShopsterTabScene from 'scenes/ShopsterTabScene';
@@ -18,6 +19,10 @@ const icons = {
   HOME_TAB: {
     empty: require('assets/tab_icons/home_tab.png'),
     filled: require('assets/tab_icons/home_tab_filled.png'),
+  },
+  STUDY_TAB: {
+    empty: require('assets/tab_icons/map_tab.png'),
+    filled: require('assets/tab_icons/map_tab_filled.png'),
   },
   MAP_TAB: {
     empty: require('assets/tab_icons/map_tab.png'),
@@ -40,6 +45,7 @@ class Tabs extends Component {
   renderTabContent(key: string) {
     switch (key) {
       case 'HOME_TAB': return <HomeTabScene />;
+      case 'STUDY_TAB': return <StudyTabScene />;
       case 'MAP_TAB': return <MapTabScene />;
       case 'INFO_TAB': return <InfoTabScene />;
       case 'SHOPSTER_TAB': return <ShopsterTabScene />;

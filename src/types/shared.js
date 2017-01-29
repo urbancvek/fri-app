@@ -53,3 +53,8 @@ declare type LabType = {
     url: string,
   },
 };
+
+declare type ProgramType = {
+  title: string,
+  subtitle: string,
+};

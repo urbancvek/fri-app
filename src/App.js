@@ -8,6 +8,7 @@ import Tabs from 'tabs';
 import EventCardScene from 'scenes/EventCardScene';
 import CompanyCardScene from 'scenes/CompanyCardScene';
 import LabCardScene from 'scenes/LabCardScene';
+import ProgramCardScene from 'scenes/ProgramCardScene';
 import { pushRouteAction, popRouteAction } from 'actions/navigationActions';
 
 import type { NavigationState, NavigationRoute, NavigationSceneRendererProps } from 'NavigationTypeDefinition';
@@ -34,11 +35,14 @@ class App extends Component {
   }
 
   renderScene(sceneProps: NavigationSceneRendererProps) {
-    switch (sceneProps.scene.route.key) {
+    const { route } = sceneProps.scene;
+
+    switch (route.key) {
       case 'TABS': return <Tabs />;
-      case 'EVENT': return <EventCardScene event={sceneProps.scene.route.event} />;
-      case 'COMPANY': return <CompanyCardScene company={sceneProps.scene.route.company} />;
-      case 'LAB': return <LabCardScene company={sceneProps.scene.route.lab} />;
+      case 'EVENT': return <EventCardScene event={route.event} />;
+      case 'COMPANY': return <CompanyCardScene company={route.company} />;
+      case 'LAB': return <LabCardScene company={route.lab} />;
+      case 'PROGRAM': return <ProgramCardScene company={route.program} />;
 
       default: return <View />;
     }
