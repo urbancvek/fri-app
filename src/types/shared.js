@@ -54,6 +54,8 @@ declare type CompanyType = {
     width: number,
     height: number,
   },
+  personnel?: Array<PersonType>,
+  content?: string,
 };
 
 declare type LabType = {
