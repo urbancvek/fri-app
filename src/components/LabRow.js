@@ -22,6 +22,10 @@ const LabRow = ({ lab: { title, image, location }, onPress }: Props) => (
         source={{ uri: image.url }}
         style={styles.backgroundImage}
       />
+      <Image
+        source={require('assets/utils/gradient.png')}
+        style={styles.gradient}
+      />
     </View>
   </TouchableOpacity>
 );
@@ -41,7 +45,7 @@ const styles = StyleSheet.create({
   },
   info: {
     marginLeft: 27,
-    marginRight: 110,
+    marginRight: 80,
     zIndex: 1,
     backgroundColor: 'transparent',
   },
@@ -51,14 +55,21 @@ const styles = StyleSheet.create({
     fontWeight: 'Regular',
   },
   title: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: 'Light',
+    maxWidth: 210,
     color: '#333333',
   },
   location: {
     fontSize: 12,
     fontWeight: 'Regular',
     color: '#989898',
+  },
+  gradient: {
+    position: 'absolute',
+    right: -10,
+    height: 84,
+    width: 165,
   },
   backgroundImage: {
     position: 'absolute',

@@ -1,8 +1,10 @@
 // @flow
 import React, { Component } from 'react';
-import { View, Image, ScrollView, TouchableOpacity, Animated } from 'react-native';
+import { View, Image, ScrollView, TouchableOpacity, Animated, Dimensions } from 'react-native';
 
 import { StyleSheet } from 'standard';
+
+const { width, height } = Dimensions.get('window');
 
 class CardView extends Component {
   props: Props;
@@ -78,9 +80,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   container: {
-    marginTop: 45,
-    marginHorizontal: 14,
-    marginBottom: 15,
+    marginTop: height / 15,
+    marginHorizontal: width / 30,
+    marginBottom: width / 30,
     backgroundColor: 'white',
     paddingTop: 25,
     paddingHorizontal: 20,
@@ -94,11 +96,12 @@ const styles = StyleSheet.create({
   },
   closeButtonContainer: {
     position: 'absolute',
-    right: 0,
-    top: 0,
-    height: 35,
-    width: 35,
-    alignItems: 'flex-end',
+    right: -15,
+    top: -15,
+    height: 55,
+    width: 55,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   closeButton: {
     height: 25,
