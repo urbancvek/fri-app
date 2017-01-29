@@ -9,7 +9,7 @@ import HTMLContentView from 'components/HTMLContentView';
 
 const Header = ({ event }: HeaderProps) => (
   <View>
-    <Text style={[headerStyles.room, { color: event.accentColor }]}>
+    <Text style={[headerStyles.location, { color: event.accentColor }]}>
       {event.location}
     </Text>
     <Text style={headerStyles.title}>
@@ -23,7 +23,7 @@ type HeaderProps = {
 };
 
 const headerStyles = StyleSheet.create({
-  room: {
+  location: {
     fontWeight: 'Bold',
     fontSize: 18,
   },
