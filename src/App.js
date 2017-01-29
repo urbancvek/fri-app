@@ -11,7 +11,8 @@ import LabCardScene from 'scenes/LabCardScene';
 import StudyProgramCardScene from 'scenes/StudyProgramCardScene';
 import { pushRouteAction, popRouteAction } from 'actions/navigationActions';
 
-import type { NavigationState, NavigationRoute, NavigationSceneRendererProps } from 'NavigationTypeDefinition';
+import type { NavigationState } from 'NavigationTypeDefinition';
+import type { ReducerType } from 'reducers';
 
 const { CardStack } = NavigationExperimental;
 
@@ -34,7 +35,7 @@ class App extends Component {
     });
   }
 
-  renderScene(sceneProps: NavigationSceneRendererProps) {
+  renderScene(sceneProps) {
     const { route } = sceneProps.scene;
 
     switch (route.key) {
@@ -68,7 +69,7 @@ App.childContextTypes = {
 type Props = {
   navigationState: NavigationState,
   navigation: {
-    pushRoute: (route: NavigationRoute) => void,
+    pushRoute: (route: RouteType) => void,
     popRoute: () => void,
   },
 };

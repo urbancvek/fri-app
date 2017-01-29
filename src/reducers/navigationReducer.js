@@ -1,14 +1,17 @@
 // @flow
-import type { NavigationState } from 'NavigationTypeDefinition';
-
 type TabsState = {
   currentTab: number,
   availableTabs: Array<{ key: string, title: string }>,
 };
 
+type RoutesState = {
+  index: number,
+  routes: Array<RouteType>,
+};
+
 type State = {
   tabs: TabsState,
-  routes: NavigationState,
+  routes: RoutesState,
 };
 
 const initialState: State = {
@@ -49,7 +52,7 @@ const navigationReducer = (state: State = initialState, action: ActionType) => {
   }
 };
 
-const routesReducer = (state: NavigationState, action: ActionType) => {
+const routesReducer = (state: RoutesState, action: ActionType) => {
   switch (action.type) {
     case 'PUSH_ROUTE': {
       if (state.routes[state.index].key === action.route.key) return state;
@@ -87,3 +90,4 @@ const tabsReducer = (state: TabsState, action: ActionType) => {
 };
 
 export default navigationReducer;
+export type { State as NavigationStore };

@@ -84,7 +84,7 @@ type Props = {
 
 type Context = {
   navigation: {
-    pushRoute: (route) => void,
+    pushRoute: (route: RouteType) => void,
   },
 };
 

@@ -12,6 +12,8 @@ import InfoTabScene from 'scenes/InfoTabScene';
 import ShopsterTabScene from 'scenes/ShopsterTabScene';
 import { changeTabAction } from 'actions/navigationActions';
 
+import type { ReducerType } from 'reducers';
+
 const TabItem = TabBar.Item;
 
 const icons = {

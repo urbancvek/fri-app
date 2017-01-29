@@ -1,8 +1,7 @@
 // @flow
-import type { NavigationRoute } from 'NavigationTypeDefinition';
 
 // Push new route to the stack
-const pushRouteAction = (route: NavigationRoute): ActionType => ({
+const pushRouteAction = (route: RouteType): ActionType => ({
   type: 'PUSH_ROUTE',
   route,
 });
