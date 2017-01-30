@@ -1,9 +1,14 @@
 // @flow
 import { autobind } from 'core-decorators';
 import React, { Component } from 'react';
-import { ScrollView } from 'react-native';
 
 import ParallaxScrollView from 'components/ParallaxScrollView';
+import AboutShopsterView from 'components/AboutShopsterView';
+import OurWorkShopsterView from 'components/OurWorkShopsterView';
+import AboutGarazaView from 'components/AboutGarazaView';
+import aboutShopsterContent from 'data/aboutShopster';
+import ourWorkShopsterContent from 'data/ourWorkShopster';
+import aboutGarazaContent from 'data/aboutGaraza';
 
 @autobind
 class ShopsterTabScene extends Component {
@@ -11,10 +16,12 @@ class ShopsterTabScene extends Component {
     return (
       <ParallaxScrollView
         title="Shopster"
-        tabs={['O NAS']}
+        tabs={['O NAS', 'KAJ POČNEMO', 'GARAŽA']}
         backgroundImage={require('assets/header_images/fri_background.png')}
       >
-        <ScrollView />
+        <AboutShopsterView content={aboutShopsterContent} />
+        <OurWorkShopsterView content={ourWorkShopsterContent} />
+        <AboutGarazaView content={aboutGarazaContent} />
       </ParallaxScrollView>
     );
   }

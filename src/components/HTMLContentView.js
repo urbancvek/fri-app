@@ -6,6 +6,12 @@ import HTML from 'react-native-fence-html';
 const { width } = Dimensions.get('window');
 
 const htmlStyles = {
+  h1: {
+    fontFamily: 'Montserrat',
+  },
+  h2: {
+    fontFamily: 'Montserrat',
+  },
   p: {
     fontFamily: 'Montserrat',
     fontSize: 13,

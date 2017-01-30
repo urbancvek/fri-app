@@ -1,11 +1,12 @@
 // @flow
 import { autobind } from 'core-decorators';
 import React, { Component } from 'react';
-import { ScrollView } from 'react-native';
 
 import ParallaxScrollView from 'components/ParallaxScrollView';
 import StudyProgramsList from 'components/StudyProgramsList';
+import EnrollView from 'components/EnrollView';
 import studyPrograms from 'data/studyPrograms.json';
+import enrollContent from 'data/enroll';
 
 @autobind
 class StudyTabScene extends Component {
@@ -17,7 +18,7 @@ class StudyTabScene extends Component {
         backgroundImage={require('assets/header_images/fri_background.png')}
       >
         <StudyProgramsList studyPrograms={studyPrograms} />
-        <ScrollView />
+        <EnrollView content={enrollContent} />
       </ParallaxScrollView>
     );
   }
