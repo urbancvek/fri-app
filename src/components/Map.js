@@ -19,19 +19,27 @@ class Map extends Component {
 
   map: MapType;
 
-  componentWillReceiveProps() {
-    this.setMapCamera();
+  componentWillReceiveProps(newProps: Props) {
+    if (this.props.followingUserMode && !newProps.followingUserMode) {
+      this.setMapCamera(true);
+    } else if (!this.props.followingUserMode && newProps.followingUserMode) {
+      this.setMapCamera(false);
+    }
+
+    if (this.props.userLocation !== newProps.userLocation) {
+      if (this.props.followingUserMode) this.setMapCamera(false);
+    }
   }
 
-  setMapCamera() {
+  setMapCamera(goToOverview: boolean) {
     const { userLocation } = this.props;
 
     const options = Platform.select({
       ios: {
-        altitude: 10,
+        altitude: goToOverview ? 50 : 10,
       },
       android: {
-        zoomLevel: 19.5,
+        zoomLevel: goToOverview ? 19 : 19.5,
       },
     });
 
@@ -39,7 +47,7 @@ class Map extends Component {
       latitude: userLocation.coordinates[0],
       longitude: userLocation.coordinates[1],
       direction: userLocation.course,
-      pitch: 70,
+      pitch: goToOverview ? 30 : 70,
       ...options,
     });
   }
@@ -51,7 +59,7 @@ class Map extends Component {
       <MapView
         ref={(map: MapType) => this.map = map}
         style={styles.container}
-        contentInset={[300, 0, 0, 0]}
+        contentInset={[200, 0, 0, 0]}
 
         attributionButtonIsHidden
         logoIsHidden
@@ -68,7 +76,7 @@ class Map extends Component {
         rotateEnabled
 
         onStartLoadingMap={() => {}}
-        onFinishLoadingMap={() => this.setMapCamera()}
+        onFinishLoadingMap={() => this.setMapCamera(false)}
 
         initialZoomLevel={18}
         initialCenterCoordinate={{
@@ -82,6 +90,7 @@ class Map extends Component {
 
 type Props = {
   userLocation: UserLocationType,
+  followingUserMode: boolean,
 };
 
 const styles = StyleSheet.create({
