@@ -6,6 +6,7 @@ import createLogger from 'redux-logger';
 import { persistStore, autoRehydrate } from 'redux-persist';
 
 import combinedReducers from 'reducers';
+import analytics from 'helpers/analytics';
 
 let persistedStore;
 
@@ -21,6 +22,8 @@ if (process.env.NODE_ENV === 'development') {
   });
   middlewares.push(logger);
 }
+
+if (process.env.NODE_ENV === 'production') middlewares.push(analytics);
 
 // Called from <Root /> when app is initialized
 const configureStore = (onComplete: () => void) => {
