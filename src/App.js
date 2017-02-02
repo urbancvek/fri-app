@@ -10,6 +10,7 @@ import CompanyCardScene from 'scenes/CompanyCardScene';
 import LabCardScene from 'scenes/LabCardScene';
 import StudyProgramCardScene from 'scenes/StudyProgramCardScene';
 import { pushRouteAction, popRouteAction } from 'actions/navigationActions';
+import fetchAction from 'actions/fetchActions';
 
 import type { NavigationState } from 'NavigationTypeDefinition';
 import type { ReducerType } from 'reducers';
@@ -27,6 +28,8 @@ class App extends Component {
   }
 
   componentDidMount() {
+    if (!this.props.user) this.props.createUser();
+
     BackAndroid.addEventListener('hardwareBackPress', () => {
       // If false is returned the app will exit
       if (this.props.navigationState.index === 0) return false;
@@ -72,10 +75,20 @@ type Props = {
     pushRoute: (route: RouteType) => void,
     popRoute: () => void,
   },
+  createUser: () => void,
+  user: ?UserType,
 };
 
-const select = ({ navigationStore }: ReducerType) => ({
+const createUserMutation = `mutation {
+  user: createUser {
+    id
+    color
+  }
+}`;
+
+const select = ({ navigationStore, dataStore }: ReducerType) => ({
   navigationState: navigationStore.routes,
+  user: dataStore.user,
 });
 
 const actions = (dispatch: Dispatch) => ({
@@ -83,6 +96,7 @@ const actions = (dispatch: Dispatch) => ({
     pushRoute: (route) => dispatch(pushRouteAction(route)),
     popRoute: () => dispatch(popRouteAction()),
   },
+  createUser: () => dispatch(fetchAction({ query: createUserMutation }, 'CREATE_USER')),
 });
 
 export default connect(select, actions)(App);

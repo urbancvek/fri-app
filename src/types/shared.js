@@ -74,3 +74,8 @@ declare type StudyProgramType = {
   gradTitle: string,
   content?: string,
 };
+
+declare type UserType = {
+  id: string,
+  color: 'string',
+};
