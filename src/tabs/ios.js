@@ -11,33 +11,11 @@ import MapTabScene from 'scenes/MapTabScene';
 import InfoTabScene from 'scenes/InfoTabScene';
 import ShopsterTabScene from 'scenes/ShopsterTabScene';
 import { changeTabAction } from 'actions/navigationActions';
+import { icons } from 'config/styles';
 
 import type { ReducerType } from 'reducers';
 
 const TabItem = TabBar.Item;
-
-const icons = {
-  HOME_TAB: {
-    empty: require('assets/tab_icons/home_tab.png'),
-    filled: require('assets/tab_icons/home_tab_filled.png'),
-  },
-  STUDY_TAB: {
-    empty: require('assets/tab_icons/map_tab.png'),
-    filled: require('assets/tab_icons/map_tab_filled.png'),
-  },
-  MAP_TAB: {
-    empty: require('assets/tab_icons/map_tab.png'),
-    filled: require('assets/tab_icons/map_tab_filled.png'),
-  },
-  INFO_TAB: {
-    empty: require('assets/tab_icons/map_tab.png'),
-    filled: require('assets/tab_icons/map_tab_filled.png'),
-  },
-  SHOPSTER_TAB: {
-    empty: require('assets/tab_icons/map_tab.png'),
-    filled: require('assets/tab_icons/map_tab_filled.png'),
-  },
-};
 
 const { height } = Dimensions.get('window');
 
@@ -67,7 +45,7 @@ class Tabs extends Component {
         icon={icons[tab.key].empty}
         selectedIcon={icons[tab.key].filled}
       >
-        <View style={{ height: height - 49 }}>
+        <View style={{ height, paddingBottom: 49, backgroundColor: 'white' }}>
           {this.renderTabContent(tab.key)}
         </View>
       </TabItem>
@@ -80,8 +58,8 @@ class Tabs extends Component {
     return (
       <TabBar
         barTintColor="white"
-        unselectedTintColor="black"
-        tintColor="black"
+        unselectedTintColor="#595959"
+        tintColor="#333"
       >
         {tabs}
       </TabBar>

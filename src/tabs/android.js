@@ -12,33 +12,11 @@ import MapTabScene from 'scenes/MapTabScene';
 import InfoTabScene from 'scenes/InfoTabScene';
 import ShopsterTabScene from 'scenes/ShopsterTabScene';
 import { changeTabAction } from 'actions/navigationActions';
+import { icons } from 'config/styles';
 
 import type { ReducerType } from 'reducers';
 
 const TabItem = TabBar.Item;
-
-const icons = {
-  HOME_TAB: {
-    empty: require('assets/tab_icons/home_tab.png'),
-    filled: require('assets/tab_icons/home_tab_filled.png'),
-  },
-  STUDY_TAB: {
-    empty: require('assets/tab_icons/map_tab.png'),
-    filled: require('assets/tab_icons/map_tab_filled.png'),
-  },
-  MAP_TAB: {
-    empty: require('assets/tab_icons/map_tab.png'),
-    filled: require('assets/tab_icons/map_tab_filled.png'),
-  },
-  INFO_TAB: {
-    empty: require('assets/tab_icons/map_tab.png'),
-    filled: require('assets/tab_icons/map_tab_filled.png'),
-  },
-  SHOPSTER_TAB: {
-    empty: require('assets/tab_icons/map_tab.png'),
-    filled: require('assets/tab_icons/map_tab_filled.png'),
-  },
-};
 
 @autobind
 class Tabs extends Component {
@@ -68,8 +46,8 @@ class Tabs extends Component {
           <Image
             resizeMode="contain"
             style={styles.icon}
-            source={icons[tab.key].empty}
-            tintColor="black"
+            source={icons[tab.key].filled}
+            tintColor="#C5C3C5"
           />
         )}
         renderSelectedIcon={() => (
@@ -77,7 +55,7 @@ class Tabs extends Component {
             resizeMode="contain"
             style={styles.icon}
             source={icons[tab.key].filled}
-            tintColor="black"
+            tintColor="#444"
           />
         )}
       >
@@ -112,6 +90,7 @@ const styles = StyleSheet.create({
   },
   tabbar: {
     position: 'absolute',
+    backgroundColor: '#FEFEFE',
   },
   title: {
     color: 'black',
