@@ -5,19 +5,22 @@ type State = {
 
 const initialState: State = {
   user: null,
+  companies: [],
+  labs: [],
+  data: {
+    aboutFRIContent: '',
+  },
 };
 
 const dataReducer = (state: State = initialState, action) => {
-  switch (action.type) {
-    case 'CREATE_USER_RESPONSE': {
-      return {
-        ...state,
-        user: action.payload.user,
-      };
-    }
-
-    default: return state;
+  if (action.graphql) {
+    return {
+      ...state,
+      ...action.payload,
+    };
   }
+
+  return state;
 };
 
 export default dataReducer;

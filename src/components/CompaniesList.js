@@ -51,6 +51,7 @@ class CompaniesList extends Component {
         scrollEventThrottle={16}
         showsVerticalScrollIndicator={false}
         renderHeader={() => <Spacer />}
+        enableEmptySections
       />
     );
   }

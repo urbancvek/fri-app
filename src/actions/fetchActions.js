@@ -8,16 +8,17 @@ type GraphQLDataType = {
   variables?: Object,
 };
 
-const fetch = (graphQLData: GraphQLDataType, type: string) => async (dispatch: Dispatch) => {
+const fetchAction = (graphQLData: GraphQLDataType, type: string) => async (dispatch: Dispatch) => {
   dispatch({ type: `${type}_REQUEST` });
 
   try {
     const response = await axioql(graphQLData);
 
-    dispatch({ type: `${type}_RESPONSE`, payload: response.data.data });
+    dispatch({ type: `${type}_RESPONSE`, payload: response.data.data, graphql: true });
   } catch (error) {
-    console.error(error);
+    if (error.message === 'Network Error') console.log('Network error!');
+    else console.error(error.message);
   }
 };
 
-export default fetch;
+export default fetchAction;

@@ -1,17 +1,24 @@
 // @flow
 import { autobind } from 'core-decorators';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import ParallaxScrollView from 'components/ParallaxScrollView';
 import CompaniesList from 'components/CompaniesList';
 import AboutFRIView from 'components/AboutFRIView';
 import LabsList from 'components/LabsList';
-import companies from 'data/companies.json';
-import aboutFRIContent from 'data/aboutFRI';
-import labs from 'data/labs.json';
+import fetchAction from 'actions/fetchActions';
+
+import type { ReducerType } from 'reducers';
 
 @autobind
 class InfoTabScene extends Component {
+  props: Props;
+
+  componentDidMount() {
+    this.props.fetchData();
+  }
+
   render() {
     return (
       <ParallaxScrollView
@@ -19,12 +26,56 @@ class InfoTabScene extends Component {
         tabs={['PODJETJA', 'O FRI', 'LABORATORIJI']}
         backgroundImage={require('assets/header_images/info_tab.png')}
       >
-        <CompaniesList companies={companies} />
-        <AboutFRIView content={aboutFRIContent} />
-        <LabsList labs={labs} />
+        <CompaniesList companies={this.props.companies} />
+        <AboutFRIView content={this.props.aboutFRIContent} />
+        <LabsList labs={this.props.labs} />
       </ParallaxScrollView>
     );
   }
 }
 
-export default InfoTabScene;
+type Props = {
+  companies: Array<CompanyType>,
+  aboutFRIContent: string,
+  labs: Array<LabType>,
+  fetchData: () => void,
+};
+
+const companiesQuery = `{
+  companies {
+    title
+    location
+    image {
+      url
+      width
+      height
+    }
+    accentColor
+    content
+  }
+
+  data {
+    aboutFRI
+  }
+
+  labs {
+    title
+    location
+    image {
+      url
+    }
+    content
+  }
+}`;
+
+const select = ({ dataStore }: ReducerType) => ({
+  companies: dataStore.companies,
+  aboutFRIContent: dataStore.data.aboutFRI,
+  labs: dataStore.labs,
+});
+
+const actions = (dispatch: Dispatch) => ({
+  fetchData: () => dispatch(fetchAction({ query: companiesQuery }, 'FETCH_COMPANIES')),
+});
+
+export default connect(select, actions)(InfoTabScene);
