@@ -17,7 +17,7 @@ class InfoTabScene extends Component {
       <ParallaxScrollView
         title="Info"
         tabs={['PODJETJA', 'O FRI', 'LABORATORIJI']}
-        backgroundImage={require('assets/header_images/fri_background.png')}
+        backgroundImage={require('assets/header_images/info_tab.png')}
       >
         <CompaniesList companies={companies} />
         <AboutFRIView content={aboutFRIContent} />

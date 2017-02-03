@@ -17,7 +17,7 @@ class ShopsterTabScene extends Component {
       <ParallaxScrollView
         title="Shopster"
         tabs={['O NAS', 'KAJ POČNEMO', 'GARAŽA']}
-        backgroundImage={require('assets/header_images/fri_background.png')}
+        backgroundImage={require('assets/header_images/shopster_tab.png')}
       >
         <AboutShopsterView content={aboutShopsterContent} />
         <OurWorkShopsterView content={ourWorkShopsterContent} />

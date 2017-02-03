@@ -15,7 +15,7 @@ class HomeTabScene extends Component {
       <ParallaxScrollView
         title="Urnik"
         tabs={days}
-        backgroundImage={require('assets/header_images/fri_background.png')}
+        backgroundImage={require('assets/header_images/home_tab.png')}
       >
         {days.map((dayId, index) => (
           <EventList
