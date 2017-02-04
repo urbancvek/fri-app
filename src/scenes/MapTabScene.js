@@ -53,6 +53,19 @@ class MapTabScene extends Component {
           currentFloor={currentFloor}
         />
         <MapButton
+          buttonEnabled={followingUserMode}
+          onPress={() => this.setState({
+            followingUserMode: !this.state.followingUserMode,
+            currentFloor: this.props.currentLocation.floor,
+          })}
+          icon={locationIcon}
+          filledIcon={locationFilledIcon}
+          underlayColor="#eee"
+          backgroundColor="white"
+          bottomOffset={100}
+          tintColor="#333333"
+        />
+        <MapButton
           buttonEnabled={currentFloor === 0}
           onPress={() => this.setState({
             currentFloor: currentFloor === 0 ? 1 : 0,
@@ -62,18 +75,8 @@ class MapTabScene extends Component {
           filledIcon={upstairsIcon}
           underlayColor="#444444"
           backgroundColor="#333333"
-          bottomOffset={100}
-          tintColor="white"
-        />
-        <MapButton
-          buttonEnabled={followingUserMode}
-          onPress={() => this.setState({ followingUserMode: !this.state.followingUserMode })}
-          icon={locationIcon}
-          filledIcon={locationFilledIcon}
-          underlayColor="#eee"
-          backgroundColor="white"
           bottomOffset={20}
-          tintColor="#333333"
+          tintColor="white"
         />
       </View>
     );

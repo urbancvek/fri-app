@@ -17,11 +17,11 @@ type MapType = {
 const ALTITUDE = [
   {
     FOLLOWING: 35,
-    OVERVIEW: 56,
+    OVERVIEW: 47,
   },
   {
     FOLLOWING: 45,
-    OVERVIEW: 80,
+    OVERVIEW: 75,
   },
 ];
 
