@@ -36,16 +36,22 @@ const headerStyles = StyleSheet.create({
 
 const CompanyCardScene = ({ company }: Props) => (
   <CardView header={<Header company={company} />}>
-    <Text style={styles.heading1}>
-      PREDSTAVNIKI
-    </Text>
-    <ScrollView
-      contentContainerStyle={styles.personnel}
-      horizontal
-      showsHorizontalScrollIndicator={false}
-    >
-      {company.personnel && company.personnel.map((person, index) => <Person key={index} person={person} />)}
-    </ScrollView>
+    {company.personnell && (
+      <View>
+        <Text style={styles.heading1}>
+          PREDSTAVNIKI
+        </Text>
+        <ScrollView
+          contentContainerStyle={styles.personnel}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        >
+          {company.personnel && company.personnel.map((person, index) =>
+            <Person key={index} person={person} />
+          )}
+        </ScrollView>
+      </View>
+    )}
     <Text style={styles.heading1}>
       PREDSTAVITEV
     </Text>

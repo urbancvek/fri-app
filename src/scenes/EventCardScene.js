@@ -36,16 +36,20 @@ const headerStyles = StyleSheet.create({
 
 const EventCardScene = ({ event }: Props) => (
   <CardView header={<Header event={event} />}>
-    <Text style={styles.heading1}>
-      PREDSTAVNIKI
-    </Text>
-    <ScrollView
-      contentContainerStyle={styles.personnel}
-      horizontal
-      showsHorizontalScrollIndicator={false}
-    >
-      {event.personnel && event.personnel.map((person, index) => <Person key={index} person={person} />)}
-    </ScrollView>
+    {event.personnel && (
+      <View>
+        <Text style={styles.heading1}>
+          PREDSTAVNIKI
+        </Text>
+        <ScrollView
+          contentContainerStyle={styles.personnel}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        >
+          {event.personnel && event.personnel.map((person, index) => <Person key={index} person={person} />)}
+        </ScrollView>
+      </View>
+    )}
     <Text style={styles.heading1}>
       PREDSTAVITEV
     </Text>

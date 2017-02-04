@@ -46,16 +46,20 @@ const headerStyles = StyleSheet.create({
 
 const LabCardScene = ({ lab }: Props) => (
   <CardView header={<Header lab={lab} />}>
-    <Text style={styles.heading1}>
-      PREDSTAVNIKI
-    </Text>
-    <ScrollView
-      contentContainerStyle={styles.personnel}
-      horizontal
-      showsHorizontalScrollIndicator={false}
-    >
-      {lab.personnel && lab.personnel.map((person, index) => <Person key={index} person={person} />)}
-    </ScrollView>
+    {lab.personnel && (
+      <View>
+        <Text style={styles.heading1}>
+          PREDSTAVNIKI
+        </Text>
+        <ScrollView
+          contentContainerStyle={styles.personnel}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        >
+          {lab.personnel && lab.personnel.map((person, index) => <Person key={index} person={person} />)}
+        </ScrollView>
+      </View>
+    )}
     <Text style={styles.heading1}>
       PREDSTAVITEV
     </Text>
