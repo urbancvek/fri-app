@@ -23,6 +23,7 @@ class ShopsterTabScene extends Component {
     return (
       <ParallaxScrollView
         title="Shopster"
+        image={require('assets/stock/shopster_logo.png')}
         tabs={['O NAS', 'KAJ POČNEMO', 'GARAŽA']}
         backgroundImage={require('assets/header_images/shopster_tab.png')}
       >

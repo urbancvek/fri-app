@@ -32,19 +32,19 @@ class AnimatedHeader extends Component {
   }
 
   render() {
-    const { headerHeight, backgroundImage } = this.props;
+    const { headerHeight, backgroundImage, image } = this.props;
 
     const backgroundOffsetY = headerHeight.interpolate({
       inputRange: [HEADER_MIN_HEIGHT, HEADER_MAX_HEIGHT],
       outputRange: [-80, 0],
     });
 
-    const fontSize = headerHeight.interpolate({
+    const fontSize = !image && headerHeight.interpolate({
       inputRange: [HEADER_MIN_HEIGHT, HEADER_MAX_HEIGHT],
       outputRange: [20, 34],
     });
 
-    const titleOffsetY = headerHeight.interpolate({
+    const titleOffsetY = !image && headerHeight.interpolate({
       inputRange: [HEADER_MIN_HEIGHT, HEADER_MAX_HEIGHT],
       outputRange: [-10, -40],
     });
@@ -54,15 +54,38 @@ class AnimatedHeader extends Component {
       { translateX: this.state.backgroundOffsetX },
     ];
 
+    const imageScale = image && headerHeight.interpolate({
+      inputRange: [HEADER_MIN_HEIGHT, HEADER_MAX_HEIGHT],
+      outputRange: [0.5, 1],
+    });
+
+    const imageOffsetY = image && headerHeight.interpolate({
+      inputRange: [HEADER_MIN_HEIGHT, HEADER_MAX_HEIGHT],
+      outputRange: [30, -30],
+    });
+
+    const imageTransforms = [
+      { scale: imageScale },
+      { translateY: imageOffsetY },
+    ];
+
     return (
       <Animated.View style={[styles.container, { height: headerHeight }]}>
         <Animated.Image
           style={[styles.backgroundImage, { transform: backgroundTransforms }]}
           source={backgroundImage}
         />
-        <Animated.Text style={[styles.title, { fontSize, transform: [{ translateY: titleOffsetY }] }]}>
-          {this.props.title}
-        </Animated.Text>
+        {image
+          ?
+            <Animated.Image
+              source={image}
+              style={[styles.image, { transform: imageTransforms }]}
+            />
+          :
+            <Animated.Text style={[styles.title, { fontSize, transform: [{ translateY: titleOffsetY }] }]}>
+              {this.props.title}
+            </Animated.Text>
+        }
         <SlidingChooser
           tabs={this.props.tabs}
           selectedPage={this.props.selectedPage}
@@ -76,6 +99,7 @@ class AnimatedHeader extends Component {
 type Props = {
   tabs: Array<string>,
   title: string,
+  image?: any,
   headerHeight: Animated.Value,
   imageWidth: number,
   children?: any,
@@ -107,6 +131,12 @@ const styles = StyleSheet.create({
     fontWeight: 'Regular',
     textAlign: 'center',
     width,
+  },
+  image: {
+    height: 60,
+    width: 50,
+    resizeMode: 'contain',
+    alignSelf: 'center',
   },
 });
 

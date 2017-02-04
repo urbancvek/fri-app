@@ -65,6 +65,7 @@ class ParallaxScrollView extends Component {
       <View style={styles.container}>
         <AnimatedHeader
           title={this.props.title}
+          image={this.props.image}
           tabs={this.props.tabs}
           headerHeight={headerHeight}
           imageWidth={450}
@@ -109,6 +110,7 @@ type Props = {
   tabs: Array<string>,
   title: string,
   backgroundImage: any,
+  image?: any,
 };
 
 type State = {
