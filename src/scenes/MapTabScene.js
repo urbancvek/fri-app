@@ -16,6 +16,11 @@ import type { ReducerType } from 'reducers';
 const { IndoorLocation } = NativeModules;
 const EventEmitter = new NativeEventEmitter(IndoorLocation);
 
+const locationIcon = require('assets/map_icons/location.png');
+const locationFilledIcon = require('assets/map_icons/location_filled.png');
+const upstairsIcon = require('assets/map_icons/upstairs.png');
+const downstairsIcon = require('assets/map_icons/downstairs.png');
+
 Mapbox.setAccessToken(MAPBOX_TOKEN);
 
 @autobind
@@ -25,6 +30,7 @@ class MapTabScene extends Component {
 
   state: State = {
     followingUserMode: false,
+    currentFloor: 1,
   };
 
   componentDidMount() {
@@ -37,15 +43,37 @@ class MapTabScene extends Component {
   }
 
   render() {
+    const { followingUserMode, currentFloor } = this.state;
+
     return (
       <View style={styles.container}>
         <Map
-          followingUserMode={this.state.followingUserMode}
+          followingUserMode={followingUserMode}
           userLocation={this.props.currentLocation}
+          currentFloor={currentFloor}
         />
         <MapButton
-          buttonEnabled={this.state.followingUserMode}
+          buttonEnabled={currentFloor === 0}
+          onPress={() => this.setState({
+            currentFloor: currentFloor === 0 ? 1 : 0,
+            followingUserMode: false,
+          })}
+          icon={downstairsIcon}
+          filledIcon={upstairsIcon}
+          underlayColor="#444444"
+          backgroundColor="#333333"
+          bottomOffset={100}
+          tintColor="white"
+        />
+        <MapButton
+          buttonEnabled={followingUserMode}
           onPress={() => this.setState({ followingUserMode: !this.state.followingUserMode })}
+          icon={locationIcon}
+          filledIcon={locationFilledIcon}
+          underlayColor="#eee"
+          backgroundColor="white"
+          bottomOffset={20}
+          tintColor="#333333"
         />
       </View>
     );
@@ -59,6 +87,7 @@ type Props = {
 
 type State = {
   followingUserMode: boolean,
+  currentFloor: number,
 };
 
 const styles = StyleSheet.create({

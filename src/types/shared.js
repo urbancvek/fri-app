@@ -5,6 +5,7 @@ type longitude = number;
 declare type UserLocationType = {
   coordinates: [latitude, longitude],
   course: number,
+  floor: number,
 };
 
 declare type AnnotationType = {

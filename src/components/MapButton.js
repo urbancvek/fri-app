@@ -4,18 +4,16 @@ import { TouchableHighlight, Image } from 'react-native';
 
 import { StyleSheet } from 'standard';
 
-const locationIcon = require('assets/map_icons/location.png');
-const locationFilledIcon = require('assets/map_icons/location_filled.png');
-
 const MapButton = (props: MapButtonProps) => (
   <TouchableHighlight
     onPress={() => props.onPress()}
-    style={mapButtonStyles.wrapper}
-    underlayColor="white"
+    style={[mapButtonStyles.wrapper, { bottom: props.bottomOffset, backgroundColor: props.backgroundColor }]}
+    underlayColor={props.underlayColor}
   >
     <Image
-      source={props.buttonEnabled ? locationFilledIcon : locationIcon}
-      style={mapButtonStyles.buttonImage}
+      resizeMode="contain"
+      source={props.buttonEnabled ? props.filledIcon : props.icon}
+      style={[mapButtonStyles.buttonImage, { tintColor: props.tintColor }]}
     />
   </TouchableHighlight>
 );
@@ -23,18 +21,23 @@ const MapButton = (props: MapButtonProps) => (
 type MapButtonProps = {
   onPress: () => void,
   buttonEnabled: boolean,
+  underlayColor: string,
+  icon: any,
+  filledIcon: any,
+  bottomOffset: number,
+  backgroundColor: string,
+  tintColor: string,
 };
 
 const mapButtonStyles = StyleSheet.create({
   wrapper: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: 50,
-    height: 50,
+    width: 60,
+    height: 60,
     borderRadius: 30,
     position: 'absolute',
     right: 20,
-    bottom: 20,
     shadowColor: 'black',
     backgroundColor: 'white',
     shadowOpacity: 0.8,
@@ -45,10 +48,9 @@ const mapButtonStyles = StyleSheet.create({
     },
   },
   buttonImage: {
-    width: 26,
-    height: 26,
+    width: 28,
+    height: 28,
     resizeMode: 'contain',
-    tintColor: '#1482C5',
   },
 });
 

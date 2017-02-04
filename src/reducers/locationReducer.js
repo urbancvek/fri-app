@@ -7,6 +7,7 @@ const initialState: State = {
   currentLocation: {
     coordinates: [46.050, 14.469],
     course: 0,
+    floor: 1,
   },
 };
 
@@ -15,7 +16,10 @@ const locationReducer = (state: State = initialState, action: ActionType): State
     case 'UPDATE_LOCATION': {
       return {
         ...state,
-        currentLocation: action.nextLocation,
+        currentLocation: {
+          ...state.currentLocation,
+          ...action.nextLocation,
+        },
       };
     }
 

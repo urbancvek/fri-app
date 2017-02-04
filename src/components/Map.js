@@ -14,40 +14,108 @@ type MapType = {
   }) => void,
 };
 
+const ALTITUDE = [
+  {
+    FOLLOWING: 35,
+    OVERVIEW: 56,
+  },
+  {
+    FOLLOWING: 45,
+    OVERVIEW: 80,
+  },
+];
+
+const ZOOM_LEVEL = [
+  {
+    FOLLOWING: 19.8,
+    OVERVIEW: 19.7,
+  },
+  {
+    FOLLOWING: 19.6,
+    OVERVIEW: 19.3,
+  },
+];
+
+const FLOOR_0_CENTER = {
+  coordinates: [46.0501258, 14.4683886],
+  course: 10,
+};
+
 class Map extends Component {
   props: Props;
 
   map: MapType;
 
   componentWillReceiveProps(newProps: Props) {
-    if (this.props.followingUserMode && !newProps.followingUserMode) {
-      this.setMapCamera(true);
-    } else if (!this.props.followingUserMode && newProps.followingUserMode) {
-      this.setMapCamera(false);
+    //
+    // User clicked on change floor button
+    //
+    if (this.props.currentFloor !== newProps.currentFloor && !newProps.followingUserMode) {
+      const location = FLOOR_0_CENTER;
+      const altitude = ALTITUDE[newProps.currentFloor].OVERVIEW;
+      const zoomLevel = ZOOM_LEVEL[newProps.currentFloor].OVERVIEW;
+
+      return this.setMapCamera({ altitude, location, zoomLevel });
     }
 
-    if (this.props.userLocation !== newProps.userLocation) {
-      if (this.props.followingUserMode) this.setMapCamera(false);
+    //
+    // User entered following user mode
+    //
+    if (this.props.followingUserMode !== newProps.followingUserMode && newProps.followingUserMode) {
+      const location = newProps.userLocation;
+      const altitude = ALTITUDE[newProps.userLocation.floor].FOLLOWING;
+      const zoomLevel = ZOOM_LEVEL[newProps.userLocation.floor].FOLLOWING;
+
+      return this.setMapCamera({ altitude, location, zoomLevel, pitch: 60 });
     }
+
+    //
+    // User exited following user mode
+    //
+    if (this.props.followingUserMode !== newProps.followingUserMode && !newProps.followingUserMode) {
+      const location = newProps.userLocation;
+      const altitude = ALTITUDE[newProps.userLocation.floor].OVERVIEW;
+      const zoomLevel = ZOOM_LEVEL[newProps.userLocation.floor].OVERVIEW;
+
+      return this.setMapCamera({ altitude, location, zoomLevel });
+    }
+
+    //
+    // User's location changed while in following user mode
+    //
+    if (this.props.userLocation !== newProps.userLocation && newProps.followingUserMode) {
+      const location = newProps.userLocation;
+      const altitude = ALTITUDE[newProps.userLocation.floor].FOLLOWING;
+      const zoomLevel = ZOOM_LEVEL[newProps.userLocation.floor].FOLLOWING;
+
+      return this.setMapCamera({ location, altitude, zoomLevel, pitch: 60 });
+    }
+
+    //
+    // User walked from one floor to another and is in following user mode
+    //
+    if (this.props.currentFloor !== newProps.currentFloor && newProps.followingUserMode) {
+      const location = newProps.userLocation;
+      const altitude = ALTITUDE[newProps.userLocation.floor].FOLLOWING;
+      const zoomLevel = ZOOM_LEVEL[newProps.userLocation.floor].FOLLOWING;
+
+      return this.setMapCamera({ altitude, location, zoomLevel, pitch: 60 });
+    }
+
+    return;
   }
 
-  setMapCamera(goToOverview: boolean) {
-    const { userLocation } = this.props;
-
+  setMapCamera({ altitude, location, zoomLevel, pitch = 40 }) {
     const options = Platform.select({
-      ios: {
-        altitude: goToOverview ? 50 : 10,
-      },
-      android: {
-        zoomLevel: goToOverview ? 19 : 19.5,
-      },
+      ios: { altitude },
+      android: { zoomLevel },
     });
 
     this.map.easeTo({
-      latitude: userLocation.coordinates[0],
-      longitude: userLocation.coordinates[1],
-      direction: userLocation.course,
-      pitch: goToOverview ? 30 : 70,
+      latitude: location.coordinates[0],
+      longitude: location.coordinates[1],
+      direction: location.course,
+      pitch,
       ...options,
     });
   }
@@ -76,7 +144,11 @@ class Map extends Component {
         rotateEnabled
 
         onStartLoadingMap={() => {}}
-        onFinishLoadingMap={() => this.setMapCamera(false)}
+        onFinishLoadingMap={() => this.setMapCamera({
+          altitude: ALTITUDE[1].OVERVIEW,
+          location: FLOOR_0_CENTER,
+          zoomLevel: ZOOM_LEVEL[1].OVERVIEW,
+        })}
 
         initialZoomLevel={18}
         initialCenterCoordinate={{
@@ -91,6 +163,7 @@ class Map extends Component {
 type Props = {
   userLocation: UserLocationType,
   followingUserMode: boolean,
+  currentFloor: number,
 };
 
 const styles = StyleSheet.create({

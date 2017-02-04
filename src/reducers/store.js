@@ -38,7 +38,7 @@ const configureStore = (onComplete: () => void) => {
 
   const config = {
     storage: AsyncStorage,
-    blacklist: ['navigationStore'],
+    blacklist: ['navigationStore', 'locationStore'],
   };
 
   // When completed with persisting the store call onComplete callback
