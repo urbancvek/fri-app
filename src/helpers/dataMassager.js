@@ -2,7 +2,7 @@
 const convertToFlatArray = (object: { [key: string]: Array<any> }) => {
   const flatArray = [];
 
-  Object.keys(object).forEach(key => {
+  Object.keys(object).sort().forEach(key => {
     flatArray.push({ section: true, title: key });
     flatArray.push(...object[key]);
   });
@@ -10,4 +10,15 @@ const convertToFlatArray = (object: { [key: string]: Array<any> }) => {
   return flatArray;
 };
 
-export { convertToFlatArray };
+const convertEventsToSections = (array: Array<EventType>) => {
+  const object = array.reduce((whole, event) => {
+    if (whole[event.startTime]) whole[event.startTime].push(event);
+    else whole[event.startTime] = [event];
+
+    return whole;
+  }, {});
+
+  return object;
+};
+
+export { convertToFlatArray, convertEventsToSections };

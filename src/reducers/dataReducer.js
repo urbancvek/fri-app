@@ -21,6 +21,11 @@ const initialState: State = {
     magistrski: [],
     doktorski: [],
   },
+  events: {
+    first: [],
+    second: [],
+    third: [],
+  },
 };
 
 const newArrayAlways = (destinationArray: [], sourceArray: []) => sourceArray;

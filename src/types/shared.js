@@ -39,6 +39,7 @@ declare type PersonType = {
 
 declare type EventType = {
   title: string,
+  startTime: string,
   location: string,
   accentColor: string,
   description?: Array<string>,
