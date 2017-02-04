@@ -26,6 +26,12 @@ class StudyProgramsList extends Component {
     dataSource: dataSource.cloneWithRows(convertToFlatArray(this.props.studyPrograms)),
   };
 
+  componentWillReceiveProps(newProps: Props) {
+    this.setState({
+      dataSource: dataSource.cloneWithRows(convertToFlatArray(newProps.studyPrograms)),
+    });
+  }
+
   renderRow(rowData: StudyProgramType) {
     if (rowData.section) return <SectionRow title={`${capitalize(rowData.title)} Študij`} />;
 

@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FEFEFE',
   },
   title: {
-    color: 'black',
+    color: '#b0b0b0',
     fontSize: 11,
   },
   selectedTitle: {

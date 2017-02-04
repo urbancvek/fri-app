@@ -23,6 +23,12 @@ class CompaniesList extends Component {
     dataSource: dataSource.cloneWithRows(this.props.companies),
   }
 
+  componentWillReceiveProps(newProps: Props) {
+    this.setState({
+      dataSource: dataSource.cloneWithRows(newProps.companies),
+    });
+  }
+
   renderRow(rowData: CompanyType) {
     return (
       <CompanyRow

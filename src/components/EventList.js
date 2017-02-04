@@ -25,6 +25,12 @@ class EventList extends Component {
     dataSource: dataSource.cloneWithRows(convertToFlatArray(this.props.events)),
   };
 
+  componentWillReceiveProps(newProps: Props) {
+    this.setState({
+      dataSource: dataSource.cloneWithRows(convertToFlatArray(newProps.events)),
+    });
+  }
+
   renderRow(rowData: EventType) {
     if (rowData.section) return <SectionRow title={rowData.title} />;
 
@@ -64,6 +70,7 @@ class EventList extends Component {
         scrollEventThrottle={16}
         showsVerticalScrollIndicator={false}
         renderHeader={() => <Spacer />}
+        enableEmptySections
       />
     );
   }

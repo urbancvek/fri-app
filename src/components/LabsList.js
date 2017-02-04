@@ -23,6 +23,12 @@ class LabsList extends Component {
     dataSource: dataSource.cloneWithRows(this.props.labs),
   };
 
+  componentWillReceiveProps(newProps: Props) {
+    this.setState({
+      dataSource: dataSource.cloneWithRows(newProps.labs),
+    });
+  }
+
   renderRow(rowData: LabType) {
     return (
       <LabRow
@@ -51,6 +57,7 @@ class LabsList extends Component {
         scrollEventThrottle={16}
         showsVerticalScrollIndicator
         renderHeader={() => <Spacer />}
+        enableEmptySections
       />
     );
   }

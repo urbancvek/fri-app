@@ -10,7 +10,7 @@ const initialState: State = {
   companies: [],
   labs: [],
   data: {
-    aboutFRIContent: '<div />',
+    aboutFRI: '<div />',
     enroll: '<div />',
     aboutGaraza: '<div />',
     aboutShopster: '<div />',
