@@ -41,7 +41,7 @@ type Props = {
   fetchData: () => void,
 };
 
-const companiesQuery = `{
+const query = `{
   companies {
     title
     location
@@ -75,7 +75,7 @@ const select = ({ dataStore }: ReducerType) => ({
 });
 
 const actions = (dispatch: Dispatch) => ({
-  fetchData: () => dispatch(fetchAction({ query: companiesQuery }, 'FETCH_COMPANIES')),
+  fetchData: () => dispatch(fetchAction({ query })),
 });
 
 export default connect(select, actions)(InfoTabScene);

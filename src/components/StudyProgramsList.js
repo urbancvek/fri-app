@@ -2,6 +2,7 @@
 import { autobind } from 'core-decorators';
 import React, { Component, PropTypes } from 'react';
 import { ListView } from 'react-native';
+import { capitalize } from 'lodash';
 
 import ListSeparator from 'components/ListSeparator';
 import StudyProgramRow from 'components/StudyProgramRow';
@@ -26,7 +27,7 @@ class StudyProgramsList extends Component {
   };
 
   renderRow(rowData: StudyProgramType) {
-    if (rowData.section) return <SectionRow title={rowData.title} />;
+    if (rowData.section) return <SectionRow title={`${capitalize(rowData.title)} Študij`} />;
 
     return (
       <StudyProgramRow

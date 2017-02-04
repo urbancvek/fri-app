@@ -1,17 +1,24 @@
 // @flow
 import { autobind } from 'core-decorators';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import ParallaxScrollView from 'components/ParallaxScrollView';
 import AboutShopsterView from 'components/AboutShopsterView';
 import OurWorkShopsterView from 'components/OurWorkShopsterView';
 import AboutGarazaView from 'components/AboutGarazaView';
-import aboutShopsterContent from 'data/aboutShopster';
-import ourWorkShopsterContent from 'data/ourWorkShopster';
-import aboutGarazaContent from 'data/aboutGaraza';
+import fetchAction from 'actions/fetchActions';
+
+import type { ReducerType } from 'reducers';
 
 @autobind
 class ShopsterTabScene extends Component {
+  props: Props;
+
+  componentDidMount() {
+    this.props.fetchData();
+  }
+
   render() {
     return (
       <ParallaxScrollView
@@ -19,12 +26,39 @@ class ShopsterTabScene extends Component {
         tabs={['O NAS', 'KAJ POČNEMO', 'GARAŽA']}
         backgroundImage={require('assets/header_images/shopster_tab.png')}
       >
-        <AboutShopsterView content={aboutShopsterContent} />
-        <OurWorkShopsterView content={ourWorkShopsterContent} />
-        <AboutGarazaView content={aboutGarazaContent} />
+        <AboutShopsterView content={this.props.aboutShopsterContent} />
+        <OurWorkShopsterView content={this.props.ourWorkShopsterContent} />
+        <AboutGarazaView content={this.props.aboutGarazaContent} />
       </ParallaxScrollView>
     );
   }
 }
 
-export default ShopsterTabScene;
+type Props = {
+  aboutShopsterContent: string,
+  ourWorkShopsterContent: string,
+  aboutGarazaContent: string,
+  fetchData: () => void,
+};
+
+const query = `
+{
+  data {
+    aboutShopster
+    ourWorkShopster
+    aboutGaraza
+  }
+}
+`;
+
+const select = ({ dataStore }: ReducerType) => ({
+  aboutShopsterContent: dataStore.data.aboutShopster,
+  ourWorkShopsterContent: dataStore.data.ourWorkShopster,
+  aboutGarazaContent: dataStore.data.aboutGaraza,
+});
+
+const actions = (dispatch: Dispatch) => ({
+  fetchData: () => dispatch(fetchAction({ query })),
+});
+
+export default connect(select, actions)(ShopsterTabScene);
