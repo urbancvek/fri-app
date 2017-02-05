@@ -19,7 +19,7 @@ import com.indooratlas.android.sdk.IALocationManager;
 import com.indooratlas.android.sdk.IALocationRequest;
 import com.indooratlas.android.sdk.IARegion;
 
-public class IndoorLocationModule extends ReactContextBaseJavaModule implements IALocationListener {
+public class IndoorLocationModule extends ReactContextBaseJavaModule implements IALocationListener, IARegion.Listener {
     private ReactApplicationContext context;
     private IALocationManager locationManager;
 
@@ -30,7 +30,7 @@ public class IndoorLocationModule extends ReactContextBaseJavaModule implements 
 
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
-      Log.d("ReactNative", Integer.toString(status));
+      Log.d("ReactNative", "Status " + Integer.toString(status));
     }
 
     @Override
@@ -43,10 +43,27 @@ public class IndoorLocationModule extends ReactContextBaseJavaModule implements 
 
         params.putArray("coordinates", coordinates);
         params.putDouble("course", location.getBearing());
-      
+        params.putInt("floor", location.getFloorLevel());
+
         context
             .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
             .emit("onLocationChange", params);
+    }
+
+    @Override
+    public void onExitRegion(IARegion region) {
+        // Check if floorplan
+        if (region.getType() == 1) {
+            Log.d("ReactNative", "Exit " + region.getId());
+        }
+    }
+
+    @Override
+    public void onEnterRegion(IARegion region) {
+        // Check if floorplan
+        if (region.getType() == 1) {
+            Log.d("ReactNative", "Enter " + region.getId());
+        }
     }
 
     @ReactMethod
@@ -55,8 +72,10 @@ public class IndoorLocationModule extends ReactContextBaseJavaModule implements 
         (new Handler(Looper.getMainLooper())).post(new Runnable() {
             @Override
             public void run() {
-                locationManager = IALocationManager.create(context);
-                locationManager.requestLocationUpdates(IALocationRequest.create(), self);
+                self.locationManager = IALocationManager.create(context);
+                self.locationManager.requestLocationUpdates(IALocationRequest.create(), self);
+                self.locationManager.registerRegionListener(self);
+                self.locationManager.setLocation(IALocation.from(IARegion.venue("0c0af175-e460-4e49-812e-7a7d7b415f37")));
                 Log.d("ReactNative", "Started updating location!");
             }
         });
