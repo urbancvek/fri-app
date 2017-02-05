@@ -62,7 +62,7 @@ class MapTabScene extends Component {
           filledIcon={locationFilledIcon}
           underlayColor="#eee"
           backgroundColor="white"
-          bottomOffset={100}
+          bottomOffset={90}
           tintColor="#333333"
         />
         <MapButton

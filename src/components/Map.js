@@ -5,7 +5,7 @@ import { MapView } from 'react-native-mapbox-gl';
 
 import { StyleSheet } from 'standard';
 import { MAPBOX_STYLE } from 'config/api';
-import { createLocationAnnotation } from 'helpers/annotationCreator';
+import { createLocationAnnotation, createClassroomAnnotation } from 'helpers/annotationCreator';
 
 type MapType = {
   easeTo: (options: {
@@ -40,6 +40,21 @@ const FLOOR_0_CENTER = {
   coordinates: [46.0501258, 14.4683886],
   course: 10,
 };
+
+const classrooms = [
+  { id: 'P01', coordinates: [46.049980709616861, 14.468924203531223] },
+  { id: 'P02', coordinates: [46.049868629164131, 14.468947273806316] },
+  { id: 'P03', coordinates: [46.049798931961178, 14.468941845506292] },
+  { id: 'P04', coordinates: [46.049728292814422, 14.468921489381213] },
+  { id: 'P09', coordinates: [46.049769734458145, 14.469129121857025] },
+  { id: 'P10', coordinates: [46.049846024675517, 14.469149477982103] },
+  { id: 'P16', coordinates: [46.050398890139036, 14.469287899632647] },
+  { id: 'P18', coordinates: [46.050483435936542, 14.46910000421782] },
+  { id: 'P19', coordinates: [46.050417713266285, 14.46910000421782] },
+  { id: 'P20', coordinates: [46.050345630247691, 14.469082693852048] },
+  { id: 'P21', coordinates: [46.050280614111017, 14.469065383486276] },
+  { id: 'G', coordinates: [46.050186888268421, 14.46904629117109] },
+];
 
 class Map extends Component {
   props: Props;
@@ -136,6 +151,7 @@ class Map extends Component {
 
         annotations={[
           createLocationAnnotation(userLocation),
+          ...classrooms.map(createClassroomAnnotation),
         ]}
 
         styleURL={MAPBOX_STYLE}
