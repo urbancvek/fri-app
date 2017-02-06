@@ -1,6 +1,4 @@
 // @flow
-import { Platform } from 'react-native';
-
 const createLocationAnnotation = (location: UserLocationType, indoorLocation: boolean): AnnotationType => ({
   coordinates: location.coordinates,
   type: 'point',
@@ -20,10 +18,10 @@ const createClassroomAnnotation = ({ id, coordinates }): AnnotationType => ({
   coordinates,
   annotationImage: {
     source: {
-      uri: Platform.select({ ios: id, android: id.toLowerCase() }),
+      uri: id.toLowerCase(),
     },
-    height: 54,
-    width: 88,
+    height: 35,
+    width: 50,
   },
 });
 

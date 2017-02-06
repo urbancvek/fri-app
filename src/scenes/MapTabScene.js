@@ -1,6 +1,6 @@
 // @flow
 import { autobind } from 'core-decorators';
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { NativeModules, NativeEventEmitter, NativeAppEventEmitter, View } from 'react-native';
 import Mapbox from 'react-native-mapbox-gl';
 import { connect } from 'react-redux';
@@ -29,6 +29,8 @@ Mapbox.setAccessToken(MAPBOX_TOKEN);
 class MapTabScene extends Component {
   props: Props;
   state: State;
+  context: Context;
+
   watchID: any;
 
   state: State = {
@@ -51,7 +53,7 @@ class MapTabScene extends Component {
     // Start watching geolocation
     this.watchID = navigator.geolocation.watchPosition(
       this.onGPSLocationChange,
-      error => console.error(error),
+      error => console.log(error),
       { enableHighAccuracy: true, timeout: 2000, maximumAge: 1000, distanceFilter: 1 }
     );
   }
@@ -93,6 +95,14 @@ class MapTabScene extends Component {
     }
   }
 
+  onOpenAnnotation(markerId) {
+    const event = this.props.events.find((e: EventType) =>
+      e.location.includes(markerId),
+    );
+
+    if (event) this.context.navigation.pushRoute({ key: 'EVENT', event });
+  }
+
   render() {
     const { followingUserMode, currentFloor } = this.state;
 
@@ -103,6 +113,7 @@ class MapTabScene extends Component {
           userLocation={this.props.currentLocation}
           indoorLocation={this.state.indoorLocation}
           currentFloor={currentFloor}
+          onOpenAnnotation={this.onOpenAnnotation}
         />
         <MapButton
           buttonEnabled={followingUserMode}
@@ -135,9 +146,14 @@ class MapTabScene extends Component {
   }
 }
 
+MapTabScene.contextTypes = {
+  navigation: PropTypes.object,
+};
+
 type Props = {
   currentLocation: UserLocationType,
   updateLocation: (location: UserLocationType) => void,
+  events: Array<EventType>,
 };
 
 type State = {
@@ -148,14 +164,21 @@ type State = {
   indoorLocation: boolean,
 };
 
+type Context = {
+  navigation: {
+    pushRoute: (route: RouteType) => void,
+  },
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
 });
 
-const select = ({ locationStore }: ReducerType) => ({
+const select = ({ locationStore, dataStore }: ReducerType) => ({
   currentLocation: locationStore.currentLocation,
+  events: dataStore.events.first,
 });
 
 const actions = (dispatch: Dispatch) => ({

@@ -20,7 +20,7 @@ const ALTITUDE = [
     OVERVIEW: 47,
   },
   {
-    FOLLOWING: 45,
+    FOLLOWING: 55,
     OVERVIEW: 75,
   },
 ];
@@ -41,20 +41,25 @@ const FLOOR_0_CENTER = {
   course: 10,
 };
 
-const classrooms = [
-  { id: 'P01', coordinates: [46.049980709616861, 14.468924203531223] },
-  { id: 'P02', coordinates: [46.049868629164131, 14.468947273806316] },
-  { id: 'P03', coordinates: [46.049798931961178, 14.468941845506292] },
-  { id: 'P04', coordinates: [46.049728292814422, 14.468921489381213] },
-  { id: 'P09', coordinates: [46.049769734458145, 14.469129121857025] },
-  { id: 'P10', coordinates: [46.049846024675517, 14.469149477982103] },
-  { id: 'P16', coordinates: [46.050398890139036, 14.469287899632647] },
-  { id: 'P18', coordinates: [46.050483435936542, 14.46910000421782] },
-  { id: 'P19', coordinates: [46.050417713266285, 14.46910000421782] },
-  { id: 'P20', coordinates: [46.050345630247691, 14.469082693852048] },
-  { id: 'P21', coordinates: [46.050280614111017, 14.469065383486276] },
-  { id: 'G', coordinates: [46.050186888268421, 14.46904629117109] },
-];
+const classrooms = {
+  '0': [
+    { id: 'PA', coordinates: [46.05044165258132, 14.468482176898281] },
+  ],
+  '1': [
+    { id: 'P01', coordinates: [46.049980709616861, 14.468924203531223] },
+    { id: 'P02', coordinates: [46.049868629164131, 14.468947273806316] },
+    { id: 'P03', coordinates: [46.049798931961178, 14.468941845506292] },
+    { id: 'P04', coordinates: [46.049728292814422, 14.468921489381213] },
+    { id: 'P09', coordinates: [46.049769734458145, 14.469129121857025] },
+    { id: 'P10', coordinates: [46.049846024675517, 14.469149477982103] },
+    { id: 'P16', coordinates: [46.050398890139036, 14.469287899632647] },
+    { id: 'P18', coordinates: [46.050483435936542, 14.46910000421782] },
+    { id: 'P19', coordinates: [46.050417713266285, 14.46910000421782] },
+    { id: 'P20', coordinates: [46.050345630247691, 14.469082693852048] },
+    { id: 'P21', coordinates: [46.050280614111017, 14.469065383486276] },
+    { id: 'GA', coordinates: [46.050186888268421, 14.46904629117109] },
+  ],
+};
 
 class Map extends Component {
   props: Props;
@@ -81,7 +86,7 @@ class Map extends Component {
       const altitude = ALTITUDE[newProps.userLocation.floor].FOLLOWING;
       const zoomLevel = ZOOM_LEVEL[newProps.userLocation.floor].FOLLOWING;
 
-      return this.setMapCamera({ altitude, location, zoomLevel, pitch: 60 });
+      return this.setMapCamera({ altitude, location, zoomLevel, pitch: 50 });
     }
 
     //
@@ -103,7 +108,7 @@ class Map extends Component {
       const altitude = ALTITUDE[newProps.userLocation.floor].FOLLOWING;
       const zoomLevel = ZOOM_LEVEL[newProps.userLocation.floor].FOLLOWING;
 
-      return this.setMapCamera({ location, altitude, zoomLevel, pitch: 60 });
+      return this.setMapCamera({ location, altitude, zoomLevel, pitch: 50 });
     }
 
     //
@@ -114,7 +119,7 @@ class Map extends Component {
       const altitude = ALTITUDE[newProps.userLocation.floor].FOLLOWING;
       const zoomLevel = ZOOM_LEVEL[newProps.userLocation.floor].FOLLOWING;
 
-      return this.setMapCamera({ altitude, location, zoomLevel, pitch: 60 });
+      return this.setMapCamera({ altitude, location, zoomLevel, pitch: 50 });
     }
 
     return;
@@ -136,7 +141,7 @@ class Map extends Component {
   }
 
   render() {
-    const { userLocation, indoorLocation } = this.props;
+    const { userLocation, indoorLocation, currentFloor } = this.props;
 
     return (
       <MapView
@@ -151,13 +156,15 @@ class Map extends Component {
 
         annotations={[
           createLocationAnnotation(userLocation, indoorLocation),
-          ...classrooms.map(createClassroomAnnotation),
+          ...classrooms[currentFloor].map(createClassroomAnnotation),
         ]}
 
         styleURL={MAPBOX_STYLE}
 
         zoomEnabled={false}
         rotateEnabled
+        pitchEnabled={false}
+        onOpenAnnotation={(marker) => this.props.onOpenAnnotation(marker.id)}
 
         onStartLoadingMap={() => {}}
         onFinishLoadingMap={() => this.setMapCamera({
@@ -181,6 +188,7 @@ type Props = {
   followingUserMode: boolean,
   currentFloor: number,
   indoorLocation: boolean,
+  onOpenAnnotation: (markerId: string) => void,
 };
 
 const styles = StyleSheet.create({
