@@ -83,12 +83,12 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 24
     buildToolsVersion "23.0.1"
 
     defaultConfig {
         applicationId "com.fri"
-        minSdkVersion 16
+        minSdkVersion 18
         targetSdkVersion 22
         versionCode 8
         versionName "0.4"
@@ -140,6 +140,7 @@ android {
 
 dependencies {
     compile project(':react-native-mapbox-gl')
+    compile project(':react-native-ble-manager')
     compile 'com.indooratlas.android:indooratlas-android-sdk:2.3.0-alpha-612'
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"

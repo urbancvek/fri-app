@@ -1,13 +1,13 @@
 // @flow
 import { Platform } from 'react-native';
 
-const createLocationAnnotation = (location: UserLocationType): AnnotationType => ({
+const createLocationAnnotation = (location: UserLocationType, indoorLocation: boolean): AnnotationType => ({
   coordinates: location.coordinates,
   type: 'point',
   id: 'locationID',
   annotationImage: {
     source: {
-      uri: 'user_location_circle',
+      uri: indoorLocation ? 'user_location_circle' : '',
     },
     height: 23,
     width: 23,

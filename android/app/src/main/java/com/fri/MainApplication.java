@@ -15,6 +15,7 @@ import java.util.List;
 
 import com.mapbox.reactnativemapboxgl.ReactNativeMapboxGLPackage;
 import com.shopster.IndoorLocation.IndoorLocationPackage;
+import it.innove.BleManagerPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -29,7 +30,8 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
         new ReactNativeMapboxGLPackage(),
-        new IndoorLocationPackage()
+        new IndoorLocationPackage(),
+        new BleManagerPackage()
       );
     }
   };

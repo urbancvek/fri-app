@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { TouchableHighlight, Image } from 'react-native';
+import { TouchableHighlight, Image, View } from 'react-native';
 
 import { StyleSheet } from 'standard';
 
@@ -10,11 +10,13 @@ const MapButton = (props: MapButtonProps) => (
     style={[mapButtonStyles.wrapper, { bottom: props.bottomOffset, backgroundColor: props.backgroundColor }]}
     underlayColor={props.underlayColor}
   >
-    <Image
-      resizeMode="contain"
-      source={props.buttonEnabled ? props.filledIcon : props.icon}
-      style={[mapButtonStyles.buttonImage, { tintColor: props.tintColor }]}
-    />
+    <View>
+      <Image
+        resizeMode="contain"
+        source={props.buttonEnabled ? props.filledIcon : props.icon}
+        style={[mapButtonStyles.buttonImage, { tintColor: props.tintColor }]}
+      />
+    </View>
   </TouchableHighlight>
 );
 

@@ -136,7 +136,7 @@ class Map extends Component {
   }
 
   render() {
-    const { userLocation } = this.props;
+    const { userLocation, indoorLocation } = this.props;
 
     return (
       <MapView
@@ -150,7 +150,7 @@ class Map extends Component {
         annotationsAreImmutable
 
         annotations={[
-          createLocationAnnotation(userLocation),
+          createLocationAnnotation(userLocation, indoorLocation),
           ...classrooms.map(createClassroomAnnotation),
         ]}
 
@@ -180,6 +180,7 @@ type Props = {
   userLocation: UserLocationType,
   followingUserMode: boolean,
   currentFloor: number,
+  indoorLocation: boolean,
 };
 
 const styles = StyleSheet.create({

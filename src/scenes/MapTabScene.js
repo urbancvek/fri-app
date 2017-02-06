@@ -1,9 +1,11 @@
 // @flow
 import { autobind } from 'core-decorators';
 import React, { Component } from 'react';
-import { NativeModules, NativeEventEmitter, View } from 'react-native';
+import { NativeModules, NativeEventEmitter, NativeAppEventEmitter, View } from 'react-native';
 import Mapbox from 'react-native-mapbox-gl';
 import { connect } from 'react-redux';
+import BLE from 'react-native-ble-manager';
+import geolib from 'geolib';
 
 import { MAPBOX_TOKEN } from 'config/api';
 import { StyleSheet } from 'standard';
@@ -27,19 +29,68 @@ Mapbox.setAccessToken(MAPBOX_TOKEN);
 class MapTabScene extends Component {
   props: Props;
   state: State;
+  watchID: any;
 
   state: State = {
     followingUserMode: false,
     currentFloor: 1,
+    bleState: false,
+    isOnFRI: false,
+    indoorLocation: false,
   };
 
   componentDidMount() {
     EventEmitter.addListener('DID_UPDATE_LOCATION', this.onIndoorLocationChange);
-    IndoorLocation.startLocating();
+    EventEmitter.addListener('DID_ENTER_REGION', this.onEnterRegionChange);
+    NativeAppEventEmitter.addListener('BleManagerDidUpdateState', this.onBluetoothStateChange);
+
+    // Starts bluetooth monitoring
+    BLE.start({ showAlert: false });
+    BLE.checkState();
+
+    // Start watching geolocation
+    this.watchID = navigator.geolocation.watchPosition(
+      this.onGPSLocationChange,
+      error => console.error(error),
+      { enableHighAccuracy: true, timeout: 2000, maximumAge: 1000, distanceFilter: 1 }
+    );
+  }
+
+  componentWillUnmount() {
+    IndoorLocation.stopLocating();
+  }
+
+  componentDidUpdate() {
+    // If both bluetooth is on and the user is on FRI start indoor location
+    if (this.state.isOnFRI && this.state.bleState && !this.state.indoorLocation) {
+      this.setState({ indoorLocation: true });
+      IndoorLocation.startLocating();
+    }
   }
 
   onIndoorLocationChange(location: UserLocationType) {
     this.props.updateLocation(location);
+  }
+
+  onBluetoothStateChange({ state }) {
+    if (state === 'on') this.setState({ bleState: true });
+    else this.setState({ bleState: false });
+  }
+
+  onGPSLocationChange({ coords }) {
+    const location = { coordinates: [coords.latitude, coords.longitude], course: coords.heading };
+
+    // Get the distance to center of FRI
+    const distance = geolib.getDistanceSimple(
+      { latitude: location.coordinates[0], longitude: location.coordinates[1] },
+      { latitude: 46.050186888268421, longitude: 14.46904629117109 }
+    );
+
+    // If close enough stop watching GPS and move to the next stage
+    if (distance < 200) {
+      navigator.geolocation.clearWatch(this.watchID);
+      this.setState({ isOnFRI: true });
+    }
   }
 
   render() {
@@ -50,6 +101,7 @@ class MapTabScene extends Component {
         <Map
           followingUserMode={followingUserMode}
           userLocation={this.props.currentLocation}
+          indoorLocation={this.state.indoorLocation}
           currentFloor={currentFloor}
         />
         <MapButton
@@ -91,6 +143,9 @@ type Props = {
 type State = {
   followingUserMode: boolean,
   currentFloor: number,
+  bleState: boolean,
+  isOnFRI: boolean,
+  indoorLocation: boolean,
 };
 
 const styles = StyleSheet.create({
