@@ -90,8 +90,8 @@ android {
         applicationId "com.fri"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 6
-        versionName "0.2"
+        versionCode 8
+        versionName "0.4"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }

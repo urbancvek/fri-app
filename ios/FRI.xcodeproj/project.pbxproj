@@ -561,7 +561,7 @@
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 3D669LLPTV;
 						LastSwiftMigration = 0820;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -903,6 +903,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 3D669LLPTV;
@@ -921,8 +922,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.shopster.fri-informative-day-app";
 				PRODUCT_NAME = FRI;
-				PROVISIONING_PROFILE = "c1676876-8e56-4bb7-9fc7-b691f1dc2860";
-				PROVISIONING_PROFILE_SPECIFIER = "FRI Informativni Dan";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "FRI-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -953,8 +954,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.shopster.fri-informative-day-app";
 				PRODUCT_NAME = FRI;
-				PROVISIONING_PROFILE = "c1676876-8e56-4bb7-9fc7-b691f1dc2860";
-				PROVISIONING_PROFILE_SPECIFIER = "FRI Informativni Dan";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "FRI-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";

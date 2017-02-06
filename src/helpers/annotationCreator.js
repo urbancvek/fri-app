@@ -9,8 +9,8 @@ const createLocationAnnotation = (location: UserLocationType): AnnotationType =>
     source: {
       uri: 'user_location_circle',
     },
-    height: 30,
-    width: 30,
+    height: 23,
+    width: 23,
   },
 });
 

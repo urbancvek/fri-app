@@ -47,7 +47,7 @@ public class IndoorLocationModule extends ReactContextBaseJavaModule implements 
 
         context
             .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
-            .emit("onLocationChange", params);
+            .emit("DID_UPDATE_LOCATION", params);
     }
 
     @Override

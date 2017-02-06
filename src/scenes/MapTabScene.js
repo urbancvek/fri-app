@@ -34,7 +34,7 @@ class MapTabScene extends Component {
   };
 
   componentDidMount() {
-    EventEmitter.addListener('onLocationChange', this.onIndoorLocationChange);
+    EventEmitter.addListener('DID_UPDATE_LOCATION', this.onIndoorLocationChange);
     IndoorLocation.startLocating();
   }
 

@@ -33,7 +33,7 @@ class IndoorLocation: RCTEventEmitter, IALocationManagerDelegate, CLLocationMana
   
   override func supportedEvents() -> [String]! {
     return [
-      "onLocationChange"
+      "DID_UPDATE_LOCATION",
     ];
   }
   
@@ -71,7 +71,7 @@ class IndoorLocation: RCTEventEmitter, IALocationManagerDelegate, CLLocationMana
       "floor": iaLocation.floor!.level
     ] as [String : Any];
 
-    self.sendEvent(withName: "onLocationChange", body: body);
+    self.sendEvent(withName: "DID_UPDATE_LOCATION", body: body);
   }
   
   func indoorLocationManager(_ manager: IALocationManager, didEnter region: IARegion) {
