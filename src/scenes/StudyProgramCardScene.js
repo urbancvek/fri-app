@@ -63,9 +63,9 @@ const styles = StyleSheet.create({
   },
   paragraph: {
     fontWeight: 'Light',
-    fontSize: 13,
+    fontSize: 14,
     lineHeight: 20,
-    color: '#444444',
+    color: '#333',
   },
 });
 

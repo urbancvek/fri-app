@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     marginRight: 36,
+    resizeMode: 'contain',
   },
 });
 

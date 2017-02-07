@@ -5,7 +5,7 @@ const createLocationAnnotation = (location: UserLocationType, indoorLocation: bo
   id: 'locationID',
   annotationImage: {
     source: {
-      uri: indoorLocation ? 'user_location_circle' : '',
+      uri: indoorLocation ? 'user_location_circle' : 'empty',
     },
     height: 23,
     width: 23,

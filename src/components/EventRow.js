@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 15,
     fontWeight: 'Light',
+    color: '#333',
   },
   location: {
     fontSize: 12,

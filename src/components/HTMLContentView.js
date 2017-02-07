@@ -13,11 +13,11 @@ const htmlStyles = {
     fontFamily: 'Montserrat',
     marginTop: 10,
     marginBottom: 0,
+    color: '#444',
   },
   p: {
-    fontFamily: 'Montserrat',
-    fontSize: 13,
-    fontWeight: '300',
+    fontFamily: 'Montserrat-Light',
+    fontSize: 14,
     color: '#333333',
     letterSpacing: 0.3,
     lineHeight: 23,
@@ -29,12 +29,11 @@ const htmlStyles = {
     marginBottom: 15,
   },
   li: {
-    fontFamily: 'Montserrat',
-    fontSize: 13,
-    fontWeight: '300',
+    fontFamily: 'Montserrat-Light',
+    fontSize: 14,
     color: '#333333',
     letterSpacing: 0.3,
-    lineHeight: 18,
+    lineHeight: 23,
   },
 };
 

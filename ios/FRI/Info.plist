@@ -15,11 +15,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.4</string>
+	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>8</string>
+	<string>10</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
@@ -46,7 +46,7 @@
 	</dict>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>Potrebujemo dostop do bluetooth za uspešno pozicioniranje.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
+	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Potrebujemo dostop do lokacije za uspešno pozicioniranje.</string>
 	<key>NSMotionUsageDescription</key>
 	<string>Potrebujemo dostop do senzorjev za uspešno pozicioniranje.</string>

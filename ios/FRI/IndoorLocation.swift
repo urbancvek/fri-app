@@ -10,49 +10,32 @@ import Foundation;
 import IndoorAtlas;
 
 @objc(IndoorLocation)
-class IndoorLocation: RCTEventEmitter, IALocationManagerDelegate, CLLocationManagerDelegate {
+class IndoorLocation: RCTEventEmitter, IALocationManagerDelegate {
   
   var manager: IALocationManager?;
-  var locationManager: CLLocationManager?;
-  var shouldLocate: Bool = false;
-  
+
   override init() {
     super.init();
     
     let IAKey = "0bb20838-f3c5-4a7f-8c75-4fab9d3341c8";
     let IASecret = "it5C4XuQC!ScjqJej))0MHJBzRsikVZV1IIbvkZNsreA!FLVRm5lfxSMtrZZYdLrBZOe9GcBHYgjyFs(nPmpjnb)dlY(8TpanhISqECqRTL3Zr4mT(3yebIdObUb8qvu";
     
-    self.locationManager = CLLocationManager();
-    self.locationManager!.delegate = self;
-    
     self.manager = IALocationManager();
     self.manager!.delegate = self;
     self.manager!.setApiKey(IAKey, andSecret: IASecret);
-    self.manager!.location = IALocation(floorPlanId: "5ea15b19-b7fd-40a3-833b-666c514279d7");
+    self.manager!.location = IALocation(venueId: "0c0af175-e460-4e49-812e-7a7d7b415f37", andFloor: nil)
   }
   
   override func supportedEvents() -> [String]! {
     return [
       "DID_UPDATE_LOCATION",
+      "DID_ENTER_REGION"
     ];
   }
-  
-  func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-    if (status == .authorizedWhenInUse && self.shouldLocate) {
-      self.manager!.startUpdatingLocation();
-      print("Started updating location!");
-    }
-  }
-  
-  @objc func startLocating() {
-    self.shouldLocate = true;
 
-    if (CLLocationManager.authorizationStatus() != .authorizedWhenInUse) {
-      self.locationManager?.requestWhenInUseAuthorization();
-    } else {
-      self.manager!.startUpdatingLocation();
-      print("Started updating location!");
-    }
+  @objc func startLocating() {
+    self.manager!.startUpdatingLocation();
+    print("Started updating location!");
   }
   
   @objc func stopLocating() {
@@ -77,6 +60,7 @@ class IndoorLocation: RCTEventEmitter, IALocationManagerDelegate, CLLocationMana
   func indoorLocationManager(_ manager: IALocationManager, didEnter region: IARegion) {
     if (region.type.rawValue == 1) {
       print("DID_ENTER_REGION", region.identifier!);
+      self.sendEvent(withName: "DID_ENTER_REGION", body: region.identifier!);
     }
   }
   
