@@ -20,8 +20,8 @@ const createClassroomAnnotation = ({ id, coordinates }): AnnotationType => ({
     source: {
       uri: id.toLowerCase(),
     },
-    height: 35,
-    width: 50,
+    height: 54,
+    width: 88,
   },
 });
 
