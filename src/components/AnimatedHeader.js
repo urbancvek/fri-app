@@ -61,7 +61,7 @@ class AnimatedHeader extends Component {
 
     const imageOffsetY = image && headerHeight.interpolate({
       inputRange: [HEADER_MIN_HEIGHT, HEADER_MAX_HEIGHT],
-      outputRange: [30, -30],
+      outputRange: [20, -30],
     });
 
     const imageTransforms = [

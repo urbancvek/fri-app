@@ -41,6 +41,7 @@ type Props = {
 const styles = StyleSheet.create({
   content: {
     padding: 20,
+    paddingTop: 10,
   },
 });
 

@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { Text, View, ScrollView } from 'react-native';
+import { Text, View, ScrollView, Image } from 'react-native';
 
 import { StyleSheet } from 'standard';
 import CardView from 'components/CardView';
@@ -15,6 +15,13 @@ const Header = ({ company }: HeaderProps) => (
     <Text style={headerStyles.title}>
       {company.title.toUpperCase()}
     </Text>
+    <Image
+      source={{ uri: company.image.url }}
+      style={[
+        headerStyles.image,
+        { height: company.image.height / 3, width: company.image.width / 3 },
+      ]}
+    />
   </View>
 );
 
@@ -31,6 +38,9 @@ const headerStyles = StyleSheet.create({
     fontWeight: 'Bold',
     fontSize: 22,
     color: '#444444',
+  },
+  image: {
+    marginTop: 10,
   },
 });
 

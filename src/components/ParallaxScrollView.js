@@ -45,11 +45,12 @@ class ParallaxScrollView extends Component {
     if (index !== selectedPage) return;
     const offsetY = event.nativeEvent.contentOffset.y;
 
-    if (offsetY < HEADER_DIFFERENCE) {
-      this.scrollViews.forEach((scrollView, idx) =>
-        idx !== selectedPage && scrollView.scrollTo({ y: offsetY, animated: false })
-      );
-    }
+    this.scrollViews.forEach((scrollView, idx) =>
+      idx !== selectedPage && scrollView.scrollTo({
+        y: Math.min(offsetY, HEADER_DIFFERENCE),
+        animated: false,
+      })
+    );
 
     this.state.offsetY.setValue(Math.min(offsetY, HEADER_DIFFERENCE));
   }

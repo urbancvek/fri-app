@@ -11,6 +11,8 @@ const htmlStyles = {
   },
   h2: {
     fontFamily: 'Montserrat',
+    marginTop: 10,
+    marginBottom: 0,
   },
   p: {
     fontFamily: 'Montserrat',
@@ -19,11 +21,20 @@ const htmlStyles = {
     color: '#333333',
     letterSpacing: 0.3,
     lineHeight: 23,
-    marginTop: 0,
+    marginTop: 10,
     marginBottom: 0,
   },
   img: {
+    marginTop: 15,
     marginBottom: 15,
+  },
+  li: {
+    fontFamily: 'Montserrat',
+    fontSize: 13,
+    fontWeight: '300',
+    color: '#333333',
+    letterSpacing: 0.3,
+    lineHeight: 18,
   },
 };
 

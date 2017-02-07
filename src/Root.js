@@ -23,7 +23,7 @@ class Root extends Component {
 
     return (
       <Provider store={store}>
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, backgroundColor: 'white' }}>
           <StatusBar
             animated
             barStyle="light-content"
