@@ -48,7 +48,7 @@ type Props = {
 };
 
 const query = `
-{
+query EventsQuery {
   events {
     first {
       ...event

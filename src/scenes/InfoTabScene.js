@@ -41,7 +41,8 @@ type Props = {
   fetchData: () => void,
 };
 
-const query = `{
+const query = `
+query InfoQuery {
   companies {
     title
     location
@@ -66,7 +67,8 @@ const query = `{
     }
     content
   }
-}`;
+}
+`;
 
 const select = ({ dataStore }: ReducerType) => ({
   companies: dataStore.companies,

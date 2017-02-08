@@ -79,12 +79,14 @@ type Props = {
   user: ?UserType,
 };
 
-const createUserMutation = `mutation {
+const createUserMutation = `
+mutation CreateUserMutation {
   user: createUser {
     id
     color
   }
-}`;
+}
+`;
 
 const select = ({ navigationStore, dataStore }: ReducerType) => ({
   navigationState: navigationStore.routes,

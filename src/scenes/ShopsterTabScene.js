@@ -43,7 +43,7 @@ type Props = {
 };
 
 const query = `
-{
+query ShopsterQuery {
   data {
     aboutShopster
     ourWorkShopster

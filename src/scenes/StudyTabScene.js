@@ -43,7 +43,7 @@ type Props = {
 };
 
 const query = `
-{
+query StudyQuery {
   studyPrograms {
     dodiplomski {
       ...studyProgram
