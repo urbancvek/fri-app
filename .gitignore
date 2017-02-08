@@ -33,6 +33,13 @@ build/
 local.properties
 *.iml
 
+drawable-mdpi
+drawable-hdpi
+drawable-xhdpi
+drawable-xxhdpi
+drawable-xxxhdpi
+index.android.bundle*
+
 # node.js
 #
 node_modules/
