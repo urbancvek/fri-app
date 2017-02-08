@@ -81,7 +81,7 @@ class Map extends Component {
     //
     // User entered following user mode
     //
-    if (this.props.followingUserMode !== newProps.followingUserMode && newProps.followingUserMode) {
+    else if (this.props.followingUserMode !== newProps.followingUserMode && newProps.followingUserMode) {
       const location = newProps.userLocation;
       const altitude = ALTITUDE[newProps.userLocation.floor].FOLLOWING;
       const zoomLevel = ZOOM_LEVEL[newProps.userLocation.floor].FOLLOWING;
@@ -92,7 +92,7 @@ class Map extends Component {
     //
     // User exited following user mode
     //
-    if (this.props.followingUserMode !== newProps.followingUserMode && !newProps.followingUserMode) {
+    else if (this.props.followingUserMode !== newProps.followingUserMode && !newProps.followingUserMode) {
       const location = newProps.userLocation;
       const altitude = ALTITUDE[newProps.userLocation.floor].OVERVIEW;
       const zoomLevel = ZOOM_LEVEL[newProps.userLocation.floor].OVERVIEW;
@@ -103,7 +103,7 @@ class Map extends Component {
     //
     // User's location changed while in following user mode
     //
-    if (this.props.userLocation !== newProps.userLocation && newProps.followingUserMode) {
+    else if (this.props.userLocation !== newProps.userLocation && newProps.followingUserMode) {
       const location = newProps.userLocation;
       const altitude = ALTITUDE[newProps.userLocation.floor].FOLLOWING;
       const zoomLevel = ZOOM_LEVEL[newProps.userLocation.floor].FOLLOWING;
@@ -114,7 +114,7 @@ class Map extends Component {
     //
     // User walked from one floor to another and is in following user mode
     //
-    if (this.props.currentFloor !== newProps.currentFloor && newProps.followingUserMode) {
+    else if (this.props.userLocation.floor !== newProps.userLocation.floor && newProps.followingUserMode) {
       const location = newProps.userLocation;
       const altitude = ALTITUDE[newProps.userLocation.floor].FOLLOWING;
       const zoomLevel = ZOOM_LEVEL[newProps.userLocation.floor].FOLLOWING;
@@ -155,7 +155,7 @@ class Map extends Component {
         annotationsAreImmutable
 
         annotations={[
-          createLocationAnnotation(userLocation, indoorLocation),
+          createLocationAnnotation(userLocation, indoorLocation && currentFloor === userLocation.floor),
           ...classrooms[currentFloor].map(createClassroomAnnotation),
         ]}
 

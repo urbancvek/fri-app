@@ -1,11 +1,11 @@
 // @flow
-const createLocationAnnotation = (location: UserLocationType, indoorLocation: boolean): AnnotationType => ({
+const createLocationAnnotation = (location: UserLocationType, shouldDisplay: boolean): AnnotationType => ({
   coordinates: location.coordinates,
   type: 'point',
   id: 'locationID',
   annotationImage: {
     source: {
-      uri: indoorLocation ? 'user_location_circle' : 'empty',
+      uri: shouldDisplay ? 'user_location_circle' : 'empty',
     },
     height: 23,
     width: 23,
