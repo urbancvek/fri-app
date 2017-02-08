@@ -58,7 +58,6 @@ class MapTabScene extends Component {
     this.watchID = navigator.geolocation.watchPosition(
       this.onGPSLocationChange,
       error => console.log(error),
-      { enableHighAccuracy: true, timeout: 2000, maximumAge: 1000, distanceFilter: 1 }
     );
   }
 
@@ -113,7 +112,7 @@ class MapTabScene extends Component {
     );
 
     // If close enough stop watching GPS and move to the next stage
-    if (distance < 200) {
+    if (distance < 300) {
       navigator.geolocation.clearWatch(this.watchID);
       this.setState({ isOnFRI: true });
     }
