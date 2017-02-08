@@ -17,4 +17,9 @@ const changeTabAction = (index: number): ActionType => ({
   index,
 });
 
-export { pushRouteAction, popRouteAction, changeTabAction };
+const changeAppStateAction = (state: string): ActionType => ({
+  type: 'CHANGE_APP_STATE',
+  state,
+});
+
+export { pushRouteAction, popRouteAction, changeTabAction, changeAppStateAction };

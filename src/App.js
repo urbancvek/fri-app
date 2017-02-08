@@ -1,7 +1,7 @@
 // @flow
 import { autobind } from 'core-decorators';
 import React, { Component } from 'react';
-import { NavigationExperimental, View, BackAndroid } from 'react-native';
+import { NavigationExperimental, View, BackAndroid, AppState, Platform } from 'react-native';
 import { connect } from 'react-redux';
 
 import Tabs from 'tabs';
@@ -9,7 +9,7 @@ import EventCardScene from 'scenes/EventCardScene';
 import CompanyCardScene from 'scenes/CompanyCardScene';
 import LabCardScene from 'scenes/LabCardScene';
 import StudyProgramCardScene from 'scenes/StudyProgramCardScene';
-import { pushRouteAction, popRouteAction } from 'actions/navigationActions';
+import { pushRouteAction, popRouteAction, changeAppStateAction } from 'actions/navigationActions';
 import fetchAction from 'actions/fetchActions';
 
 import type { NavigationState } from 'NavigationTypeDefinition';
@@ -36,6 +36,17 @@ class App extends Component {
 
       return this.props.navigation.popRoute();
     });
+
+    AppState.addEventListener('change', (state) => {
+      if (state === 'inactive' || state === 'active') {
+        this.props.changeAppState(state);
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    BackAndroid.removeEventListener();
+    AppState.removeEventListener();
   }
 
   renderScene(sceneProps) {
@@ -76,17 +87,23 @@ type Props = {
     popRoute: () => void,
   },
   createUser: () => void,
+  changeAppState: (state: string) => void,
   user: ?UserType,
 };
 
 const createUserMutation = `
-mutation CreateUserMutation {
-  user: createUser {
+mutation CreateUserMutation(os: String!, version: String!) {
+  user: createUser(os: $os, version: $version) {
     id
     color
   }
 }
 `;
+
+const variables = {
+  os: Platform.OS,
+  version: Platform.Version,
+};
 
 const select = ({ navigationStore, dataStore }: ReducerType) => ({
   navigationState: navigationStore.routes,
@@ -98,7 +115,8 @@ const actions = (dispatch: Dispatch) => ({
     pushRoute: (route) => dispatch(pushRouteAction(route)),
     popRoute: () => dispatch(popRouteAction()),
   },
-  createUser: () => dispatch(fetchAction({ query: createUserMutation }, 'CREATE_USER')),
+  createUser: () => dispatch(fetchAction({ query: createUserMutation, variables }, 'CREATE_USER')),
+  changeAppState: (state) => dispatch(changeAppStateAction(state)),
 });
 
 export default connect(select, actions)(App);

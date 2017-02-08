@@ -29,6 +29,12 @@ mutation LogPopRoute($userId: ID!) {
 }
 `;
 
+const logChangeAppStateMutation = `
+mutation LogChangeAppStateMutation($userId: ID!, $state: String!) {
+  logChangeAppStateMutation(userId: $userId, state: $state)
+}
+`;
+
 const analytics = store => next => action => {
   const state: ReducerType = store.getState();
   const user = state.dataStore.user;
@@ -79,6 +85,16 @@ const analytics = store => next => action => {
       };
 
       axioql({ query: logPopRouteMutation, variables });
+      break;
+    }
+
+    case 'CHANGE_APP_STATE': {
+      const variables = {
+        userId: user.id,
+        state: action.state,
+      };
+
+      axioql({ query: logChangeAppStateMutation, variables });
       break;
     }
   }
