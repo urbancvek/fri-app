@@ -1,11 +1,13 @@
 // @flow
 import { autobind } from 'core-decorators';
 import React, { Component } from 'react';
-import { View, StatusBar } from 'react-native';
+import { View, StatusBar, Image, Dimensions } from 'react-native';
 import { Provider } from 'react-redux';
 
 import App from 'App';
 import { configureStore } from 'reducers/store';
+
+const { width, height } = Dimensions.get('window');
 
 @autobind
 class Root extends Component {
@@ -19,7 +21,14 @@ class Root extends Component {
   render() {
     const { isLoading, store } = this.state;
 
-    if (isLoading) return <View />;
+    if (isLoading) {
+      return (
+        <Image
+          source={require('assets/stock/loading_screen.png')}
+          style={{ height, width }}
+        />
+      );
+    }
 
     return (
       <Provider store={store}>
