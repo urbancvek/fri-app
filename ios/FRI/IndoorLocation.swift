@@ -17,19 +17,18 @@ class IndoorLocation: RCTEventEmitter, IALocationManagerDelegate {
   override init() {
     super.init();
     
-    let IAKey = "0bb20838-f3c5-4a7f-8c75-4fab9d3341c8";
-    let IASecret = "it5C4XuQC!ScjqJej))0MHJBzRsikVZV1IIbvkZNsreA!FLVRm5lfxSMtrZZYdLrBZOe9GcBHYgjyFs(nPmpjnb)dlY(8TpanhISqECqRTL3Zr4mT(3yebIdObUb8qvu";
+    let IAKey = "acca4b18-d37b-4faf-b0b3-e2978cc41753";
+    let IASecret = "IcfpIFOduVIA3Hw1gqbf9ER96V4KDNnfSvypOxrUdowL7MpDigG237BczhZxqFODlfHSP4OTmaMhirIPlJobTuAnjgCNkAiK5klY1l1AriBrBCJlKTpklUCorVM0SQ==";
     
     self.manager = IALocationManager();
     self.manager!.delegate = self;
     self.manager!.setApiKey(IAKey, andSecret: IASecret);
-    self.manager!.location = IALocation(venueId: "0c0af175-e460-4e49-812e-7a7d7b415f37", andFloor: nil)
+    self.manager!.location = IALocation(floorPlanId: "5ea15b19-b7fd-40a3-833b-666c514279d7");
   }
   
   override func supportedEvents() -> [String]! {
     return [
       "DID_UPDATE_LOCATION",
-      "DID_ENTER_REGION"
     ];
   }
 
@@ -55,18 +54,5 @@ class IndoorLocation: RCTEventEmitter, IALocationManagerDelegate {
     ] as [String : Any];
 
     self.sendEvent(withName: "DID_UPDATE_LOCATION", body: body);
-  }
-  
-  func indoorLocationManager(_ manager: IALocationManager, didEnter region: IARegion) {
-    if (region.type.rawValue == 1) {
-      print("DID_ENTER_REGION", region.identifier!);
-      self.sendEvent(withName: "DID_ENTER_REGION", body: region.identifier!);
-    }
-  }
-  
-  func indoorLocationManager(_ manager: IALocationManager, didExitRegion region: IARegion) {
-    if (region.type.rawValue == 1) {
-      print("DID_EXIT_REGION", region.identifier!);
-    }
   }
 }

@@ -42,11 +42,11 @@
 
     <meta-data
       android:name="com.indooratlas.android.sdk.API_KEY"
-      android:value="0bb20838-f3c5-4a7f-8c75-4fab9d3341c8"
+      android:value="acca4b18-d37b-4faf-b0b3-e2978cc41753"
     />
     <meta-data
       android:name="com.indooratlas.android.sdk.API_SECRET"
-      android:value="it5C4XuQC!ScjqJej))0MHJBzRsikVZV1IIbvkZNsreA!FLVRm5lfxSMtrZZYdLrBZOe9GcBHYgjyFs(nPmpjnb)dlY(8TpanhISqECqRTL3Zr4mT(3yebIdObUb8qvu"
+      android:value="IcfpIFOduVIA3Hw1gqbf9ER96V4KDNnfSvypOxrUdowL7MpDigG237BczhZxqFODlfHSP4OTmaMhirIPlJobTuAnjgCNkAiK5klY1l1AriBrBCJlKTpklUCorVM0SQ=="
     />
 
     <service android:name="com.mapbox.mapboxsdk.telemetry.TelemetryService"/>

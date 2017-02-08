@@ -19,7 +19,7 @@ import com.indooratlas.android.sdk.IALocationManager;
 import com.indooratlas.android.sdk.IALocationRequest;
 import com.indooratlas.android.sdk.IARegion;
 
-public class IndoorLocationModule extends ReactContextBaseJavaModule implements IALocationListener, IARegion.Listener {
+public class IndoorLocationModule extends ReactContextBaseJavaModule implements IALocationListener {
     private ReactApplicationContext context;
     private IALocationManager locationManager;
 
@@ -50,22 +50,6 @@ public class IndoorLocationModule extends ReactContextBaseJavaModule implements 
             .emit("DID_UPDATE_LOCATION", params);
     }
 
-    @Override
-    public void onExitRegion(IARegion region) {
-        // Check if floorplan
-        if (region.getType() == 1) {
-            Log.d("ReactNative", "Exit " + region.getId());
-        }
-    }
-
-    @Override
-    public void onEnterRegion(IARegion region) {
-        // Check if floorplan
-        if (region.getType() == 1) {
-            Log.d("ReactNative", "Enter " + region.getId());
-        }
-    }
-
     @ReactMethod
     public void startLocating() {
         final IndoorLocationModule self = this;
@@ -73,12 +57,19 @@ public class IndoorLocationModule extends ReactContextBaseJavaModule implements 
             @Override
             public void run() {
                 self.locationManager = IALocationManager.create(context);
-                self.locationManager.requestLocationUpdates(IALocationRequest.create(), self);
-                self.locationManager.registerRegionListener(self);
-                self.locationManager.setLocation(IALocation.from(IARegion.venue("0c0af175-e460-4e49-812e-7a7d7b415f37")));
+                self.locationManager.setLocation(IALocation.from(IARegion.floorPlan("5ea15b19-b7fd-40a3-833b-666c514279d7")));
+                IALocationRequest iaRequest = IALocationRequest.create();
+                iaRequest.setSmallestDisplacement(1);
+                iaRequest.setFastestInterval(500);
+                self.locationManager.requestLocationUpdates(iaRequest, self);
                 Log.d("ReactNative", "Started updating location!");
             }
         });
+    }
+
+    @ReactMethod
+    public void stopLocating() {
+        this.locationManager.removeLocationUpdates(this);
     }
 
     @Override

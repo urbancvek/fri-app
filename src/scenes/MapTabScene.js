@@ -24,10 +24,6 @@ const locationFilledIcon = require('assets/map_icons/location_filled.png');
 const upstairsIcon = require('assets/map_icons/upstairs.png');
 const downstairsIcon = require('assets/map_icons/downstairs.png');
 
-const BUILDING_X_FLOOR_0 = 'c3bc400d-888c-446c-a17b-d2b71797fbe6';
-const BUILDING_X_FLOOR_1 = 'f33ac7d8-059d-4727-bb49-7609bc82d0b2';
-const BUILDING_FRI_FLOOR_1 = '5ea15b19-b7fd-40a3-833b-666c514279d7';
-
 Mapbox.setAccessToken(MAPBOX_TOKEN);
 
 @autobind
@@ -48,7 +44,6 @@ class MapTabScene extends Component {
 
   componentDidMount() {
     EventEmitter.addListener('DID_UPDATE_LOCATION', this.onIndoorLocationChange);
-    EventEmitter.addListener('DID_ENTER_REGION', this.onEnterRegionChange);
     NativeAppEventEmitter.addListener('BleManagerDidUpdateState', this.onBluetoothStateChange);
 
     // Starts bluetooth monitoring
@@ -76,26 +71,6 @@ class MapTabScene extends Component {
 
   onIndoorLocationChange(location: UserLocationType) {
     this.props.updateLocation(location);
-  }
-
-  onEnterRegionChange(identifier: string) {
-    switch (identifier) {
-      case BUILDING_X_FLOOR_0: {
-        console.log('BUILDING_X_FLOOR_0'); break;
-      }
-
-      case BUILDING_X_FLOOR_1: {
-        console.log('BUILDING_X_FLOOR_1'); break;
-      }
-
-      case BUILDING_FRI_FLOOR_1: {
-        console.log('BUILDING_FRI_FLOOR_1'); break;
-      }
-
-      default: {
-        console.log(identifier);
-      }
-    }
   }
 
   onBluetoothStateChange({ state }) {
