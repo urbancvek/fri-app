@@ -24,7 +24,7 @@ class HomeTabScene extends Component {
     return (
       <ParallaxScrollView
         title="Urnik"
-        tabs={['PET 10:00', 'PET 14:00', 'SOB 11:00']}
+        tabs={['PET 11:00', 'PET 15:30', 'SOB 10:00']}
         backgroundImage={require('assets/header_images/home_tab.png')}
       >
         {days.map(dayId => (

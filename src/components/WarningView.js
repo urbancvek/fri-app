@@ -17,7 +17,7 @@ class WarningView extends Component {
   }
 
   componentWillReceiveProps(newProps: Props) {
-    if (!newProps.bleState) {
+    if (newProps.isOnFRI && !newProps.bleState) {
       Animated.spring(this.state.topOffset, { toValue: 25 }).start();
     } else {
       Animated.spring(this.state.topOffset, { toValue: -100 }).start();

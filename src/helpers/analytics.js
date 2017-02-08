@@ -38,6 +38,7 @@ mutation LogChangeAppStateMutation($userId: ID!, $state: String!) {
 const analytics = store => next => action => {
   const state: ReducerType = store.getState();
   const user = state.dataStore.user;
+  if (!user) return next(action);
 
   switch (action.type) {
     case 'UPDATE_LOCATION': {

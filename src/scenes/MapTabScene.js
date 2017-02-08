@@ -6,6 +6,7 @@ import Mapbox from 'react-native-mapbox-gl';
 import { connect } from 'react-redux';
 import BLE from 'react-native-ble-manager';
 import geolib from 'geolib';
+import Raven from 'raven-js';
 
 import { MAPBOX_TOKEN } from 'config/api';
 import { StyleSheet } from 'standard';
@@ -53,7 +54,7 @@ class MapTabScene extends Component {
     // Start watching geolocation
     this.watchID = navigator.geolocation.watchPosition(
       this.onGPSLocationChange,
-      error => console.log(error),
+      error => Raven.captureException(error),
     );
   }
 

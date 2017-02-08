@@ -1,5 +1,6 @@
 // @flow
 import axioql, { setQLEndpoint } from 'axioql';
+import Raven from 'raven-js';
 
 setQLEndpoint('https://fri.shopster.io/graphql');
 
@@ -16,8 +17,7 @@ const fetchAction = (graphQLData: GraphQLDataType) => async (dispatch: Dispatch)
 
     dispatch({ type: 'GRAPHQL_RESPONSE', payload: response.data.data });
   } catch (error) {
-    if (error.message === 'Network Error') console.log('Network error!');
-    else console.error(error);
+    Raven.captureException(error);
   }
 };
 
