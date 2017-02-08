@@ -12,6 +12,7 @@ import { StyleSheet } from 'standard';
 import Map from 'components/Map';
 import MapButton from 'components/MapButton';
 import { updateLocationAction } from 'actions/locationActions';
+import WarningView from 'components/WarningView';
 
 import type { ReducerType } from 'reducers';
 
@@ -137,6 +138,10 @@ class MapTabScene extends Component {
           indoorLocation={this.state.indoorLocation}
           currentFloor={currentFloor}
           onOpenAnnotation={this.onOpenAnnotation}
+        />
+        <WarningView
+          isOnFRI={this.state.isOnFRI}
+          bleState={this.state.bleState}
         />
         <MapButton
           buttonEnabled={followingUserMode}
