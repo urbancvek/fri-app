@@ -59,7 +59,10 @@ class MapTabScene extends Component {
   }
 
   componentWillUnmount() {
-    IndoorLocation.stopLocating();
+    if (this.state.indoorLocation) IndoorLocation.stopLocating();
+    EventEmitter.removeListener('DID_UPDATE_LOCATION');
+    NativeAppEventEmitter.removeListener('BleManagerDidUpdateState');
+    navigator.geolocation.clearWatch(this.watchID);
   }
 
   componentDidUpdate() {

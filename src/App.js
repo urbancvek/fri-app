@@ -45,8 +45,8 @@ class App extends Component {
   }
 
   componentWillUnmount() {
-    BackAndroid.removeEventListener();
-    AppState.removeEventListener();
+    BackAndroid.removeEventListener('hardwareBackPress');
+    AppState.removeEventListener('change');
   }
 
   renderScene(sceneProps) {
@@ -92,7 +92,7 @@ type Props = {
 };
 
 const createUserMutation = `
-mutation CreateUserMutation(os: String!, version: String!) {
+mutation CreateUserMutation($os: String!, $version: String!) {
   user: createUser(os: $os, version: $version) {
     id
     color

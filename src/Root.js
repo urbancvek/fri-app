@@ -8,12 +8,13 @@ import ravenReactNative from 'raven-js/plugins/react-native';
 
 import App from 'App';
 import { configureStore } from 'reducers/store';
+import { version } from './../package.json';
 
 const { width, height } = Dimensions.get('window');
 
 if (process.env.NODE_ENV === 'production') {
   ravenReactNative(Raven);
-  Raven.config('https://229d4bd9491c4b73bc9b13d2d0c819e5@sentry.io/137237').install();
+  Raven.config('https://229d4bd9491c4b73bc9b13d2d0c819e5@sentry.io/137237', { release: version }).install();
 }
 
 @autobind
