@@ -40,6 +40,8 @@ class App extends Component {
     AppState.addEventListener('change', (state) => {
       if (state === 'inactive' || state === 'active') {
         this.props.changeAppState(state);
+      } else if (state === 'background' && Platform.OS === 'android') {
+        this.props.changeAppState('inactive');
       }
     });
   }
