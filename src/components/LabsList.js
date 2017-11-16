@@ -1,85 +1,50 @@
 // @flow
 import { autobind } from 'core-decorators';
 import React, { Component, PropTypes } from 'react';
-import { ListView } from 'react-native';
+import { FlatList } from 'react-native';
 
 import ListSeparator from 'components/ListSeparator';
-import Spacer from 'components/Spacer';
 import LabRow from 'components/LabRow';
-
-const dataSource = new ListView.DataSource({
-  rowHasChanged: (a, b) => a !== b,
-});
-
-@autobind
-class LabsList extends Component {
-  props: Props;
-  state: State;
-  context: Context;
-
-  scrollView: ScrollViewType;
-
-  state: State = {
-    dataSource: dataSource.cloneWithRows(this.props.labs),
-  };
-
-  componentWillReceiveProps(newProps: Props) {
-    this.setState({
-      dataSource: dataSource.cloneWithRows(newProps.labs),
-    });
-  }
-
-  renderRow(rowData: LabType) {
-    return (
-      <LabRow
-        lab={rowData}
-        onPress={() => this.context.navigation.pushRoute({ key: 'LAB', lab: rowData })}
-      />
-    );
-  }
-
-  renderSeparator(sectionId: string, rowId: string) {
-    return <ListSeparator key={sectionId + rowId} />;
-  }
-
-  scrollTo(options: { x?: number, y?: number, animated?: boolean }) {
-    this.scrollView.scrollTo(options);
-  }
-
-  render() {
-    return (
-      <ListView
-        ref={(scrollView: ScrollViewType) => this.scrollView = scrollView}
-        dataSource={this.state.dataSource}
-        renderRow={this.renderRow}
-        renderSeparator={this.renderSeparator}
-        onScroll={this.props.handleScroll}
-        scrollEventThrottle={16}
-        showsVerticalScrollIndicator
-        renderHeader={() => <Spacer />}
-        enableEmptySections
-      />
-    );
-  }
-}
-
-LabsList.contextTypes = {
-  navigation: PropTypes.object,
-};
-
-type State = {
-  dataSource: Object,
-};
 
 type Props = {
   labs: Array<LabType>,
   handleScroll?: Function,
 };
 
-type Context = {
-  navigation: {
-    pushRoute: (route: RouteType) => void,
-  },
-};
+@autobind
+class LabsList extends Component<Props> {
+  scrollView: ScrollViewType;
+
+  renderItem(item: LabType) {
+    const { item: lab } = item;
+
+    return (
+      <LabRow
+        lab={lab}
+        onPress={() => {}}
+      />
+    );
+  }
+
+  scrollTo(options: { x?: number, y?: number, animated?: boolean }) {
+    this.scrollView.scrollToOffset({ offset: options.y });
+  }
+
+  render() {
+    return (
+      <FlatList
+        ref={(scrollView: ScrollViewType) => this.scrollView = scrollView}
+        data={this.props.labs}
+        renderItem={this.renderItem}
+        keyExtractor={item => item.title}
+        ItemSeparatorComponent={ListSeparator}
+        onScroll={this.props.handleScroll}
+        scrollEventThrottle={16}
+        contentContainerStyle={{ paddingTop: 200 }}
+        scrollIndicatorInsets={{ top: 200 }}
+      />
+    );
+  }
+}
 
 export default LabsList;

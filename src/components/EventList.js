@@ -29,19 +29,6 @@ class EventList extends Component<Props, State> {
     );
   }
 
-  renderSeparator(sectionId: string, rowId: string) {
-    const index = Number(rowId);
-    const data = this.state.dataSource._dataBlob.s1;
-
-    if (
-      data[index].section ||
-      !data[index + 1] ||
-      data[index + 1].section
-    ) return null;
-
-    return <ListSeparator key={sectionId + rowId} />;
-  }
-
   scrollTo(options: { x?: number, y?: number, animated?: boolean }) {
     this.scrollView.scrollToOffset({ offset: options.y });
   }
