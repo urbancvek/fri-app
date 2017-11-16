@@ -17,7 +17,7 @@ type State = {
 };
 
 @autobind
-class InfoTabScene extends Component<Props, State> {
+class InfoTabScreen extends Component<Props, State> {
   static navigatorStyle = {
     navBarHidden: true,
   };
@@ -58,4 +58,4 @@ class InfoTabScene extends Component<Props, State> {
   }
 }
 
-export default InfoTabScene;
+export default InfoTabScreen;

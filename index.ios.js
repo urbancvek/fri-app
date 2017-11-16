@@ -19,6 +19,11 @@ const startApp = async () => {
       screen: 'InfoTabScreen',
       icon: require('assets/tab_icons/info_tab.png'),
       selectedIcon: require('assets/tab_icons/info_tab_filled.png'),
+    }, {
+      label: 'Shopster',
+      screen: 'ShopsterTabScreen',
+      icon: require('assets/tab_icons/shopster_tab.png'),
+      selectedIcon: require('assets/tab_icons/shopster_tab_filled.png'),
     }],
     tabsStyle: {
       tabBarButtonColor: '#929292',

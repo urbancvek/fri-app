@@ -27,9 +27,9 @@ const renderers = {
 
     return (
       <Image
+        key={Math.random()}
         source={{ uri: htmlAttribs.src, width: widthOfContent, height }}
-        style={passProps.styles.img}
-        {...passProps}
+        style={styles.img}
       />
     );
   },
