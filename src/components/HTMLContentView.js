@@ -1,41 +1,23 @@
 // @flow
 import React from 'react';
-import { Image, Dimensions } from 'react-native';
-import HTML from 'react-native-fence-html';
+import { Image, Dimensions, View, Text } from 'react-native';
+import HTML from 'react-native-render-html';
+
+import { StyleSheet } from 'standard';
 
 const { width } = Dimensions.get('window');
 
-const htmlStyles = {
-  h1: {
-    fontFamily: 'Montserrat',
-  },
-  h2: {
-    fontFamily: 'Montserrat',
-    marginTop: 10,
-    marginBottom: 0,
-    color: '#444',
-  },
-  p: {
-    fontFamily: 'Montserrat-Light',
-    fontSize: 14,
-    color: '#333333',
-    letterSpacing: 0.3,
-    lineHeight: 23,
-    marginTop: 10,
-    marginBottom: 0,
-  },
-  img: {
-    marginTop: 15,
-    marginBottom: 15,
-  },
-  li: {
-    fontFamily: 'Montserrat-Light',
-    fontSize: 14,
-    color: '#333333',
-    letterSpacing: 0.3,
-    lineHeight: 23,
-  },
+type Props = {
+  content: string,
 };
+
+const HTMLContentView = ({ content }: Props) => console.log(content) || (
+  <HTML
+    html={content}
+    renderers={renderers}
+    baseFontStyle={{}}
+  />
+);
 
 const renderers = {
   img: (htmlAttribs, children, passProps) => {
@@ -46,23 +28,49 @@ const renderers = {
     return (
       <Image
         source={{ uri: htmlAttribs.src, width: widthOfContent, height }}
-        style={passProps.htmlStyles.img}
+        style={passProps.styles.img}
         {...passProps}
       />
     );
   },
+  h1: (htmlAttribs, children) => <Text key={Math.random()} style={styles.h1}>{children}</Text>,
+  h2: (htmlAttribs, children) => <Text key={Math.random()} style={styles.h2}>{children}</Text>,
+  p: (htmlAttribs, children) => <Text key={Math.random()} style={styles.p}>{children}</Text>,
+  li: (htmlAttribs, children) => <Text key={Math.random()} style={styles.li}>{children}</Text>,
 };
 
-const HTMLContentView = ({ content }: Props) => (
-  <HTML
-    html={content}
-    htmlStyles={htmlStyles}
-    renderers={renderers}
-  />
-);
-
-type Props = {
-  content: string,
-};
+const styles = StyleSheet.create({
+  h1: {
+    fontFamily: 'Montserrat-Bold',
+    fontSize: 20,
+  },
+  h2: {
+    fontFamily: 'Montserrat-Bold',
+    fontSize: 20,
+    marginTop: 20,
+    marginBottom: 5,
+    color: '#444',
+  },
+  p: {
+    fontFamily: 'Montserrat-Light',
+    fontSize: 14,
+    color: '#333333',
+    letterSpacing: 0.3,
+    lineHeight: 20,
+    marginBottom: 10,
+  },
+  img: {
+    marginTop: 15,
+    marginBottom: 15,
+  },
+  li: {
+    fontFamily: 'Montserrat-Light',
+    fontSize: 14,
+    color: '#333333',
+    letterSpacing: 0.3,
+    lineHeight: 20,
+    marginBottom: 5,
+  },
+});
 
 export default HTMLContentView;

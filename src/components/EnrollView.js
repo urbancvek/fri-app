@@ -4,7 +4,6 @@ import { ScrollView } from 'react-native';
 
 import { StyleSheet } from 'standard';
 import HTMLContentView from 'components/HTMLContentView';
-import Spacer from 'components/Spacer';
 
 class EnrollView extends Component {
   props: Props;
@@ -24,9 +23,8 @@ class EnrollView extends Component {
         contentContainerStyle={styles.content}
         onScroll={this.props.handleScroll}
         scrollEventThrottle={16}
-        showsVerticalScrollIndicator={false}
+        scrollIndicatorInsets={{ top: 200 }}
       >
-        <Spacer />
         <HTMLContentView content={content} />
       </ScrollView>
     );
@@ -40,8 +38,9 @@ type Props = {
 
 const styles = StyleSheet.create({
   content: {
-    padding: 20,
-    paddingTop: 10,
+    paddingTop: 216,
+    paddingHorizontal: 16,
+    paddingBottom: 16,
   },
 });
 

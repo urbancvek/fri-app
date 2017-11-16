@@ -80,6 +80,7 @@ class ParallaxScrollView extends Component {
             pagingEnabled
             horizontal
             directionalLockEnabled
+            bounces={false}
 
             automaticallyAdjustContentInsets={false}
 

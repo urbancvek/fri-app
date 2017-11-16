@@ -1,98 +1,53 @@
 // @flow
 import { autobind } from 'core-decorators';
-import React, { Component, PropTypes } from 'react';
-import { ListView } from 'react-native';
+import React, { Component } from 'react';
+import { FlatList } from 'react-native';
 import { capitalize } from 'lodash';
 
 import ListSeparator from 'components/ListSeparator';
 import StudyProgramRow from 'components/StudyProgramRow';
 import SectionRow from 'components/SectionRow';
-import Spacer from 'components/Spacer';
-import { convertToFlatArray } from 'helpers/dataMassager';
 
-const dataSource = new ListView.DataSource({
-  rowHasChanged: (a, b) => a !== b,
-});
+type Props = {
+  handleScroll?: Function,
+};
 
 @autobind
-class StudyProgramsList extends Component {
-  props: Props;
-  state: State;
-  context: Context;
-
+class StudyProgramsList extends Component<Props> {
   scrollView: ScrollViewType;
 
-  state: State = {
-    dataSource: dataSource.cloneWithRows(convertToFlatArray(this.props.studyPrograms)),
-  };
-
-  componentWillReceiveProps(newProps: Props) {
-    this.setState({
-      dataSource: dataSource.cloneWithRows(convertToFlatArray(newProps.studyPrograms)),
-    });
-  }
-
-  renderRow(rowData: StudyProgramType) {
-    if (rowData.section) return <SectionRow title={`${capitalize(rowData.title)} Študij`} />;
+  renderItem(item: StudyProgramType) {
+    const { item: studyProgram } = item;
+    if (studyProgram.section) return <SectionRow title={studyProgram.title} />;
 
     return (
       <StudyProgramRow
-        studyProgram={rowData}
-        onPress={() => this.context.navigation.pushRoute({ key: 'STUDY_PROGRAM', studyProgram: rowData })}
+        studyProgram={studyProgram}
+        onPress={() => {}}
       />
     );
   }
 
-  renderSeparator(sectionId: string, rowId: string) {
-    const index = Number(rowId);
-    const data = this.state.dataSource._dataBlob.s1;
-
-    if (
-      data[index].section ||
-      !data[index + 1] ||
-      data[index + 1].section
-    ) return null;
-
-    return <ListSeparator key={sectionId + rowId} />;
-  }
-
   scrollTo(options: { x?: number, y?: number, animated?: boolean }) {
-    this.scrollView.scrollTo(options);
+    this.scrollView.scrollToOffset({ offset: options.y });
   }
 
   render() {
     return (
-      <ListView
+      <FlatList
         ref={(scrollView: ScrollViewType) => this.scrollView = scrollView}
-        dataSource={this.state.dataSource}
-        renderRow={this.renderRow}
-        renderSeparator={this.renderSeparator}
+        data={this.props.studyPrograms}
+        renderItem={this.renderItem}
+        ItemSeparatorComponent={ListSeparator}
         onScroll={this.props.handleScroll}
+        keyExtractor={item => item.title + item.subtitle}
+        contentContainerStyle={{ paddingTop: 200 }}
+        scrollIndicatorInsets={{ top: 200 }}
         scrollEventThrottle={16}
         showsVerticalScrollIndicator
-        renderHeader={() => <Spacer />}
       />
     );
   }
 }
-
-StudyProgramsList.contextTypes = {
-  navigation: PropTypes.object,
-};
-
-type State = {
-  dataSource: Object,
-};
-
-type Props = {
-  studyPrograms: { [key: string]: Array<StudyProgramType> },
-  handleScroll?: Function,
-};
-
-type Context = {
-  navigation: {
-    pushRoute: (route: RouteType) => void,
-  },
-};
 
 export default StudyProgramsList;

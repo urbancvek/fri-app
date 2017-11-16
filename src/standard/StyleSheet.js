@@ -2,7 +2,7 @@
 import { StyleSheet, Platform } from 'react-native';
 
 function create<T: Object>(styles: T): { [key: $Keys<T>]: number } {
-  const newStyles: { [key: $Keys<T>]: number } = {};
+  const newStyles: { [key: $Keys<T>]: any } = {};
 
   Object.keys(styles).forEach((key: string) => {
     const { ios, android, fontWeight, ...rest } = styles[key];
@@ -12,6 +12,7 @@ function create<T: Object>(styles: T): { [key: $Keys<T>]: number } {
     if (fontWeight) customStyles.fontFamily = `Montserrat-${fontWeight}`;
 
     newStyles[key] = {
+      backgroundColor: 'transparent',
       ...rest,
       ...Platform.select({
         ios,

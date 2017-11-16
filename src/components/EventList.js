@@ -1,43 +1,30 @@
 // @flow
 import { autobind } from 'core-decorators';
-import React, { Component, PropTypes } from 'react';
-import { ListView } from 'react-native';
+import React, { Component } from 'react';
+import { FlatList } from 'react-native';
 
 import EventRow from 'components/EventRow';
 import SectionRow from 'components/SectionRow';
 import ListSeparator from 'components/ListSeparator';
-import Spacer from 'components/Spacer';
-import { convertToFlatArray } from 'helpers/dataMassager';
 
-const dataSource = new ListView.DataSource({
-  rowHasChanged: (a, b) => a !== b,
-});
+type Props = {
+  events: Array<EventType>,
+  handleScroll?: Function,
+};
 
 @autobind
-class EventList extends Component {
-  props: Props;
-  state: State;
-  context: Context;
-
+class EventList extends Component<Props, State> {
   scrollView: ScrollViewType;
 
-  state: State = {
-    dataSource: dataSource.cloneWithRows(convertToFlatArray(this.props.events)),
-  };
+  renderRow(item: EventType) {
+    const { item: event } = item;
 
-  componentWillReceiveProps(newProps: Props) {
-    this.setState({
-      dataSource: dataSource.cloneWithRows(convertToFlatArray(newProps.events)),
-    });
-  }
-
-  renderRow(rowData: EventType) {
-    if (rowData.section) return <SectionRow title={rowData.title} />;
+    if (event.section) return <SectionRow title={event.startTime} />;
 
     return (
       <EventRow
-        event={rowData}
-        onPress={() => this.context.navigation.pushRoute({ key: 'EVENT', event: rowData })}
+        event={event}
+        onPress={() => {}}
       />
     );
   }
@@ -56,43 +43,24 @@ class EventList extends Component {
   }
 
   scrollTo(options: { x?: number, y?: number, animated?: boolean }) {
-    this.scrollView.scrollTo(options);
+    this.scrollView.scrollToOffset({ offset: options.y });
   }
 
   render() {
     return (
-      <ListView
+      <FlatList
         ref={(scrollView: ScrollViewType) => this.scrollView = scrollView}
-        dataSource={this.state.dataSource}
-        renderRow={this.renderRow}
-        renderSeparator={this.renderSeparator}
+        data={this.props.events}
+        renderItem={this.renderRow}
+        keyExtractor={item => item.title || item.startTime}
+        ItemSeparatorComponent={ListSeparator}
+        contentContainerStyle={{ paddingTop: 200 }}
+        scrollIndicatorInsets={{ top: 200 }}
         onScroll={this.props.handleScroll}
         scrollEventThrottle={16}
-        showsVerticalScrollIndicator={false}
-        renderHeader={() => <Spacer />}
-        enableEmptySections
       />
     );
   }
 }
-
-EventList.contextTypes = {
-  navigation: PropTypes.object,
-};
-
-type State = {
-  dataSource: Object,
-};
-
-type Props = {
-  events: { [key: string]: Array<EventType> },
-  handleScroll?: Function,
-};
-
-type Context = {
-  navigation: {
-    pushRoute: (route: RouteType) => void,
-  },
-};
 
 export default EventList;
