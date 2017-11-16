@@ -38,6 +38,7 @@
 		E263843B1E31816900DDAAC2 /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E26384391E31816900DDAAC2 /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E263843D1E31817200DDAAC2 /* libRCTMapboxGL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E26384251E31814800DDAAC2 /* libRCTMapboxGL.a */; };
 		E274A89B1E48D0F600F9A620 /* libBleManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E274A87F1E48D0E100F9A620 /* libBleManager.a */; };
+		E287B51F1FBDD34D0025814D /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E287B51E1FBDD3410025814D /* libReactNativeNavigation.a */; };
 		E2A3165D1E3AAFAE005EE87E /* Montserrat-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = E2A3165A1E3AAFAE005EE87E /* Montserrat-Light.otf */; };
 		E2A3165E1E3AAFAE005EE87E /* Montserrat-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = E2A3165B1E3AAFAE005EE87E /* Montserrat-Regular.otf */; };
 		E2A316611E3AB02A005EE87E /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E2A316601E3AB029005EE87E /* Montserrat-Bold.otf */; };
@@ -240,6 +241,69 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = BleManager;
 		};
+		E287B51D1FBDD3410025814D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E287B4F51FBDD3400025814D /* ReactNativeNavigation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D8AFADBD1BEE6F3F00A4592D;
+			remoteInfo = ReactNativeNavigation;
+		};
+		E2F21A981FBDCD0D003E2242 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3DBE0D001F3B181A0099AA32;
+			remoteInfo = fishhook;
+		};
+		E2F21A9A1FBDCD0D003E2242 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3DBE0D0D1F3B181C0099AA32;
+			remoteInfo = "fishhook-tvOS";
+		};
+		E2F21AAA1FBDCD0D003E2242 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 139D7ECE1E25DB7D00323FB7;
+			remoteInfo = "third-party";
+		};
+		E2F21AAC1FBDCD0D003E2242 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3D383D3C1EBD27B6005632C8;
+			remoteInfo = "third-party-tvOS";
+		};
+		E2F21AAE1FBDCD0D003E2242 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 139D7E881E25C6D100323FB7;
+			remoteInfo = "double-conversion";
+		};
+		E2F21AB01FBDCD0D003E2242 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3D383D621EBD27B9005632C8;
+			remoteInfo = "double-conversion-tvOS";
+		};
+		E2F21AB21FBDCD0D003E2242 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9936F3131F5F2E4B0010BF04;
+			remoteInfo = privatedata;
+		};
+		E2F21AB41FBDCD0D003E2242 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9936F32F1F5F2E5B0010BF04;
+			remoteInfo = "privatedata-tvOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -292,6 +356,7 @@
 		E26384171E31814800DDAAC2 /* RCTMapboxGL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTMapboxGL.xcodeproj; path = "../node_modules/react-native-mapbox-gl/ios/RCTMapboxGL.xcodeproj"; sourceTree = "<group>"; };
 		E26384391E31816900DDAAC2 /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapbox.framework; path = "../node_modules/react-native-mapbox-gl/ios/Mapbox.framework"; sourceTree = "<group>"; };
 		E274A87A1E48D0E100F9A620 /* BleManager.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BleManager.xcodeproj; path = "../node_modules/react-native-ble-manager/ios/BleManager.xcodeproj"; sourceTree = "<group>"; };
+		E287B4F51FBDD3400025814D /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
 		E2A3165A1E3AAFAE005EE87E /* Montserrat-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Light.otf"; path = "FRI/Fonts/Montserrat-Light.otf"; sourceTree = "<group>"; };
 		E2A3165B1E3AAFAE005EE87E /* Montserrat-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Regular.otf"; path = "FRI/Fonts/Montserrat-Regular.otf"; sourceTree = "<group>"; };
 		E2A316601E3AB029005EE87E /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Bold.otf"; path = "FRI/Fonts/Montserrat-Bold.otf"; sourceTree = "<group>"; };
@@ -302,6 +367,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E287B51F1FBDD34D0025814D /* libReactNativeNavigation.a in Frameworks */,
 				E274A89B1E48D0F600F9A620 /* libBleManager.a in Frameworks */,
 				E20AE5771E32470B00855EE4 /* CoreBluetooth.framework in Frameworks */,
 				E20AE5691E3246D300855EE4 /* Foundation.framework in Frameworks */,
@@ -388,6 +454,8 @@
 			children = (
 				139FDEF41B06529B00C62182 /* libRCTWebSocket.a */,
 				3DAD3E991DF850E9000B6D8A /* libRCTWebSocket-tvOS.a */,
+				E2F21A991FBDCD0D003E2242 /* libfishhook.a */,
+				E2F21A9B1FBDCD0D003E2242 /* libfishhook-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -420,6 +488,12 @@
 				3DAD3EAB1DF850E9000B6D8A /* libcxxreact.a */,
 				3DAD3EAD1DF850E9000B6D8A /* libjschelpers.a */,
 				3DAD3EAF1DF850E9000B6D8A /* libjschelpers.a */,
+				E2F21AAB1FBDCD0D003E2242 /* libthird-party.a */,
+				E2F21AAD1FBDCD0D003E2242 /* libthird-party.a */,
+				E2F21AAF1FBDCD0D003E2242 /* libdouble-conversion.a */,
+				E2F21AB11FBDCD0D003E2242 /* libdouble-conversion.a */,
+				E2F21AB31FBDCD0D003E2242 /* libprivatedata.a */,
+				E2F21AB51FBDCD0D003E2242 /* libprivatedata-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -428,7 +502,7 @@
 			isa = PBXGroup;
 			children = (
 				5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */,
-				5E9157351DD0AC6500FF2AA8 /* libRCTAnimation-tvOS.a */,
+				5E9157351DD0AC6500FF2AA8 /* libRCTAnimation.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -445,6 +519,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				E287B4F51FBDD3400025814D /* ReactNativeNavigation.xcodeproj */,
 				E274A87A1E48D0E100F9A620 /* BleManager.xcodeproj */,
 				E26384171E31814800DDAAC2 /* RCTMapboxGL.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
@@ -531,6 +606,14 @@
 			isa = PBXGroup;
 			children = (
 				E274A87F1E48D0E100F9A620 /* libBleManager.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E287B4F61FBDD3400025814D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E287B51E1FBDD3410025814D /* libReactNativeNavigation.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -647,6 +730,10 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = E287B4F61FBDD3400025814D /* Products */;
+					ProjectRef = E287B4F51FBDD3400025814D /* ReactNativeNavigation.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -811,10 +898,10 @@
 			remoteRef = 5E9157321DD0AC6500FF2AA8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		5E9157351DD0AC6500FF2AA8 /* libRCTAnimation-tvOS.a */ = {
+		5E9157351DD0AC6500FF2AA8 /* libRCTAnimation.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = "libRCTAnimation-tvOS.a";
+			path = libRCTAnimation.a;
 			remoteRef = 5E9157341DD0AC6500FF2AA8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -853,6 +940,69 @@
 			remoteRef = E274A87E1E48D0E100F9A620 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		E287B51E1FBDD3410025814D /* libReactNativeNavigation.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libReactNativeNavigation.a;
+			remoteRef = E287B51D1FBDD3410025814D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E2F21A991FBDCD0D003E2242 /* libfishhook.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libfishhook.a;
+			remoteRef = E2F21A981FBDCD0D003E2242 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E2F21A9B1FBDCD0D003E2242 /* libfishhook-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libfishhook-tvOS.a";
+			remoteRef = E2F21A9A1FBDCD0D003E2242 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E2F21AAB1FBDCD0D003E2242 /* libthird-party.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libthird-party.a";
+			remoteRef = E2F21AAA1FBDCD0D003E2242 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E2F21AAD1FBDCD0D003E2242 /* libthird-party.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libthird-party.a";
+			remoteRef = E2F21AAC1FBDCD0D003E2242 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E2F21AAF1FBDCD0D003E2242 /* libdouble-conversion.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libdouble-conversion.a";
+			remoteRef = E2F21AAE1FBDCD0D003E2242 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E2F21AB11FBDCD0D003E2242 /* libdouble-conversion.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libdouble-conversion.a";
+			remoteRef = E2F21AB01FBDCD0D003E2242 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E2F21AB31FBDCD0D003E2242 /* libprivatedata.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libprivatedata.a;
+			remoteRef = E2F21AB21FBDCD0D003E2242 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E2F21AB51FBDCD0D003E2242 /* libprivatedata-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libprivatedata-tvOS.a";
+			remoteRef = E2F21AB41FBDCD0D003E2242 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -883,7 +1033,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/packager/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
 		E263843E1E31817A00DDAAC2 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -942,6 +1092,7 @@
 					"../node_modules/react-native-mapbox-gl/**",
 					"$(PROJECT_DIR)/FRI/Frameworks",
 				);
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../node_modules/react-native-navigation/ios/**";
 				INFOPLIST_FILE = FRI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -974,6 +1125,7 @@
 					"../node_modules/react-native-mapbox-gl/**",
 					"$(PROJECT_DIR)/FRI/Frameworks",
 				);
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../node_modules/react-native-navigation/ios/**";
 				INFOPLIST_FILE = FRI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
