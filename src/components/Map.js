@@ -5,7 +5,6 @@ import MapboxGL from '@mapbox/react-native-mapbox-gl';
 
 import { StyleSheet } from 'standard';
 import { MAPBOX_STYLE } from 'config/api';
-import { createLocationAnnotation, createClassroomAnnotation } from 'helpers/annotationCreator';
 
 const Screen = Dimensions.get('window');
 
