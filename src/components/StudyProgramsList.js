@@ -23,7 +23,13 @@ class StudyProgramsList extends Component<Props> {
     return (
       <StudyProgramRow
         studyProgram={studyProgram}
-        onPress={() => {}}
+        onPress={() => this.props.navigator.showLightBox({
+          screen: 'StudyProgramCardScreen',
+          passProps: { studyProgram },
+          style: {
+            backgroundBlur: 'dark',
+          },
+        })}
       />
     );
   }

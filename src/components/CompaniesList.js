@@ -21,7 +21,13 @@ class CompaniesList extends Component<Props> {
     return (
       <CompanyRow
         company={company}
-        onPress={() => {}}
+        onPress={() => this.props.navigator.showLightBox({
+          screen: 'CompanyCardScreen',
+          passProps: { company },
+          style: {
+            backgroundBlur: 'dark',
+          },
+        })}
       />
     );
   }

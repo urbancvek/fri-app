@@ -37,14 +37,13 @@ class StudyTabScreen extends Component<Props, State> {
   }
 
   render() {
-    console.log(this.state.enrollContent)
     return (
       <ParallaxScrollView
         title="Študij"
         tabs={['PROGRAMI', 'VPIS']}
         backgroundImage={require('assets/header_images/study_tab.png')}
       >
-        <StudyProgramsList studyPrograms={this.state.studyPrograms} />
+        <StudyProgramsList studyPrograms={this.state.studyPrograms} {...this.props} />
         <EnrollView content={this.state.enrollContent} />
       </ParallaxScrollView>
     );

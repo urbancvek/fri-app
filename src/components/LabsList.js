@@ -21,7 +21,13 @@ class LabsList extends Component<Props> {
     return (
       <LabRow
         lab={lab}
-        onPress={() => {}}
+        onPress={() => this.props.navigator.showLightBox({
+          screen: 'LabCardScreen',
+          passProps: { lab },
+          style: {
+            backgroundBlur: 'dark',
+          },
+        })}
       />
     );
   }

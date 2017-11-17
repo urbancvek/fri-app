@@ -24,7 +24,13 @@ class EventList extends Component<Props, State> {
     return (
       <EventRow
         event={event}
-        onPress={() => {}}
+        onPress={() => this.props.navigator.showLightBox({
+          screen: 'EventCardScreen',
+          passProps: { event },
+          style: {
+            backgroundBlur: 'dark',
+          },
+        })}
       />
     );
   }

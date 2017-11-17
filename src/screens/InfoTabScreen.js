@@ -50,9 +50,9 @@ class InfoTabScreen extends Component<Props, State> {
         tabs={['PODJETJA', 'O FRI', 'LABORATORIJI']}
         backgroundImage={require('assets/header_images/info_tab.png')}
       >
-        <CompaniesList companies={this.state.companies} />
+        <CompaniesList companies={this.state.companies} {...this.props} />
         <AboutFRIView content={this.state.aboutFRIContent} />
-        <LabsList labs={this.state.labs} />
+        <LabsList labs={this.state.labs} {...this.props} />
       </ParallaxScrollView>
     );
   }

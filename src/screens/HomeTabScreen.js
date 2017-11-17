@@ -48,6 +48,7 @@ class HomeTabScreen extends Component<Props, State> {
           <EventList
             key={dayId}
             events={this.state.days[dayId]}
+            {...this.props}
           />
         ))}
       </ParallaxScrollView>

@@ -1,88 +1,55 @@
 // @flow
+import { autobind } from 'core-decorators';
 import React, { Component } from 'react';
 import { View, Image, ScrollView, TouchableOpacity, Animated, Dimensions } from 'react-native';
 
 import { StyleSheet } from 'standard';
 
-const { width, height } = Dimensions.get('window');
-
-class CardView extends Component {
-  props: Props;
-  state: State;
-  context: Context;
-
-  state: State = {
-    animatedIntro: new Animated.Value(0),
-  };
-
-  componentWillMount() {
-    Animated.timing(this.state.animatedIntro, { toValue: 1, duration: 500 }).start();
-  }
-
-  render() {
-    const { header, children } = this.props;
-    const { navigation } = this.context;
-
-    const backgroundColor = this.state.animatedIntro.interpolate({
-      inputRange: [0, 1],
-      outputRange: ['rgba(56, 74, 84, 0)', 'rgba(56, 74, 84, 0.9)'],
-    });
-
-    return (
-      <Animated.View style={[styles.background, { backgroundColor }]}>
-        <View style={styles.container}>
-          <View style={styles.header}>
-            {header}
-            <TouchableOpacity
-              onPress={() => navigation.popRoute()}
-              style={styles.closeButtonContainer}
-            >
-              <Image
-                source={require('assets/utils/close_button.png')}
-                style={styles.closeButton}
-              />
-            </TouchableOpacity>
-          </View>
-
-          <ScrollView
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={styles.content}
-          >
-            {children}
-          </ScrollView>
-        </View>
-      </Animated.View>
-    );
-  }
-}
-
-CardView.contextTypes = {
-  navigation: React.PropTypes.object,
-};
+const Screen = Dimensions.get('window');
 
 type Props = {
   header: any,
   children?: any,
 };
 
-type State = {
-  animatedIntro: Animated.Value,
-};
+@autobind
+class CardView extends Component<Props, State> {
+  render() {
+    const { header, children } = this.props;
 
-type Context = {
-  navigation: {
-    popRoute: () => void,
-  },
-};
+    return (
+      <View style={styles.container}>
+        <View style={styles.header}>
+          {header}
+          <TouchableOpacity
+            onPress={() => this.props.navigator.dismissLightBox()}
+            style={styles.closeButtonContainer}
+          >
+            <Image
+              source={require('assets/utils/close_button.png')}
+              style={styles.closeButton}
+            />
+          </TouchableOpacity>
+        </View>
+
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.content}
+        >
+          {children}
+        </ScrollView>
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-  },
   container: {
-    marginTop: height / 15,
-    marginHorizontal: width / 30,
-    marginBottom: width / 30,
+    // marginTop: Screen.height / 15,
+    // marginHorizontal: Screen.width / 30,
+    // marginBottom: Screen.width / 30,
+    height: Screen.height - 60,
+    width: Screen.width - 30,
     backgroundColor: 'white',
     paddingTop: 25,
     paddingHorizontal: 20,
