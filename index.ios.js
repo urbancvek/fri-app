@@ -15,6 +15,11 @@ const startApp = async () => {
       icon: require('assets/tab_icons/study_tab.png'),
       selectedIcon: require('assets/tab_icons/study_tab_filled.png'),
     }, {
+      label: 'Načrt',
+      screen: 'MapTabScreen',
+      icon: require('assets/tab_icons/map_tab.png'),
+      selectedIcon: require('assets/tab_icons/map_tab_filled.png'),
+    }, {
       label: 'Info',
       screen: 'InfoTabScreen',
       icon: require('assets/tab_icons/info_tab.png'),

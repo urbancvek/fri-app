@@ -34,11 +34,10 @@
 		E20AE5771E32470B00855EE4 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E20AE5761E32470B00855EE4 /* CoreBluetooth.framework */; };
 		E20AE57B1E3247F300855EE4 /* IndoorLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20AE57A1E3247F300855EE4 /* IndoorLocation.swift */; };
 		E20AE5891E32489600855EE4 /* IndoorLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = E20AE5881E32489600855EE4 /* IndoorLocation.m */; };
-		E263843A1E31816900DDAAC2 /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E26384391E31816900DDAAC2 /* Mapbox.framework */; };
-		E263843B1E31816900DDAAC2 /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E26384391E31816900DDAAC2 /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E263843D1E31817200DDAAC2 /* libRCTMapboxGL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E26384251E31814800DDAAC2 /* libRCTMapboxGL.a */; };
 		E274A89B1E48D0F600F9A620 /* libBleManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E274A87F1E48D0E100F9A620 /* libBleManager.a */; };
 		E287B51F1FBDD34D0025814D /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E287B51E1FBDD3410025814D /* libReactNativeNavigation.a */; };
+		E289BA371FBEF2A1007C0C29 /* libRCTMGL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E289BA1C1FBEF292007C0C29 /* libRCTMGL.a */; };
+		E289BA3D1FBEF2F7007C0C29 /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E289BA3B1FBEF2F7007C0C29 /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E2A3165D1E3AAFAE005EE87E /* Montserrat-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = E2A3165A1E3AAFAE005EE87E /* Montserrat-Light.otf */; };
 		E2A3165E1E3AAFAE005EE87E /* Montserrat-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = E2A3165B1E3AAFAE005EE87E /* Montserrat-Regular.otf */; };
 		E2A316611E3AB02A005EE87E /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E2A316601E3AB029005EE87E /* Montserrat-Bold.otf */; };
@@ -220,20 +219,6 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
-		E26384241E31814800DDAAC2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E26384171E31814800DDAAC2 /* RCTMapboxGL.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C5DBB3401AF2EF2B00E611A9;
-			remoteInfo = RCTMapboxGL;
-		};
-		E26384261E31814800DDAAC2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E26384171E31814800DDAAC2 /* RCTMapboxGL.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C5DBB34B1AF2EF2B00E611A9;
-			remoteInfo = RCTMapboxGLTests;
-		};
 		E274A87E1E48D0E100F9A620 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E274A87A1E48D0E100F9A620 /* BleManager.xcodeproj */;
@@ -247,6 +232,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = D8AFADBD1BEE6F3F00A4592D;
 			remoteInfo = ReactNativeNavigation;
+		};
+		E289BA1B1FBEF292007C0C29 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E289BA0E1FBEF291007C0C29 /* RCTMGL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C4D1443D1F4E16F600396F26;
+			remoteInfo = RCTMGL;
 		};
 		E2F21A981FBDCD0D003E2242 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -307,13 +299,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		E263843C1E31816900DDAAC2 /* Embed Frameworks */ = {
+		E289BA3A1FBEF2CD007C0C29 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E263843B1E31816900DDAAC2 /* Mapbox.framework in Embed Frameworks */,
+				E289BA3D1FBEF2F7007C0C29 /* Mapbox.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,10 +345,10 @@
 		E20AE5791E3247F200855EE4 /* FRI-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FRI-Bridging-Header.h"; sourceTree = "<group>"; };
 		E20AE57A1E3247F300855EE4 /* IndoorLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IndoorLocation.swift; path = FRI/IndoorLocation.swift; sourceTree = "<group>"; };
 		E20AE5881E32489600855EE4 /* IndoorLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IndoorLocation.m; path = FRI/IndoorLocation.m; sourceTree = "<group>"; };
-		E26384171E31814800DDAAC2 /* RCTMapboxGL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTMapboxGL.xcodeproj; path = "../node_modules/react-native-mapbox-gl/ios/RCTMapboxGL.xcodeproj"; sourceTree = "<group>"; };
-		E26384391E31816900DDAAC2 /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapbox.framework; path = "../node_modules/react-native-mapbox-gl/ios/Mapbox.framework"; sourceTree = "<group>"; };
 		E274A87A1E48D0E100F9A620 /* BleManager.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BleManager.xcodeproj; path = "../node_modules/react-native-ble-manager/ios/BleManager.xcodeproj"; sourceTree = "<group>"; };
 		E287B4F51FBDD3400025814D /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
+		E289BA0E1FBEF291007C0C29 /* RCTMGL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTMGL.xcodeproj; path = "../node_modules/@mapbox/react-native-mapbox-gl/ios/RCTMGL.xcodeproj"; sourceTree = "<group>"; };
+		E289BA3B1FBEF2F7007C0C29 /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapbox.framework; path = "../node_modules/@mapbox/react-native-mapbox-gl/ios/Mapbox.framework"; sourceTree = "<group>"; };
 		E2A3165A1E3AAFAE005EE87E /* Montserrat-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Light.otf"; path = "FRI/Fonts/Montserrat-Light.otf"; sourceTree = "<group>"; };
 		E2A3165B1E3AAFAE005EE87E /* Montserrat-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Regular.otf"; path = "FRI/Fonts/Montserrat-Regular.otf"; sourceTree = "<group>"; };
 		E2A316601E3AB029005EE87E /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Bold.otf"; path = "FRI/Fonts/Montserrat-Bold.otf"; sourceTree = "<group>"; };
@@ -367,6 +359,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E289BA371FBEF2A1007C0C29 /* libRCTMGL.a in Frameworks */,
 				E287B51F1FBDD34D0025814D /* libReactNativeNavigation.a in Frameworks */,
 				E274A89B1E48D0F600F9A620 /* libBleManager.a in Frameworks */,
 				E20AE5771E32470B00855EE4 /* CoreBluetooth.framework in Frameworks */,
@@ -378,7 +371,6 @@
 				E20AE55F1E32469700855EE4 /* CoreLocation.framework in Frameworks */,
 				E20AE55D1E32469200855EE4 /* CoreMotion.framework in Frameworks */,
 				E20AE55B1E32468700855EE4 /* UIKit.framework in Frameworks */,
-				E263843D1E31817200DDAAC2 /* libRCTMapboxGL.a in Frameworks */,
 				E20AE5591E32463900855EE4 /* IndoorAtlas.framework in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -391,7 +383,6 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				E263843A1E31816900DDAAC2 /* Mapbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,9 +510,9 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				E289BA0E1FBEF291007C0C29 /* RCTMGL.xcodeproj */,
 				E287B4F51FBDD3400025814D /* ReactNativeNavigation.xcodeproj */,
 				E274A87A1E48D0E100F9A620 /* BleManager.xcodeproj */,
-				E26384171E31814800DDAAC2 /* RCTMapboxGL.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -569,6 +560,7 @@
 		E20AE53A1E323CED00855EE4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E289BA3B1FBEF2F7007C0C29 /* Mapbox.framework */,
 				E20AE5761E32470B00855EE4 /* CoreBluetooth.framework */,
 				E20AE5681E3246D300855EE4 /* Foundation.framework */,
 				E20AE5661E3246C200855EE4 /* SystemConfiguration.framework */,
@@ -579,7 +571,6 @@
 				E20AE55C1E32469200855EE4 /* CoreMotion.framework */,
 				E20AE55A1E32468700855EE4 /* UIKit.framework */,
 				E20AE5581E32463900855EE4 /* IndoorAtlas.framework */,
-				E26384391E31816900DDAAC2 /* Mapbox.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -591,15 +582,6 @@
 				E20AE5881E32489600855EE4 /* IndoorLocation.m */,
 			);
 			name = IndoorLocation;
-			sourceTree = "<group>";
-		};
-		E26384181E31814800DDAAC2 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E26384251E31814800DDAAC2 /* libRCTMapboxGL.a */,
-				E26384271E31814800DDAAC2 /* RCTMapboxGLTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		E274A87B1E48D0E100F9A620 /* Products */ = {
@@ -614,6 +596,14 @@
 			isa = PBXGroup;
 			children = (
 				E287B51E1FBDD3410025814D /* libReactNativeNavigation.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E289BA0F1FBEF291007C0C29 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E289BA1C1FBEF292007C0C29 /* libRCTMGL.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -639,7 +629,7 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				E263843C1E31816900DDAAC2 /* Embed Frameworks */,
+				E289BA3A1FBEF2CD007C0C29 /* Embed Frameworks */,
 				E263843E1E31817A00DDAAC2 /* Run Script */,
 			);
 			buildRules = (
@@ -704,8 +694,8 @@
 					ProjectRef = 78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */;
 				},
 				{
-					ProductGroup = E26384181E31814800DDAAC2 /* Products */;
-					ProjectRef = E26384171E31814800DDAAC2 /* RCTMapboxGL.xcodeproj */;
+					ProductGroup = E289BA0F1FBEF291007C0C29 /* Products */;
+					ProjectRef = E289BA0E1FBEF291007C0C29 /* RCTMGL.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302D41ABCB9D200DB3ED1 /* Products */;
@@ -919,20 +909,6 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E26384251E31814800DDAAC2 /* libRCTMapboxGL.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTMapboxGL.a;
-			remoteRef = E26384241E31814800DDAAC2 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E26384271E31814800DDAAC2 /* RCTMapboxGLTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = RCTMapboxGLTests.xctest;
-			remoteRef = E26384261E31814800DDAAC2 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		E274A87F1E48D0E100F9A620 /* libBleManager.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -945,6 +921,13 @@
 			fileType = archive.ar;
 			path = libReactNativeNavigation.a;
 			remoteRef = E287B51D1FBDD3410025814D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E289BA1C1FBEF292007C0C29 /* libRCTMGL.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTMGL.a;
+			remoteRef = E289BA1B1FBEF292007C0C29 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		E2F21A991FBDCD0D003E2242 /* libfishhook.a */ = {
@@ -1089,7 +1072,7 @@
 				DEVELOPMENT_TEAM = 3D669LLPTV;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"../node_modules/react-native-mapbox-gl/**",
+					"$(PROJECT_DIR)/../node_modules/@mapbox/react-native-mapbox-gl/ios/**",
 					"$(PROJECT_DIR)/FRI/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/../node_modules/react-native-navigation/ios/**";
@@ -1122,7 +1105,7 @@
 				DEVELOPMENT_TEAM = 3D669LLPTV;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"../node_modules/react-native-mapbox-gl/**",
+					"$(PROJECT_DIR)/../node_modules/@mapbox/react-native-mapbox-gl/ios/**",
 					"$(PROJECT_DIR)/FRI/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/../node_modules/react-native-navigation/ios/**";

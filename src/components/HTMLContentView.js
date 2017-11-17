@@ -11,7 +11,7 @@ type Props = {
   content: string,
 };
 
-const HTMLContentView = ({ content }: Props) => console.log(content) || (
+const HTMLContentView = ({ content }: Props) => (
   <HTML
     html={content}
     renderers={renderers}
